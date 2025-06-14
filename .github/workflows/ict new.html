@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Grade 11 ICT Learning Hub</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<style>
+ /* CSS from styles.css */
+ body {
+ font-family: 'Segoe UI', sans-serif;
+ background: #f5f7fa;
+ margin: 0;
+ color: #34495e;
+ }
+ header, footer {
+ background: #2c3e50;
+ color: white;
+ padding: 15px 20px;
+ text-align: center;
+ }
+ nav {
+ background: #3498db;
+ padding: 10px 20px;
+ display: flex;
+ gap: 20px;
+ justify-content: center;
+ flex-wrap: wrap;
+ }
+ nav a {
+ color: white;
+ text-decoration: none;
+ font-weight: bold;
+ padding: 5px 10px;
+ border-radius: 5px;
+ transition: all 0.3s ease;
+ cursor: pointer;
+ }
+ nav a:hover, nav a.active {
+ background: rgba(255,255,255,0.2);
+ }
+ main {
+ padding: 20px;
+ max-width: 1200px;
+ margin: 0 auto;
+ }
+ section {
+ background: white;
+ padding: 25px;
+ border-radius: 12px;
+ margin-bottom: 30px;
+ box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+ display: none;
+ }
+ section.active {
+ display: block;
+ }
+ section h2 {
+ color: #3498db;
+ margin-bottom: 15px;
+ border-bottom: 2px solid #3498db;
+ padding-bottom: 10px;
+ }
+ p, li {
+ line-height: 1.6;
+ }
+ ul {
+ padding-left: 20px;
+ }
+ a {
+ color: #2980b9;
+ text-decoration: none;
+ }
+ a:hover {
+ text-decoration: underline;
+ }
+ .quiz-question {
+ margin: 15px 0;
+ }
+ .feedback {
+ display: none;
+ margin-top: 5px;
+ font-weight: bold;
+ }
+ .topic-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+ gap: 20px;
+ margin-top: 20px;
+ }
+ .topic-card {
+ background: white;
+ border-radius: 10px;
+ overflow: hidden;
+ box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+ transition: transform 0.3s ease;
+ }
+ .topic-card:hover {
+ transform: translateY(-5px);
+ }
+ .topic-card img {
+ width: 100%;
+ height: 180px;
+ object-fit: cover;
+ }
+ .topic-card-content {
+ padding: 15px;
+ }
+ .topic-card h3 {
+ margin-top: 0;
+ color: #2c3e50;
+ }
+ .hero {
+ background: linear-gradient(135deg, #3498db, #2c3e50);
+ color: white;
+ padding: 60px 20px;
+ text-align: center;
+ border-radius: 12px;
+ margin-bottom: 30px;
+ }
+ .hero h1 {
+ font-size: 2.5rem;
+ margin-bottom: 15px;
+ }
+ .hero p {
+ font-size: 1.2rem;
+ max-width: 800px;
+ margin: 0 auto;
+ }
+ .image-gallery {
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+ gap: 15px;
+ margin-top: 20px;
+ }
+ .gallery-item {
+ border-radius: 8px;
+ overflow: hidden;
+ box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+ }
+ .gallery-item img {
+ width: 100%;
+ height: 160px;
+ object-fit: cover;
+ transition: transform 0.3s ease;
+ }
+ .gallery-item:hover img {
+ transform: scale(1.05);
+ }
+ .gallery-caption {
+ padding: 10px;
+ background: white;
+ text-align: center;
+ }
+ .resource-card {
+ display: flex;
+ align-items: center;
+ gap: 15px;
+ background: #f8f9fa;
+ padding: 15px;
+ border-radius: 8px;
+ margin-bottom: 15px;
+ }
+ .resource-card i {
+ font-size: 2rem;
+ color: #3498db;
+ }
+ .note-section {
+ background: #f0f8ff;
+ padding: 15px;
+ border-left: 4px solid #3498db;
+ margin: 15px 0;
+ border-radius: 0 8px 8px 0;
+ }
+ .note-section h3 {
+ margin-top: 0;
+ color: #2c3e50;
+ }
+ .definition {
+ background: #fffaf0;
+ padding: #10px;
+15px;
+ border-left: 4px;
+solid #ffa500;
+ margin: #10px;
+ font-style: italic;
+ }
+ .key-term {
+ font-weight: bold;
+ color: #2c;
+50;
+ }
+ .search-bar {
+ display: flex;
+ gap: 10px;
+ justify-content: center;
+ margin-top: 10px;
+ }
+ .search-bar input {
+ padding: 8px;
+ border-radius: 5px;
+ border: 1px solid #ccc;
+ width: 200px;
+ }
+ .search-bar button {
+ padding: 8px;
+ background: #3498db;
+ color: white;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ }
+ .search-bar button:hover {
+ background: #2980b9;
+ }
+ .dark-mode-toggle {
+ padding: 8px;
+ background: #3498db;
+ color: white;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ margin: 10px;
+ }
+ .dark-mode {
+ background: #1a1a1a;
+ color: #e0e0e0;
+ }
+ .dark-mode header, .dark-mode footer {
+ background: #121212;
+ }
+ .dark-mode {
+ background: #1e88e5;
+ }
+ .dark-mode section, .dark-mode .topic-card, .dark-mode .gallery-item, .dark-mode .resource-card {
+ background: #2c2c2c;
+ }
+ .dark-mode .note-section {
+ background: #1c2526;
+ }
+ .dark-mode .definition {
+ background: #3c2f2f;
+ }
+ .progress-bar {
+ background: #e0e0e0;
+ border-radius: 5px;
+ overflow: hidden;
+ margin: 10px;
+0;
+ }
+ #progress-fill {
+ width: 0%;
+ background: #3498db;
+ height: 20px;
+ border-radius: 5px;
+ }
+ #progress-list {
+ list-style: none;
+ padding: 0;
+ }
+ #progress-list li {
+ margin: 5px 0;
+ }
+ #progress-list li.completed {
+ color: green;
+ }
+ .code-playground {
+ margin: 20px 0;
+ }
+ #code-input-web, #code-input-python {
+ width: 100%;
+ padding: 10px;
+ border-radius: 5px;
+ border: 1px solid #ccc;
+ }
+ #code-output-web, #code-output-python {
+ margin-top: 10px;
+ padding: 10px;
+ background: #f8f9fa;
+ border-radius: 5px;
+ min-height: 100px;
+ }
+ #contact-form {
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+ max-width: 500px;
+ margin: 0 auto;
+ }
+ #contact-form label {
+ font-weight: bold;
+ }
+ #contact-form input, #contact-form textarea {
+ padding: 8px;
+ border-radius: 5px;
+ border: 1px solid #ccc;
+ }
+ #contact-form button {
+ padding: 10px;
+ background: #3498db;
+ color: white;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ }
+ #contact-form button:hover {
+ background: #2980b9;
+ }
+ .back-to-top {
+ position: fixed;
+ bottom: 20px;
+ right: 20px;
+ padding: 10px;
+ background: #3498db;
+ color: white;
+ border: none;
+ border-radius: 50%;
+ cursor: pointer;
+ display: none;
+ }
+ .back-to-top.show {
+ display: block;
+ }
+ button {
+ padding: 8px;
+ background: #3498db;
+ color: white;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ }
+ button:hover {
+ background: #2980b9;
+ }
+ @media (max-width: 600px) {
+ nav {
+ flex-direction: column;
+ align-items: center;
+ }
+ .search-bar input {
+ width: 100%;
+ }
+ .hero h1 {
+ font-size: 1.8rem;
+ }
+ .hero p {
+ font-size: 1rem;
+ }
+ }
+ </style>
+</head>
+<body>
+<header>
+<h1><i class="fas fa-laptop-code"></i> Grade 11 ICT Learning Hub</h1>
+<button class="dark-mode-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i> Toggle Dark Mode</button>
+</header>
+ <a href="homepage_html.html" class="home-button">← Back to FutureLearn</a>
+<nav>
+<a class="active" data-section="home" href="#home">Home</a>
+<a data-section="topics" href="#topics">Topics</a>
+<a data-section="notes" href="#notes">Notes</a>
+<a data-section="videos" href="#videos">Videos</a>
+<a data-section="quizzes" href="#quizzes">Quizzes</a>
+<a data-section="resources" href="#resources">Resources</a>
+<a data-section="contact" href="#contact">Contact</a>
+</nav>
+<main>
+<!-- Home Section -->
+<section class="active" id="home">
+<div class="hero">
+<h1>Welcome to ICT Learning Hub</h1>
+<p>Explore the world of Information and Communication Technology with interactive lessons, videos, and quizzes designed for Grade 11 students.</p>
+</div>
+<section id="progress">
+<h2><i class="fas fa-chart-line"></i> Your Progress</h2>
+<p>Track your completion of topics and quizzes.</p>
+<div class="progress-bar">
+<div id="progress-fill"></div>
+</div>
+<ul id="progress-list"></ul>
+</section>
+<section id="topics-home">
+<h2><i class="fas fa-lightbulb"></i> Topics</h2>
+<div class="topic-grid">
+<div class="topic-card">
+<img alt="Information Systems" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="topic-card-content">
+<h3>Information Systems and Its Applications</h3>
+<p>Understanding data, information, and knowledge hierarchy with real-world applications.</p>
+<button onclick="showSection('notes')">Learn More</button>
+</div>
+</div>
+<div class="topic-card">
+<img alt="Emerging Technologies" src="https://media.istockphoto.com/id/1488521147/photo/global-network-usa-united-states-of-america-north-america-global-business-flight-routes.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=GUHBDWeC4QNzfvpv1UHFWXMPvd2FZ-7rQD-OfG9zIsY="/>
+<div class="topic-card-content">
+<h3>Emerging Technologies</h3>
+<p>Explore AI, machine learning, robotics, and other cutting-edge technologies.</p>
+<button onclick="showSection('notes')">Learn More</button>
+</div>
+</div>
+<div class="topic-card">
+<img alt="Database Management" src="https://images.unsplash.com/photo-1548092372-0d1bd40894a3?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="topic-card-content">
+<h3>Database Management</h3>
+<p>Learn about data models, ERDs, and working with relational databases.</p>
+<button onclick="showSection('notes')">Learn More</button>
+</div>
+</div>
+<div class="topic-card">
+<img alt="Web Development" src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="topic-card-content">
+<h3>Web Development</h3>
+<p>Master HTML, CSS, and create your first responsive web pages.</p>
+<button onclick="showSection('notes')">Learn More</button>
+</div>
+</div>
+<div class="topic-card">
+<img alt="Hardware Troubleshooting" src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="topic-card-content">
+<h3>Hardware Troubleshooting</h3>
+<p>Identify and fix common hardware issues with professional techniques.</p>
+<button onclick="showSection('notes')">Learn More</button>
+</div>
+</div>
+<div class="topic-card">
+<img alt="Programming" src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="topic-card-content">
+<h3>Fundamentals of Programming</h3>
+<p>Start your coding journey with Python programming basics.</p>
+<button onclick="showSection('notes')">Learn More</button>
+</div>
+</div>
+</div>
+</section>
+</section>
+<!-- Topics Section -->
+<section id="topics">
+<h2><i class="fas fa-lightbulb"></i> Topics</h2>
+<div class="topic-grid">
+<div class="topic-card">
+<img alt="Information Systems" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="topic-card-content">
+<h3>Information Systems and Its Applications</h3>
+<p>Understanding data, information, and knowledge hierarchy with real-world applications.</p>
+<button onclick="showSection('notes')">Learn More</button>
+</div>
+</div>
+<div class="topic-card">
+<img alt="Emerging Technologies" src="https://media.istockphoto.com/id/1488521147/photo/global-network-usa-united-states-of-america-north-america-global-business-flight-routes.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=GUHBDWeC4QNzfvpv1UHFWXMPvd2FZ-7rQD-OfG9zIsY="/>
+<div class="topic-card-content">
+<h3>Emerging Technologies</h3>
+<p>Explore AI, machine learning, robotics, and other cutting-edge technologies.</p>
+<button onclick="showSection('notes')">Learn More</button>
+</div>
+</div>
+<div class="topic-card">
+<img alt="Database Management" src="https://images.unsplash.com/photo-1548092372-0d1bd40894a3?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="topic-card-content">
+<h3>Database Management</h3>
+<p>Learn about data models, ERDs, and working with relational databases.</p>
+<button onclick="showSection('notes')">Learn More</button>
+</div>
+</div>
+<div class="topic-card">
+<img alt="Web Development" src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="topic-card-content">
+<h3>Web Development</h3>
+<p>Master HTML, CSS, and create your first responsive web pages.</p>
+<button onclick="showSection('notes')">Learn More</button>
+</div>
+</div>
+<div class="topic-card">
+<img alt="Hardware Troubleshooting" src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="topic-card-content">
+<h3>Hardware Troubleshooting</h3>
+<p>Identify and fix common hardware issues with professional techniques.</p>
+<button onclick="showSection('notes')">Learn More</button>
+</div>
+</div>
+<div class="topic-card">
+<img alt="Programming" src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="topic-card-content">
+<h3>Fundamentals of Programming</h3>
+<p>Start your coding journey with Python programming basics.</p>
+<button onclick="showSection('notes')">Learn More</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Notes Section -->
+<section id="notes">
+<h2><i class="fas fa-file-alt"></i> Detailed Notes</h2>
+<div class="note-section">
+<h3>Information Systems and Its Applications</h3>
+<div class="image-gallery">
+<div class="gallery-item">
+<img alt="Information Systems" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="gallery-caption">
+<p>Components of Information Systems</p>
+</div>
+</div>
+</div>
+<div class="definition">
+<p><span class="key-term">Information System:</span> A combination of hardware, software, infrastructure, and trained personnel organized to facilitate planning, control, coordination, and decision making in an organization.</p>
+</div>
+<h4>Key Concepts:</h4>
+<ul>
+<li><strong>DIKW Pyramid:</strong> Data → Information → Knowledge → Wisdom hierarchy</li>
+<li><strong>Components:</strong> Hardware, Software, Data, Procedures, People</li>
+<li><strong>Types:</strong> Transaction Processing Systems, Management Information Systems, Decision Support Systems</li>
+</ul>
+<h4>Applications in Ethiopia:</h4>
+<ul>
+<li><strong>E-Banking:</strong> Mobile banking services like CBE Birr, M-Birr</li>
+<li><strong>E-Learning:</strong> Online education platforms and digital classrooms</li>
+<li><strong>E-Government:</strong> Digital services for citizens (e.g., e-tax, e-visa)</li>
+<li><strong>Telemedicine:</strong> Remote healthcare services in rural areas</li>
+</ul>
+</div>
+<div class="note-section">
+<h3>Emerging Technologies</h3>
+<div class="image-gallery">
+<div class="gallery-item">
+<img alt="AI Technology" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="gallery-caption">
+<p>Artificial Intelligence Applications</p>
+</div>
+</div>
+</div>
+<div class="definition">
+<p><span class="key-term">Emerging Technology:</span> A new technology that is currently developing or will be developed over the next five to ten years, and will substantially alter current business and industry practices.</p>
+</div>
+<h4>Key Technologies:</h4>
+<ul>
+<li><strong>Artificial Intelligence (AI):</strong> Machines that can learn, reason, and solve problems</li>
+<li><strong>Machine Learning:</strong> Algorithms that improve automatically through experience</li>
+<li><strong>Robotics:</strong> Design and use of robots in manufacturing, healthcare, etc.</li>
+<li><strong>Natural Language Processing (NLP):</strong> How computers understand human language</li>
+<li><strong>Augmented/Virtual Reality:</strong> Enhanced or completely virtual environments</li>
+</ul>
+<h4>Impact in Ethiopia:</h4>
+<ul>
+<li>AI for agricultural predictions and crop monitoring</li>
+<li>Chatbots for customer service in banks and telecoms</li>
+<li>Drones for medical supply delivery in remote areas</li>
+</ul>
+</div>
+<div class="note-section">
+<h3>Database Management</h3>
+<div class="image-gallery">
+<div class="gallery-item">
+<img alt="Database Management" src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="gallery-caption">
+<p>Relational Database Structure</p>
+</div>
+</div>
+</div>
+<div class="definition">
+<p><span class="key-term">Database:</span> An organized collection of structured information, or data, typically stored electronically in a computer system.</p>
+</div>
+<h4>Key Concepts:</h4>
+<ul>
+<li><strong>Data Models:</strong> Hierarchical, Network, Relational, Object-oriented</li>
+<li><strong>Entity-Relationship Diagrams (ERD):</strong> Visual representation of data relationships</li>
+<li><strong>Normalization:</strong> Process of organizing data to minimize redundancy</li>
+<li><strong>SQL:</strong> Standard language for relational database management</li>
+</ul>
+<h4>Practical Skills:</h4>
+<ul>
+<li>Creating tables and relationships in Microsoft Access</li>
+<li>Designing simple queries to extract specific data</li>
+<li>Building forms for data entry and user interfaces</li>
+<li>Generating reports from database information</li>
+</ul>
+</div>
+<div class="note-section">
+<h3>Web Development</h3>
+<div class="image-gallery">
+<div class="gallery-item">
+<img alt="Web Development" src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="gallery-caption">
+<p>HTML and CSS Basics</p>
+</div>
+</div>
+</div>
+<div class="definition">
+<p><span class="key-term">Web Development:</span> The work involved in developing a website for the Internet (World Wide Web) or an intranet (a private network).</p>
+</div>
+<h4>Creating Responsive Pages:</h4>
+<ul>
+<li>Using viewport meta tag for mobile devices</li>
+<li>Basic CSS styling for layout and appearance</li>
+<li>Simple media queries for different screen sizes</li>
+<li>Best practices for web accessibility</li>
+</ul>
+<div class="code-playground">
+<h3>Try HTML/CSS Coding!</h3>
+<textarea aria-label="Code input" id="code-input-web" placeholder="Write your HTML or CSS code here..." rows="10"></textarea>
+<button onclick="runCode('web')">Run Code</button>
+<div id="code-output-web"></div>
+</div>
+</div>
+<div class="note-section">
+<h3>Hardware Troubleshooting</h3>
+<div class="image-gallery">
+<div class="gallery-item">
+<img alt="Computer Hardware" src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="gallery-caption">
+<p>Computer Components</p>
+</div>
+</div>
+</div>
+<div class="definition">
+<p><span class="key-term">Troubleshooting:</span> A systematic approach to problem-solving that is often used to find and resolve issues with complex machines, electronics, computers, and software systems.</p>
+</div>
+<h4>Common Hardware Issues:</h4>
+<ul>
+<li><strong>No Power:</strong> Check power supply, cables, and connections</li>
+<li><strong>Overheating:</strong> Clean fans, check thermal paste, improve ventilation</li>
+<li><strong>Blue Screen Errors:</strong> Often related to RAM or driver issues</li>
+<li><strong>Peripheral Failures:</strong> Test with different ports or computers</li>
+</ul>
+<h4>Preventive Maintenance:</h4>
+<ul>
+<li>Regular cleaning of dust from components</li>
+<li>Proper ventilation and cooling</li>
+<li>Surge protection and UPS for power stability</li>
+<li>Regular backups and virus scans</li>
+<li>CMOS battery replacement when needed</li>
+</ul>
+</div>
+<div class="note-section">
+<h3>Fundamentals of Programming</h3>
+<div class="image-gallery">
+<div class="gallery-item">
+<img alt="Python Programming" src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+<div class="gallery-caption">
+<p>Python Code Example</p>
+</div>
+</div>
+</div>
+<div class="definition">
+<p><span class="key-term">Programming:</span> The process of creating a set of instructions that tell a computer how to perform a task.</p>
+</div>
+<h4>Python Basics:</h4>
+<ul>
+<li><strong>Variables:</strong> Containers for storing data values</li>
+<li><strong>Data Types:</strong> Integers, floats, strings, booleans, lists</li>
+<li><strong>Operators:</strong> Arithmetic, comparison, logical operators</li>
+<li><strong>Control Structures:</strong> if-else, for loops, while loops</li>
+<li><strong>Functions:</strong> Reusable blocks of code</li>
+</ul>
+<h4>Problem Solving with Code:</h4>
+<ul>
+<li>Understanding the problem and requirements</li>
+<li>Breaking down problems into smaller steps</li>
+<li>Designing algorithms and flowcharts</li>
+<li>Writing and testing code incrementally</li>
+<li>Debugging and improving solutions</li>
+</ul>
+<div class="code-playground">
+<h3>Try Python Coding!</h3>
+<textarea aria-label="Code input" id="code-input-python" placeholder="Write your Python code here..." rows="10"></textarea>
+<button onclick="runCode('python')">Run Code</button>
+<div id="code-output-python"></div>
+</div>
+</div>
+</section>
+<!-- Videos Section -->
+<section id="videos">
+<h2><i class="fas fa-play-circle"></i> Educational Videos</h2>
+<p>Watch these videos to enhance your understanding of key ICT concepts:</p>
+<div class="image-gallery">
+<div class="gallery-item">
+<img alt="Introduction to Information Systems" src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"/>
+<div class="gallery-caption">
+<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Introduction to Information Systems</a>
+<p>Learn about the components and importance of information systems in modern organizations.</p>
+</div>
+</div>
+<div class="gallery-item">
+<img alt="Introduction to Databases" src="https://i.ytimg.com/vi/ktlTxC4QG8g/hqdefault.jpg"/>
+<div class="gallery-caption">
+<a href="https://www.youtube.com/watch?v=ktlTxC4QG8g" target="_blank">Introduction to Databases</a>
+<p>Understand the fundamentals of database design and management.</p>
+</div>
+</div>
+<div class="gallery-item">
+<img alt="Learn HTML Basics" src="https://i.ytimg.com/vi/pQN-pnXPaVg/hqdefault.jpg"/>
+<div class="gallery-caption">
+<a href="https://www.youtube.com/watch?v=pQN-pnXPaVg" target="_blank">Learn HTML Basics</a>
+<p>Step-by-step tutorial on creating your first web pages with HTML.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Quizzes Section -->
+<section id="quizzes">
+<h2><i class="fas fa-question-circle"></i> Interactive Quizzes</h2>
+<p>Test your knowledge with these interactive questions. Click "Check Answer" to get immediate feedback.</p>
+<h3>Unit 1: Information Systems and Its Applications</h3>
+<div class="quiz-question">
+<p>1. What is the primary purpose of an Information System in an organization?</p>
+<label><input name="q1-1" type="radio" value="a"/> To design computer hardware</label><br/>
+<label><input name="q1-1" type="radio" value="b"/> To facilitate planning, control, coordination, and decision-making</label><br/>
+<label><input name="q1-1" type="radio" value="c"/> To create software applications</label><br/>
+<label><input name="q1-1" type="radio" value="d"/> To manage network cables</label><br/>
+<button onclick="checkAnswer('q1-1','b','An Information System combines hardware, software, data, procedures, and people to support organizational functions like planning and decision-making.')">Check Answer</button>
+<p class="feedback" id="q1-1-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>2. Which of the following is NOT a component of an Information System?</p>
+<label><input name="q1-2" type="radio" value="a"/> Hardware</label><br/>
+<label><input name="q1-2" type="radio" value="b"/> Software</label><br/>
+<label><input name="q1-2" type="radio" value="c"/> Furniture</label><br/>
+<label><input name="q1-2" type="radio" value="d"/> People</label><br/>
+<button onclick="checkAnswer('q1-2','c','An Information System consists of hardware, software, data, procedures, and people. Furniture is not a core component.')">Check Answer</button>
+<p class="feedback" id="q1-2-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>3. In the DIKW pyramid, what comes immediately after Data?</p>
+<label><input name="q1-3" type="radio" value="a"/> Wisdom</label><br/>
+<label><input name="q1-3" type="radio" value="b"/> Knowledge</label><br/>
+<label><input name="q1-3" type="radio" value="c"/> Information</label><br/>
+<label><input name="q1-3" type="radio" value="d"/> Understanding</label><br/>
+<button onclick="checkAnswer('q1-3','c','The DIKW pyramid represents the hierarchy as Data → Information → Knowledge → Wisdom.')">Check Answer</button>
+<p class="feedback" id="q1-3-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>4. Which of these is an example of an E-Government application in Ethiopia?</p>
+<label><input name="q1-4" type="radio" value="a"/> Online shopping platforms</label><br/>
+<label><input name="q1-4" type="radio" value="b"/> E-tax services</label><br/>
+<label><input name="q1-4" type="radio" value="c"/> Social media platforms</label><br/>
+<label><input name="q1-4" type="radio" value="d"/> Video streaming services</label><br/>
+<button onclick="checkAnswer('q1-4','b','E-Government applications provide digital services to citizens, such as e-tax or e-visa systems.')">Check Answer</button>
+<p class="feedback" id="q1-4-feedback"></p>
+</div>
+<h3>Unit 2: Emerging Technologies</h3>
+<div class="quiz-question">
+<p>1. What is a key characteristic of Artificial Intelligence (AI)?</p>
+<label><input name="q2-1" type="radio" value="a"/> Stores large amounts of data</label><br/>
+<label><input name="q2-1" type="radio" value="b"/> Mimics human-like reasoning and problem-solving</label><br/>
+<label><input name="q2-1" type="radio" value="c"/> Manages physical hardware components</label><br/>
+<label><input name="q2-1" type="radio" value="d"/> Designs web pages automatically</label><br/>
+<button onclick="checkAnswer('q2-1','b','AI involves machines that can learn, reason, and solve problems, simulating human intelligence.')">Check Answer</button>
+<p class="feedback" id="q2-1-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>2. Which technology enables computers to understand human language?</p>
+<label><input name="q2-2" type="radio" value="a"/> Machine Learning</label><br/>
+<label><input name="q2-2" type="radio" value="b"/> Natural Language Processing (NLP)</label><br/>
+<label><input name="q2-2" type="radio" value="c"/> Augmented Reality</label><br/>
+<label><input name="q2-2" type="radio" value="d"/> Robotics</label><br/>
+<button onclick="checkAnswer('q2-2','b','NLP is a subset of AI that focuses on enabling computers to understand and process human language.')">Check Answer</button>
+<p class="feedback" id="q2-2-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>3. How is AI being used in Ethiopia’s agriculture sector?</p>
+<label><input name="q2-3" type="radio" value="a"/> To replace all farmers with robots</label><br/>
+<label><input name="q2-3" type="radio" value="b"/> For crop monitoring and predictions</label><br/>
+<label><input name="q2-3" type="radio" value="c"/> To create virtual reality farms</label><br/>
+<label><input name="q2-3" type="radio" value="d"/> To manage banking transactions</label><br/>
+<button onclick="checkAnswer('q2-3','b','In Ethiopia, AI is used for agricultural predictions, such as weather or crop yield forecasting.')">Check Answer</button>
+<p class="feedback" id="q2-3-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>4. What is a potential impact of drones in Ethiopia?</p>
+<label><input name="q2-4" type="radio" value="a"/> Replacing all transportation systems</label><br/>
+<label><input name="q2-4" type="radio" value="b"/> Delivering medical supplies to remote areas</label><br/>
+<label><input name="q2-4" type="radio" value="c"/> Designing software applications</label><br/>
+<label><input name="q2-4" type="radio" value="d"/> Managing databases</label><br/>
+<button onclick="checkAnswer('q2-4','b','Drones are used in Ethiopia to deliver medical supplies to hard-to-reach areas.')">Check Answer</button>
+<p class="feedback" id="q2-4-feedback"></p>
+</div>
+<h3>Unit 3: Database Management</h3>
+<div class="quiz-question">
+<p>1. What is the purpose of normalization in a database?</p>
+<label><input name="q3-1" type="radio" value="a"/> To increase data redundancy</label><br/>
+<label><input name="q3-1" type="radio" value="b"/> To organize data and minimize redundancy</label><br/>
+<label><input name="q3-1" type="radio" value="c"/> To create complex queries</label><br/>
+<label><input name="q3-1" type="radio" value="d"/> To design web interfaces</label><br/>
+<button onclick="checkAnswer('q3-1','b','Normalization organizes data in a database to eliminate redundancy and ensure data integrity.')">Check Answer</button>
+<p class="feedback" id="q3-1-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>2. What does SQL stand for?</p>
+<label><input name="q3-2" type="radio" value="a"/> Standard Query Language</label><br/>
+<label><input name="q3-2" type="radio" value="b"/> Structured Question Language</label><br/>
+<label><input name="q3-2" type="radio" value="c"/> Sequential Query Language</label><br/>
+<label><input name="q3-2" type="radio" value="d"/> Structured Query Language</label><br/>
+<button onclick="checkAnswer('q3-2','d','SQL stands for Structured Query Language, used for managing and querying relational databases.')">Check Answer</button>
+<p class="feedback" id="q3-2-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>3. What is an Entity-Relationship Diagram (ERD) used for?</p>
+<label><input name="q3-3" type="radio" value="a"/> Writing code for web pages</label><br/>
+<label><input name="q3-3" type="radio" value="b"/> Visualizing relationships between data entities</label><br/>
+<label><input name="q3-3" type="radio" value="c"/> Troubleshooting hardware issues</label><br/>
+<label><input name="q3-3" type="radio" value="d"/> Creating virtual reality environments</label><br/>
+<button onclick="checkAnswer('q3-3','b','An ERD is a visual tool used to represent entities and their relationships in a database design.')">Check Answer</button>
+<p class="feedback" id="q3-3-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>4. Which of the following is a practical skill in database management?</p>
+<label><input name="q3-4" type="radio" value="a"/> Writing Python scripts</label><br/>
+<label><input name="q3-4" type="radio" value="b"/> Creating tables in Microsoft Access</label><br/>
+<label><input name="q3-4" type="radio" value="c"/> Designing network cables</label><br/>
+<label><input name="q3-4" type="radio" value="d"/> Troubleshooting power supplies</label><br/>
+<button onclick="checkAnswer('q3-4','b','Creating tables in tools like Microsoft Access is a key database management skill.')">Check Answer</button>
+<p class="feedback" id="q3-4-feedback"></p>
+</div>
+<h3>Unit 4: Web Development</h3>
+<div class="quiz-question">
+<p>1. What is the purpose of the <!DOCTYPE html>
+
+ tag?</p>
+<label><input name="q4-1" type="radio" value="a"/> Defines a hyperlink</label><br/>
+<label><input name="q4-1" type="radio" value="b"/> Specifies the HTML version for the document</label><br/>
+<label><input name="q4-1" type="radio" value="c"/> Styles the webpage</label><br/>
+<label><input name="q4-1" type="radio" value="d"/> Creates a form input</label><br/>
+<button onclick="checkAnswer('q4-1','b','The &lt;!DOCTYPE html&gt; tag declares the document as HTML5, ensuring browsers render it correctly.')">Check Answer</button>
+<p class="feedback" id="q4-1-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>2. Which HTML tag is used to create a table row?</p>
+<label><input name="q4-2" type="radio" value="a"/> <td></td></label><br/>
+<label><input name="q4-2" type="radio" value="b"/> <tr></tr></label><br/>
+<label><input name="q4-2" type="radio" value="c"/> <th></th></label><br/>
+<label><input name="q4-2" type="radio" value="d"/> <table></table></label><br/>
+<button onclick="checkAnswer('q4-2','b','The &lt;tr&gt; tag defines a table row in HTML.')">Check Answer</button>
+<p class="feedback" id="q4-2-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>3. What does the CSS media query do?</p>
+<label><input name="q4-3" type="radio" value="a"/> Plays video content</label><br/>
+<label><input name="q4-3" type="radio" value="b"/> Applies styles based on device characteristics</label><br/>
+<label><input name="q4-3" type="radio" value="c"/> Creates database queries</label><br/>
+<label><input name="q4-3" type="radio" value="d"/> Manages hardware components</label><br/>
+<button onclick="checkAnswer('q4-3','b','Media queries in CSS apply styles based on conditions like screen size, making websites responsive.')">Check Answer</button>
+<p class="feedback" id="q4-3-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>4. Why is the viewport meta tag important for web development?</p>
+<label><input name="q4-4" type="radio" value="a"/> It connects to databases</label><br/>
+<label><input name="q4-4" type="radio" value="b"/> It ensures proper scaling on mobile devices</label><br/>
+<label><input name="q4-4" type="radio" value="c"/> It runs Python scripts</label><br/>
+<label><input name="q4-4" type="radio" value="d"/> It troubleshoots hardware</label><br/>
+<button onclick="checkAnswer('q4-4','b','The viewport meta tag ensures websites scale correctly on mobile devices.')">Check Answer</button>
+<p class="feedback" id="q4-4-feedback"></p>
+</div>
+<h3>Unit 5: Hardware Troubleshooting</h3>
+<div class="quiz-question">
+<p>1. What is a common cause of a computer not powering on?</p>
+<label><input name="q5-1" type="radio" value="a"/> Faulty power supply</label><br/>
+<label><input name="q5-1" type="radio" value="b"/> Incorrect HTML code</label><br/>
+<label><input name="q5-1" type="radio" value="c"/> Missing database tables</label><br/>
+<label><input name="q5-1" type="radio" value="d"/> Unstyled CSS</label><br/>
+<button onclick="checkAnswer('q5-1','a','A faulty power supply or loose cables are common reasons a computer won’t power on.')">Check Answer</button>
+<p class="feedback" id="q5-1-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>2. How can overheating in a computer be prevented?</p>
+<label><input name="q5-2" type="radio" value="a"/> Writing better code</label><br/>
+<label><input name="q5-2" type="radio" value="b"/> Cleaning fans and improving ventilation</label><br/>
+<label><input name="q5-2" type="radio" value="c"/> Creating responsive web pages</label><br/>
+<label><input name="q5-2" type="radio" value="d"/> Normalizing databases</label><br/>
+<button onclick="checkAnswer('q5-2','b','Overheating is prevented by cleaning dust from fans and ensuring proper ventilation.')">Check Answer</button>
+<p class="feedback" id="q5-2-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>3. What is a likely cause of a Blue Screen of Death (BSOD)?</p>
+<label><input name="q5-3" type="radio" value="a"/> Faulty RAM or driver issues</label><br/>
+<label><input name="q5-3" type="radio" value="b"/> Incorrect HTML tags</label><br/>
+<label><input name="q5-3" type="radio" value="c"/> Missing database queries</label><br/>
+<label><input name="q5-3" type="radio" value="d"/> Unresponsive web forms</label><br/>
+<button onclick="checkAnswer('q5-3','a','BSOD errors are often caused by hardware issues like faulty RAM or software issues like incompatible drivers.')">Check Answer</button>
+<p class="feedback" id="q5-3-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>4. What is a key preventive maintenance practice for computers?</p>
+<label><input name="q5-4" type="radio" value="a"/> Designing ERDs</label><br/>
+<label><input name="q5-4" type="radio" value="b"/> Regular backups and virus scans</label><br/>
+<label><input name="q5-4" type="radio" value="c"/> Writing Python scripts</label><br/>
+<label><input name="q5-4" type="radio" value="d"/> Styling web pages</label><br/>
+<button onclick="checkAnswer('q5-4','b','Regular backups and virus scans help prevent data loss and malware infections.')">Check Answer</button>
+<p class="feedback" id="q5-4-feedback"></p>
+</div>
+<h3>Unit 6: Fundamentals of Programming</h3>
+<div class="quiz-question">
+<p>1. What is a variable in Python?</p>
+<label><input name="q6-1" type="radio" value="a"/> A function that runs code</label><br/>
+<label><input name="q6-1" type="radio" value="b"/> A container for storing data values</label><br/>
+<label><input name="q6-1" type="radio" value="c"/> A type of HTML tag</label><br/>
+<label><input name="q6-1" type="radio" value="d"/> A database table</label><br/>
+<button onclick="checkAnswer('q6-1','b','In Python, a variable stores data values for use in a program.')">Check Answer</button>
+<p class="feedback" id="q6-1-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>2. Which Python data type is used to store a sequence of items?</p>
+<label><input name="q6-2" type="radio" value="a"/> Integer</label><br/>
+<label><input name="q6-2" type="radio" value="b"/> String</label><br/>
+<label><input name="q6-2" type="radio" value="c"/> List</label><br/>
+<label><input name="q6-2" type="radio" value="d"/> Boolean</label><br/>
+<button onclick="checkAnswer('q6-2','c','A list in Python stores a sequence of items, like [1, 2, 3].')">Check Answer</button>
+<p class="feedback" id="q6-2-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>3. What does a for loop do in Python?</p>
+<label><input name="q6-3" type="radio" value="a"/> Executes code once</label><br/>
+<label><input name="q6-3" type="radio" value="b"/> Repeats code for each item in a sequence</label><br/>
+<label><input name="q6-3" type="radio" value="c"/> Defines a function</label><br/>
+<label><input name="q6-3" type="radio" value="d"/> Creates a database query</label><br/>
+<button onclick="checkAnswer('q6-3','b','A for loop iterates over a sequence to execute code for each item.')">Check Answer</button>
+<p class="feedback" id="q6-3-feedback"></p>
+</div>
+<div class="quiz-question">
+<p>4. What is the first step in problem-solving with code?</p>
+<label><input name="q6-4" type="radio" value="a"/> Writing the final code</label><br/>
+<label><input name="q6-4" type="radio" value="b"/> Understanding the problem and requirements</label><br/>
+<label><input name="q6-4" type="radio" value="c"/> Styling the webpage</label><br/>
+<label><input name="q6-4" type="radio" value="d"/> Normalizing the database</label><br/>
+<button onclick="checkAnswer('q6-4','b','Problem-solving starts with understanding the problem and requirements to design an effective solution.')">Check Answer</button>
+<p class="feedback" id="q6-4-feedback"></p>
+</div>
+<div class="image-gallery">
+<div class="gallery-item">
+<img alt="Quiz Time" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&amp;auto-format=fit=crop&amp;w=600&amp;q=80"/>
+<div class="gallery-caption">
+<p>Regular self-assessment helps reinforce learning and identify areas for improvement.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Resources Section -->
+<section id="resources">
+<h2><i class="fas fa-download"></i> Learning Resources</h2>
+<p>Download these materials to support your ICT studies:</p>
+<div class="resource-card">
+<i class="fas fa-file-pdf"></i>
+<div>
+<h3>Grade 11 ICT Student Textbook</h3>
+<p>Official Ethiopian curriculum textbook covering all topics with exercises.</p>
+<a download="" href="https://drive.google.com/file/d/134akB9uIh8fTB5urFlHGsJ5VnXq7gTXv/view?usp=sharing">📘 Download PDF (Placeholder)</a>
+</div>
+</div>
+<div class="resource-card">
+<i class="fas fa-file-code"></i>
+<div>
+<h3>HTML &amp; CSS Cheat Sheet</h3>
+<p>Quick reference guide for common HTML tags and CSS properties.</p>
+<a download="" href="html-css-cheatsheet.pdf">📘 Download PDF (Placeholder)</a>
+</div>
+</div>
+<div class="resource-card">
+<i class="fas fa-file-alt"></i>
+<div>
+<h3>Python Programming Exercises</h3>
+<p>Collection of practice problems with solutions for Python beginners.</p>
+<a download="" href="python-exercises.pdf">📘 Download PDF (Placeholder)</a>
+</div>
+</div>
+<div class="image-gallery">
+<div class="gallery-item">
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact">
+<h2><i class="fas fa-envelope"></i> Contact Us</h2>
+<p>Have questions or feedback? Reach out to us!</p>
+<form id="contact-form">
+<label for="name">Name:</label>
+<input aria-label="Your name" id="name" required="" type="text"/>
+<label for="email">Email:</label>
+<input aria-label="Your email" id="email" required="" type="email"/>
+<label for="message">Message:</label>
+<textarea aria-label="Your message" id="message" required="" rows="5"></textarea>
+<button type="submit">Send Message</button>
+</form>
+</section>
+</main>
+<footer><p>© 2025 Grade 11 ICT Website | Developed for Educational Purposes</p>
+<p>Contact:futurefocus527@gmail.com</p>
+</footer>
+<button class="back-to-top" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+<script>
+    // Navigation Handler
+    function showSection(sectionId) {
+      document.querySelectorAll('main section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(sectionId).classList.add('active');
+      document.querySelectorAll('nav a').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-section') === sectionId) {
+          link.classList.add('active');
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        showSection(link.getAttribute('data-section'));
+      });
+    });
+
+    // Quiz Answer Checking
+    function checkAnswer(questionId, correctId, explanation) {
+      const selected = document.querySelector(`input[name="${questionId}"]:checked`);
+      const feedback = document.getElementById(`${questionId}-feedback`);
+      if (!selected) {
+        feedback.style.color = 'red';
+        feedback.textContent = 'Please select an answer!';
+        feedback.style.display = 'block';
+        return;
+      }
+      if (selected.value === correctId) {
+        feedback.style.color = 'green';
+        feedback.textContent = `✔ Correct! ${explanation}`;
+      } else {
+        feedback.style.color = 'red';
+        feedback.textContent = `✘ Incorrect. ${explanation}`;
+      }
+      feedback.style.display = 'block';
+    }
+
+    // Search Functionality (Placeholder)
+    function searchContent() {
+      const query = document.getElementById('search').value.toLowerCase();
+      alert('Search functionality coming soon! Query: ' + query);
+    }
+
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    // Progress Tracker
+    function updateProgress() {
+      const topics = ['Information Systems', 'Emerging Technologies', 'Database Management', 'Web Development', 'Hardware Troubleshooting', 'Programming'];
+      let completed = JSON.parse(localStorage.getItem('completedTopics')) || [];
+      const progressList = document.getElementById('progress-list');
+      if (progressList) {
+        progressList.innerHTML = '';
+        topics.forEach(topic => {
+          const li = document.createElement('li');
+          li.textContent = topic;
+          if (completed.includes(topic)) li.classList.add('completed');
+          progressList.appendChild(li);
+        });
+        document.getElementById('progress-fill').style.width = `${(completed.length / topics.length) * 100}%`;
+      }
+    }
+
+    function markComplete(topic) {
+      let completed = JSON.parse(localStorage.getItem('completedTopics')) || [];
+      if (!completed.includes(topic)) {
+        completed.push(topic);
+        localStorage.setItem('completedTopics', JSON.stringify(completed));
+        updateProgress();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', updateProgress);
+
+    // Code Playground
+    function runCode(type) {
+      const code = document.getElementById(`code-input-${type}`).value;
+      const output = document.getElementById(`code-output-${type}`);
+      if (type === 'web' && code.includes('<')) {
+        output.innerHTML = code;
+      } else {
+        output.textContent = `Python output simulation: ${code}`;
+      }
+    }
+
+    // Contact Form Submission
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        alert(`Thank you, ${name}! Your message has been received. We'll get back to you at ${email}.`);
+        contactForm.reset();
+      });
+    }
+
+    // Back to Top Button
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('scroll', function() {
+      const backToTop = document.querySelector('.back-to-top');
+      if (window.scrollY > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+</html>

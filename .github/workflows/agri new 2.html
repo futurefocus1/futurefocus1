@@ -1,0 +1,903 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grade 11 Agriculture</title>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #212121;
+    }
+    nav {
+      background: #2c3e50;
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+    .topic-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+    .topic-card {
+      background: #ffffff;
+      border-left: 5px solid #4caf50;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    section {
+      padding: 2rem;
+    }
+    #notes article {
+      display: none;
+      margin-bottom: 2rem;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    }
+    .quiz input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 0.5rem;
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #388e3c;
+    }
+    .skip-link:focus {
+      position: static;
+      background: yellow;
+      padding: 0.5rem;
+      z-index: 10000;
+    }
+  
+.high-contrast {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+.high-contrast nav,
+.high-contrast section,
+.high-contrast .topic-card,
+.high-contrast button {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+.large-text {
+  font-size: 1.25rem;
+}
+    
+.high-contrast .quiz {
+  background-color: #111 !important;
+  color: #fff !important;
+  border: 1px solid #fff;
+}
+.high-contrast .quiz input[type="radio"] + label {
+  color: #fff !important;
+}
+.high-contrast input[type="radio"] {
+  accent-color: white;
+}
+    
+.high-contrast #notes {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+.high-contrast #notes article {
+  background-color: #111 !important;
+  color: #fff !important;
+  border: 1px solid #fff;
+}
+.high-contrast img {
+  filter: brightness(0.8) contrast(1.2);
+}
+    
+@media (max-width: 768px) {
+  nav a {
+    display: block;
+    margin: 0.5rem 0;
+  }
+  .topic-cards {
+    grid-template-columns: 1fr !important;
+    padding: 1rem;
+  }
+  article {
+    padding: 1rem !important;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  #audio-controls, #accessibility-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+  .quiz label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+}
+
+</style>
+</head>
+<body>
+<a href="#notes" class="skip-link" style="position:absolute;left:-10000px;">Skip to Notes</a>
+
+
+<div id="accessibility-controls" style="padding: 1rem; text-align: center; background: #eee;">
+  <button onclick="toggleContrast()">Toggle High Contrast</button>
+  <button onclick="toggleLargeText()">Toggle Large Text</button>
+</div>
+<a href="homepage_html.html" class="home-button">← Back to FutureLearn</a>
+<nav>
+  <a href="#home">Home</a>
+  <a href="#topics">Topics</a>
+  <a href="#notes">Detailed Notes</a>
+  <a href="#resources">Resources</a>
+  <a href="#about">About</a>
+</nav>
+
+<div id="audio-controls" style="text-align:center; padding: 0.5rem; background:#eee;">
+  <button onclick="readAloudAll()">🔊 Read Aloud Page</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+</div>
+
+
+<section id="home">
+  <h1 style="text-align:center;">Explore Grade 11 Agriculture</h1>
+  <p style="text-align:center;">Click on a topic below to start learning.</p>
+</section>
+
+<section id="topics" class="topic-cards">
+  <div class="topic-card" data-target="unit1"> 🌾 <strong>Unit 1</strong></div>
+<div class="topic-card" data-target="unit2"> 🌽 <strong>Unit 2</strong></div>
+<div class="topic-card" data-target="unit3"> 🏭 <strong>Unit 3</strong></div>
+<div class="topic-card" data-target="unit4"> 🐄 <strong>Unit 4</strong></div>
+<div class="topic-card" data-target="unit5"> 🥩 <strong>Unit 5</strong></div>
+<div class="topic-card" data-target="unit6"> 🧬 <strong>Unit 6</strong></div>
+<div class="topic-card" data-target="unit7"> 🏠 <strong>Unit 7</strong></div>
+<div class="topic-card" data-target="unit8"> 💉 <strong>Unit 8</strong></div>
+<div class="topic-card" data-target="unit9"> 🥛 <strong>Unit 9</strong></div>
+<div class="topic-card" data-target="unit10"> 🌍 <strong>Unit 10</strong></div>
+<div class="topic-card" data-target="unit11"> ♻️ <strong>Unit 11</strong></div>
+<div class="topic-card" data-target="unit12"> 🦋 <strong>Unit 12</strong></div>
+<div class="topic-card" data-target="unit13"> 🌡️ <strong>Unit 13</strong></div>
+<div class="topic-card" data-target="unit14"> 🚜 <strong>Unit 14</strong></div>
+<div class="topic-card" data-target="unit15"> 🍽️ <strong>Unit 15</strong></div>
+<div class="topic-card" data-target="unit16"> 🥗 <strong>Unit 16</strong></div>
+
+</section>
+
+<section id="notes" style="display:none;">
+  
+    
+<article id="unit1">
+  <h3>Unit 1: Introduction to crop production</h3>
+
+  <img src="https://media.istockphoto.com/id/484224489/photo/handful-of-teff-grains-ethiopia.jpg?s=612x612&w=0&k=20&c=aNOXINtj4MEBSNkHj6vwho7i0mvhbj7UNz39x1-y8dA=" alt="Unit 1 image" style="max-width:100%; border-radius: 8px; margin: 1rem 0;" />
+  <p>Crop production includes land preparation, sowing, fertilization, irrigation, and harvesting.</p>
+<p>Climate and soil testing are essential before selecting crops for a specific region.</p>
+<p>Integrated pest management (IPM) combines cultural, biological, and chemical practices to reduce crop damage.</p>
+<p><strong>Note:</strong> Farmers can use modern tools such as tractors and planters to improve crop yield.</p><p>Good farming practices increase crop yield and soil health.</p><p>Crop rotation prevents soil nutrient depletion and controls pests.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> Which practice helps maintain soil fertility?</p>
+    <label><input type="radio" name="q1" value="Overwatering" /> Overwatering</label><br/><label><input type="radio" name="q1" value="Monocropping" /> Monocropping</label><br/><label><input type="radio" name="q1" value="Crop rotation" /> Crop rotation</label><br/><label><input type="radio" name="q1" value="Skipping fertilizer" /> Skipping fertilizer</label><br/>
+    <button onclick="submitMCQ(this, 'Crop rotation', 'explain1')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain1')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain1" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>Crop rotation</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      
+      <button onclick="navigateToUnit(2)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit2">
+  <h3>Unit 2: Field Crops Production and Management</h3>
+
+  <img src="https://media.istockphoto.com/id/89287787/photo/ethiopian-landscape.jpg?s=612x612&w=0&k=20&c=wnIqJAHtJUBsId7FumGPwB99lkPe4g6YzCcgWoVFLDk=" alt="Unit 2 image" style="max-width:100%; border-radius: 8px; margin: 1rem 0;" />
+  <p>Field crops are grown over large areas and include cereals, legumes, and oilseeds.</p>
+<p>Weeds compete for nutrients and water; timely weeding ensures healthier field crops.</p>
+<p>Legumes like beans and peas fix nitrogen in the soil, reducing the need for chemical fertilizers.</p>
+<p><strong>Note:</strong> Field crops are often rotated to maintain soil nutrients and reduce pest buildup.</p><p>Maize and teff are staple field crops in Ethiopia.</p><p>Field crops require careful management of water, pests, and nutrients.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> Which of the following is a field crop commonly grown in Ethiopia?</p>
+    <label><input type="radio" name="q2" value="Banana" /> Banana</label><br/><label><input type="radio" name="q2" value="Teff" /> Teff</label><br/><label><input type="radio" name="q2" value="Coffee" /> Coffee</label><br/><label><input type="radio" name="q2" value="Mango" /> Mango</label><br/>
+    <button onclick="submitMCQ(this, 'Teff', 'explain2')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain2')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain2" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>Teff</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(1)">Previous</button>
+      <button onclick="navigateToUnit(3)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit3">
+  <h3>Unit 3: Industrial Crops production and management</h3>
+ 
+  <img src="https://media.istockphoto.com/id/912243808/photo/maize-or-corn-cobs-on-drying-rack.webp?a=1&b=1&s=612x612&w=0&k=20&c=8__vJDwWXdKgrizIdGzj3cjovu66cCPDPNLlhIUnciA=" alt="Unit 3 image" style="max-width:100%; border-radius: 8px; margin: 1rem 0;" />
+  <p>Industrial crops are grown for processing rather than direct consumption.</p>
+<p>Tobacco, an industrial crop, requires specific curing processes after harvest.</p>
+<p>Sugarcane is a high-yielding industrial crop used to produce sugar, ethanol, and by-products like bagasse.</p>
+<p><strong>Note:</strong> Cotton fibers are harvested and processed to make clothing and textiles.</p><p>Examples include cotton (fiber), tobacco (leaves), and sugarcane (juice).</p><p>These crops support textile and food processing industries.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> Which crop is considered an industrial crop?</p>
+    <label><input type="radio" name="q3" value="Carrot" /> Carrot</label><br/><label><input type="radio" name="q3" value="Cotton" /> Cotton</label><br/><label><input type="radio" name="q3" value="Tomato" /> Tomato</label><br/><label><input type="radio" name="q3" value="Wheat" /> Wheat</label><br/>
+    <button onclick="submitMCQ(this, 'Cotton', 'explain3')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain3')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain3" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>Cotton</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(2)">Previous</button>
+      <button onclick="navigateToUnit(4)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit4">
+  <h3>Unit 4: Introduction to Farm animals</h3>
+
+  <img src="https://media.istockphoto.com/id/482803947/photo/herd-of-goats-in-the-dust.jpg?s=612x612&w=0&k=20&c=onz13wnZqHToVMfEaGyYOFjGq5ww6rh-Ktz3uLW8xNU=" alt="Unit 4 image" style="max-width:100%; border-radius: 8px; margin: 1rem 0;" />
+  <p>Farm animals provide food (milk, meat, eggs), clothing (wool, leather), and labor (plowing).</p>
+<p>Animal domestication varies by region, influenced by culture, economy, and geography.</p>
+<p>Domestication of animals began over 10,000 years ago and revolutionized food production systems.</p>
+<p><strong>Note:</strong> Farm animals contribute to sustainable agriculture when managed responsibly.</p><p>They must be well-fed, housed, and protected from disease.</p><p>Cattle, sheep, goats, and poultry are common examples.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> Which of the following is NOT a purpose of keeping farm animals?</p>
+    <label><input type="radio" name="q4" value="Milk" /> Milk</label><br/><label><input type="radio" name="q4" value="Wool" /> Wool</label><br/><label><input type="radio" name="q4" value="Flight" /> Flight</label><br/><label><input type="radio" name="q4" value="Labor" /> Labor</label><br/>
+    <button onclick="submitMCQ(this, 'Flight', 'explain4')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain4')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain4" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>Flight</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(3)">Previous</button>
+      <button onclick="navigateToUnit(5)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit5">
+  <h3>Unit 5: Animal Feeds and Feeling Practices</h3>
+
+  <img src="https://media.istockphoto.com/id/458877395/photo/africa-harvesting.jpg?s=612x612&w=0&k=20&c=owPFo-YLiWhddJDVMgUo2nmShWedkQ2eHUKg6xfTcEE=" alt="Unit 5 image" style="max-width:100%; border-radius: 8px; margin: 1rem 0;" />
+  <p>Proper feeding involves roughage (grasses), concentrates (grains), and mineral supplements.</p>
+<p>Feed storage must be dry and clean to prevent spoilage and animal sickness.</p>
+<p>Feed conversion ratio (FCR) is a key metric that indicates how efficiently animals convert feed into output (meat, milk, etc.).</p>
+<p><strong>Note:</strong> Feeding should consider age, productivity, and health status of the animals.</p><p>Feed must match the age, weight, and purpose of the animal.</p><p>Clean water is essential to digestion and health.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> Why is balanced feeding important for animals?</p>
+    <label><input type="radio" name="q5" value="To improve flavor" /> To improve flavor</label><br/><label><input type="radio" name="q5" value="To grow weeds" /> To grow weeds</label><br/><label><input type="radio" name="q5" value="To boost health and productivity" /> To boost health and productivity</label><br/><label><input type="radio" name="q5" value="To reduce food waste" /> To reduce food waste</label><br/>
+    <button onclick="submitMCQ(this, 'To boost health and productivity', 'explain5')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain5')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain5" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>To boost health and productivity</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(4)">Previous</button>
+      <button onclick="navigateToUnit(6)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit6">
+  <h3>Unit 6: Animal Genetics and  Breeding practice</h3>
+<img src="https://images.unsplash.com/photo-1654818346110-fa4aa481ad83?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8QW5pbWFsJTIwQnJlZWRpbmclMjBpbiUyMEV0aGlvcGlhfGVufDB8fDB8fHww" alt="Unit 6 image" style="max-width:100%; margin:1rem 0; border-radius:8px;" />
+  <p>Breeding improves traits like milk production, growth rate, and disease resistance.</p>
+<p>Inbreeding can cause health issues; crossbreeding is often used for improvement.</p>
+<p>Proper breeding records help farmers make informed decisions for herd improvement.</p>
+<p><strong>Note:</strong> Crossbreeding combines desirable traits from different breeds.</p><p>Selective breeding chooses animals with desired traits.</p><p>Artificial insemination allows rapid genetic improvement.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> Which method is used for rapid genetic improvement?</p>
+    <label><input type="radio" name="q6" value="Random mating" /> Random mating</label><br/><label><input type="radio" name="q6" value="Artificial insemination" /> Artificial insemination</label><br/><label><input type="radio" name="q6" value="Inbreeding" /> Inbreeding</label><br/><label><input type="radio" name="q6" value="Isolation" /> Isolation</label><br/>
+    <button onclick="submitMCQ(this, 'Artificial insemination', 'explain6')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain6')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain6" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>Artificial insemination</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(5)">Previous</button>
+      <button onclick="navigateToUnit(7)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit7">
+  <h3>Unit 7:  Farm Animal Housing</h3>
+<img src="https://media.istockphoto.com/id/1209682991/photo/cows-inside-tukul.jpg?s=612x612&w=0&k=20&c=HiVeeRuDzlbM2jyWkti_7ERxRKr9uQy_1-lW8d1esy4=" alt="Unit 7 image" style="max-width:100%; margin:1rem 0; border-radius:8px;" />
+  <p>Good animal housing provides shelter, safety, and hygiene.</p>
+<p>Housing must include feeders, drinkers, and bedding areas for animal comfort.</p>
+<p>Space allocation in housing prevents overcrowding and stress among livestock.</p>
+<p><strong>Note:</strong> Housing should allow natural light and drainage to keep animals healthy.</p><p>It should protect from heat, cold, and rain.</p><p>Proper ventilation and cleanliness reduce disease risk.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> What is a key feature of animal housing?</p>
+    <label><input type="radio" name="q7" value="Rain collection" /> Rain collection</label><br/><label><input type="radio" name="q7" value="Proper ventilation" /> Proper ventilation</label><br/><label><input type="radio" name="q7" value="Metal walls" /> Metal walls</label><br/><label><input type="radio" name="q7" value="Open grazing" /> Open grazing</label><br/>
+    <button onclick="submitMCQ(this, 'Proper ventilation', 'explain7')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain7')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain7" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>Proper ventilation</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(6)">Previous</button>
+      <button onclick="navigateToUnit(8)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit8">
+  <h3>Unit 8: Basic Animal Health and Disease control</h3>
+<img src="https://media.istockphoto.com/id/459006329/photo/mursi-food.jpg?s=612x612&w=0&k=20&c=Z49UmOeSjjtTNrVIEVnGNz4f18xAsU2fho6HAMCet6E=" alt="Unit 8 image" style="max-width:100%; margin:1rem 0; border-radius:8px;" />
+  <p>Animal health management includes disease prevention and treatment.</p>
+<p>Disease control programs require planning, funding, and farmer cooperation.</p>
+<p>Quarantine of new or sick animals prevents the spread of infectious diseases.</p>
+<p><strong>Note:</strong> Common diseases include foot-and-mouth disease, anthrax, and mastitis.</p><p>Vaccination prevents contagious diseases.</p><p>Regular checkups ensure early detection of illness.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> What helps prevent animal disease?</p>
+    <label><input type="radio" name="q8" value="Starvation" /> Starvation</label><br/><label><input type="radio" name="q8" value="Vaccination" /> Vaccination</label><br/><label><input type="radio" name="q8" value="Isolation always" /> Isolation always</label><br/><label><input type="radio" name="q8" value="Ignoring symptoms" /> Ignoring symptoms</label><br/>
+    <button onclick="submitMCQ(this, 'Vaccination', 'explain8')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain8')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain8" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>Vaccination</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(7)">Previous</button>
+      <button onclick="navigateToUnit(9)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit9">
+  <h3>Unit 9: Dairy Cattle Production and management</h3>
+<img src="https://media.istockphoto.com/id/1168042418/photo/cow-with-a-rope-at-the-animal-market-in-aksum-ethiopia.jpg?s=612x612&w=0&k=20&c=9c6kr4MBhQypOUOThEjdyGfPPdGdQgfsXQBpmx3HBvw=" alt="Unit 9 image" style="max-width:100%; margin:1rem 0; border-radius:8px;" />
+  <p>Milk production requires good feed, hygiene, and healthy cows.</p>
+<p>Lactating cows should have special diets rich in calcium and protein.</p>
+<p>Dairy hygiene includes washing udders, sterilizing equipment, and ensuring clean storage containers.</p>
+<p><strong>Note:</strong> High-yield dairy cows require consistent nutrition and clean housing.</p><p>Milking should be done at regular intervals.</p><p>Clean equipment prevents contamination.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> Why is clean equipment important in dairy production?</p>
+    <label><input type="radio" name="q9" value="For better design" /> For better design</label><br/><label><input type="radio" name="q9" value="To avoid rust" /> To avoid rust</label><br/><label><input type="radio" name="q9" value="To prevent contamination" /> To prevent contamination</label><br/><label><input type="radio" name="q9" value="For noise reduction" /> For noise reduction</label><br/>
+    <button onclick="submitMCQ(this, 'To prevent contamination', 'explain9')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain9')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain9" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>To prevent contamination</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(8)">Previous</button>
+      <button onclick="navigateToUnit(10)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit10">
+  <h3>Unit 10:Introduction of Natural Resources</h3>
+<img src="https://images.unsplash.com/photo-1747390039879-a989a601b606?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Unit 10 image" style="max-width:100%; margin:1rem 0; border-radius:8px;" />
+  <p>Natural resources include land, water, air, and minerals.</p>
+<p>Soil erosion can be controlled by planting cover crops and terracing hillsides.</p>
+<p>Natural resource depletion threatens food security and climate stability globally.</p>
+<p><strong>Note:</strong> Water conservation and reforestation help protect natural resources.</p><p>They are essential for farming and must be used wisely.</p><p>Overuse leads to degradation and loss.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> Which is a natural resource?</p>
+    <label><input type="radio" name="q10" value="Plastic" /> Plastic</label><br/><label><input type="radio" name="q10" value="Fertilizer" /> Fertilizer</label><br/><label><input type="radio" name="q10" value="Water" /> Water</label><br/><label><input type="radio" name="q10" value="Tractor" /> Tractor</label><br/>
+    <button onclick="submitMCQ(this, 'Water', 'explain10')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain10')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain10" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>Water</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(9)">Previous</button>
+      <button onclick="navigateToUnit(11)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit11">
+  <h3>Unit 11: Management of Natural Resources</h3>
+<img src="https://media.istockphoto.com/id/157197127/photo/african-life-at-the-river.webp?a=1&b=1&s=612x612&w=0&k=20&c=v29F3gm_R6hP55u3JvQGgYlbR649_974lC4ZjIxUEZw=" alt="Unit 11 image" style="max-width:100%; margin:1rem 0; border-radius:8px;" />
+  <p>Managing resources ensures long-term agricultural sustainability.</p>
+<p>Efficient irrigation systems such as drip irrigation minimize water waste.</p>
+<p>Resource recycling, such as composting and water reuse, enhances agricultural sustainability.</p>
+<p><strong>Note:</strong> Efficient resource use improves productivity and reduces environmental harm.</p><p>Conservation practices include crop rotation and composting.</p><p>Proper water use prevents shortages and erosion.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> Which practice conserves soil nutrients?</p>
+    <label><input type="radio" name="q11" value="Monoculture" /> Monoculture</label><br/><label><input type="radio" name="q11" value="Pesticide use" /> Pesticide use</label><br/><label><input type="radio" name="q11" value="Crop rotation" /> Crop rotation</label><br/><label><input type="radio" name="q11" value="Tillage" /> Tillage</label><br/>
+    <button onclick="submitMCQ(this, 'Crop rotation', 'explain11')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain11')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain11" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>Crop rotation</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(10)">Previous</button>
+      <button onclick="navigateToUnit(12)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit12">
+  <h3>Unit 12: Concepts Biodiversity</h3>
+<img src="https://plus.unsplash.com/premium_photo-1664302699374-7b140233461d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fENvbmNlcHRzJTIwQmlvZGl2ZXJzaXR5JTIwaW4lMjBFdGhpb3BpYXxlbnwwfHwwfHx8MA%3D%3D" alt="Unit 12 image" style="max-width:100%; margin:1rem 0; border-radius:8px;" />
+  <p>Biodiversity ensures resilience in ecosystems.</p>
+<p>Conservation of endangered agricultural species helps maintain food system resilience.</p>
+<p>Genetic diversity within crops allows breeding for traits like drought resistance or faster growth.</p>
+<p><strong>Note:</strong> Protecting biodiversity ensures food security and genetic diversity.</p><p>It supports pollination, pest control, and soil health.</p><p>Loss of species weakens food chains and crop stability.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> Why is biodiversity important?</p>
+    <label><input type="radio" name="q12" value="Reduces soil" /> Reduces soil</label><br/><label><input type="radio" name="q12" value="Increases pollution" /> Increases pollution</label><br/><label><input type="radio" name="q12" value="Supports ecosystem functions" /> Supports ecosystem functions</label><br/><label><input type="radio" name="q12" value="Destroys pests" /> Destroys pests</label><br/>
+    <button onclick="submitMCQ(this, 'Supports ecosystem functions', 'explain12')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain12')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain12" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>Supports ecosystem functions</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(11)">Previous</button>
+      <button onclick="navigateToUnit(13)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit13">
+  <h3>Unit 13: Climate Change Adaption and Mitigation</h3>
+<img src="https://media.istockphoto.com/id/1130221945/photo/farm.jpg?s=612x612&w=0&k=20&c=HV3so51-Z8wFsKmgMLbQKuHGpGdEkpdbmYkhpLCOSJk=" alt="Unit 13 image" style="max-width:100%; margin:1rem 0; border-radius:8px;" />
+  <p>Climate change affects rainfall, temperature, and crop growth.</p>
+<p>Farmers can monitor rainfall using digital tools to optimize planting schedules.</p>
+<p>Agroforestry integrates trees and crops to improve resilience against climate extremes.</p>
+<p><strong>Note:</strong> Farmers use drought-resistant crops and water-efficient practices.</p><p>Adaptation includes changing planting times and crop types.</p><p>Reducing emissions helps slow global warming.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> Which is an adaptation to climate change?</p>
+    <label><input type="radio" name="q13" value="Burning trees" /> Burning trees</label><br/><label><input type="radio" name="q13" value="Monocropping" /> Monocropping</label><br/><label><input type="radio" name="q13" value="Changing planting time" /> Changing planting time</label><br/><label><input type="radio" name="q13" value="Ignoring weather" /> Ignoring weather</label><br/>
+    <button onclick="submitMCQ(this, 'Changing planting time', 'explain13')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain13')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain13" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>Changing planting time</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(12)">Previous</button>
+      <button onclick="navigateToUnit(14)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit14">
+  <h3>Unit 14: Mechanized Farming</h3>
+<img src="https://plus.unsplash.com/premium_photo-1680322763961-b02b8e4ea829?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fE1lY2hhbml6ZWQlMjBGYXJtaW5nJTIwaW4lMjBFdGhpb3BpYXxlbnwwfHwwfHx8MA%3D%3D" alt="Unit 14 image" style="max-width:100%; margin:1rem 0; border-radius:8px;" />
+  <p>Using machines in farming saves time and labor.</p>
+<p>Mechanization also increases safety by reducing physical strain and injuries.</p>
+<p>GPS-guided tractors and drones are part of modern precision agriculture.</p>
+<p><strong>Note:</strong> Mechanization reduces human error and speeds up farming operations.</p><p>Examples include tractors, harvesters, and irrigation pumps.</p><p>Proper use reduces cost and increases yield.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> Which is a benefit of mechanized farming?</p>
+    <label><input type="radio" name="q14" value="More labor" /> More labor</label><br/><label><input type="radio" name="q14" value="Less cost-efficiency" /> Less cost-efficiency</label><br/><label><input type="radio" name="q14" value="Increased yield" /> Increased yield</label><br/><label><input type="radio" name="q14" value="More weeds" /> More weeds</label><br/>
+    <button onclick="submitMCQ(this, 'Increased yield', 'explain14')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain14')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain14" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>Increased yield</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(13)">Previous</button>
+      <button onclick="navigateToUnit(15)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit15">
+  <h3>Unit 15:Introduction Human Nutrition</h3>
+<img src="https://images.unsplash.com/photo-1704712125409-8043fec3b709?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Unit 15 image" style="max-width:100%; margin:1rem 0; border-radius:8px;" />
+  <p>Balanced diets provide energy, protein, vitamins, and minerals.</p>
+<p>Nutrition education helps communities make informed choices for better health.</p>
+<p>Micronutrients like iron and zinc are essential for immune function and development.</p>
+<p><strong>Note:</strong> Malnutrition affects growth, learning, and immune response.</p><p>Malnutrition occurs from under- or over-eating.</p><p>Diversified food sources prevent deficiencies.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> Which food group provides protein?</p>
+    <label><input type="radio" name="q15" value="Fruits" /> Fruits</label><br/><label><input type="radio" name="q15" value="Grains" /> Grains</label><br/><label><input type="radio" name="q15" value="Legumes" /> Legumes</label><br/><label><input type="radio" name="q15" value="Oils" /> Oils</label><br/>
+    <button onclick="submitMCQ(this, 'Legumes', 'explain15')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain15')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain15" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>Legumes</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(14)">Previous</button>
+      <button onclick="navigateToUnit(16)">Next</button>
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+    
+<article id="unit16">
+  <h3>Unit 16: Diversification Food Production</h3>
+<img src="https://plus.unsplash.com/premium_photo-1695297515151-b2af3a60008d?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Unit 16 image" style="max-width:100%; margin:1rem 0; border-radius:8px;" />
+  <p>Food diversification includes eating a variety of food groups.</p>
+<p>Diversified farming systems increase household income and food availability year-round.</p>
+<p>Food systems that promote local diversity reduce dependency on imports and improve resilience.</p>
+<p><strong>Note:</strong> Food diversification can include cereals, legumes, fruits, vegetables, and proteins.</p><p>It improves nutrition and supports local crop use.</p><p>Gardens and small farms help diversify food.</p>
+  <button onclick="readAloud(this)">🔊 Read Aloud</button>
+  <button onclick="stopReadAloud()">⏹️ Stop</button>
+
+  <div class="quiz">
+    <p><strong>Quiz:</strong> Why is food diversification important?</p>
+    <label><input type="radio" name="q16" value="It lowers nutrition" /> It lowers nutrition</label><br/><label><input type="radio" name="q16" value="Improves diet quality" /> Improves diet quality</label><br/><label><input type="radio" name="q16" value="Reduces crop use" /> Reduces crop use</label><br/><label><input type="radio" name="q16" value="Encourages imports" /> Encourages imports</label><br/>
+    <button onclick="submitMCQ(this, 'Improves diet quality', 'explain16')">Submit</button>
+    <button onclick="retryMCQ(this, 'explain16')" style="display:none;">Retry</button>
+    
+    <div class="explanation" id="explain16" style="display:none;">
+<span class="explanation-text">
+      <strong>Explanation:</strong> The correct answer is <em>Improves diet quality</em> because it directly supports the key idea.
+    <br/><br/>Understanding why this is the correct choice helps reinforce the concept.</span>
+</div>
+    
+  </div>
+  
+    <div style="margin-top:1rem;">
+      <button onclick="navigateToUnit(15)">Previous</button>
+      
+    
+<div style="text-align:center; margin-top: 1.5rem;">
+  <a href="#home" style="display:inline-block; padding:0.5rem 1rem; background:#4caf50; color:white; text-decoration:none; border-radius:6px;">⬅ Back to Home</a>
+</div>
+</div>
+    
+</article>
+
+    
+</section>
+
+<section id="resources">
+  <h2>Resources</h2>
+  <p>Find videos, links, and reading materials to support your learning.</p>
+
+<div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+  <a href=" https://drive.google.com/file/d/1wu6AGhJug_nAurKNLwDY2E4JBcrBR4Hr/view?usp=sharing" target="_blank" style="background:#4caf50;color:white;padding:0.75rem;border-radius:5px;text-align:center;text-decoration:none;">📘 Grade 11 Agriculture Textbook</a>
+  <a href="https://openlibrary.org/subjects/agriculture" target="_blank" style="background:#2196f3;color:white;padding:0.75rem;border-radius:5px;text-align:center;text-decoration:none;">📚 Reference Books on Agriculture</a>
+  <a href="https://www.youtube.com/results?search_query=agriculture+education" target="_blank" style="background:#f44336;color:white;padding:0.75rem;border-radius:5px;text-align:center;text-decoration:none;">🎥 More Agriculture Videos on YouTube</a>
+</div>
+
+</section>
+
+<section id="about">
+  <h2>About</h2>
+  <p> This educational resource was created to support Ethiopian Grade 11 Agriculture students. All content aligns with the Ethiopian national curriculum.contact: 
+ <a href="mailto:futurefocus527@gmail.com">futurefocus527@gmail.com</a></p>
+</section>
+
+
+
+
+<script>
+function toggleContrast() {
+  document.body.classList.toggle("high-contrast");
+}
+function toggleLargeText() {
+  document.body.classList.toggle("large-text");
+}
+function readAloudAll() {
+  const text = document.body.innerText;
+  const utterance = new SpeechSynthesisUtterance(text);
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utterance);
+}
+function stopReadAloud() {
+  speechSynthesis.cancel();
+}
+function readAloud(button) {
+  const article = button.closest("article");
+  const text = article.innerText;
+  const utterance = new SpeechSynthesisUtterance(text);
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utterance);
+}
+function submitMCQ(button, correctAnswer, explanationId) {
+  const quiz = button.closest(".quiz");
+  const selected = quiz.querySelector("input[type='radio']:checked");
+  const explanation = document.getElementById(explanationId);
+  const retry = quiz.querySelector("button[onclick^='retryMCQ']");
+  if (!selected) {
+    alert("Please select an answer.");
+    return;
+  }
+  if (selected.value === correctAnswer) {
+    explanation.innerHTML = '<strong>Correct!</strong> You chose <em>' + selected.value +
+      '</em>, which is the best answer. It matches the concept explained.';
+  } else {
+    explanation.innerHTML = '<strong>Incorrect.</strong> You chose <em>' + selected.value +
+      '</em>. The correct answer is <em>' + correctAnswer +
+      '</em>. Review the notes above to understand why.';
+  }
+  explanation.style.display = 'block';
+  retry.style.display = 'inline-block';
+}
+function retryMCQ(button, explanationId) {
+  const quiz = button.closest(".quiz");
+  quiz.querySelectorAll("input[type='radio']").forEach(r => r.checked = false);
+  const exp = document.getElementById(explanationId);
+  exp.style.display = 'none';
+  button.style.display = 'none';
+}
+function navigateToUnit(unitId) {
+  const notesSection = document.getElementById("notes");
+  const target = document.getElementById("unit" + unitId);
+  if (notesSection && target) {
+    notesSection.style.display = 'block';
+    document.querySelectorAll("#notes article").forEach(a => a.style.display = "none");
+    target.style.display = "block";
+    target.scrollIntoView({ behavior: "smooth" });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.topic-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const targetId = card.getAttribute('data-target');
+      const notesSection = document.getElementById("notes");
+      const targetArticle = document.getElementById(targetId);
+      if (notesSection && targetArticle) {
+        notesSection.style.display = "block";
+        document.querySelectorAll("#notes article").forEach(a => a.style.display = "none");
+        targetArticle.style.display = "block";
+        targetArticle.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+});
+</script>
+
+
+
+
+
+</body>
+</html>

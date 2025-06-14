@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biology Learning Hub</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .header-accessibility {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header-accessibility .accessibility-btn {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid #fff;
+        }
+        
+        .header-accessibility .accessibility-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: #2ecc71;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #2ecc71;
+        }
+
+        .home-link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .home-link:hover {
+            color: #2ecc71;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin-top: 60px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #2ecc71;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #27ae60;
+        }
+        
+        /* Chapters Section */
+        .chapters {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: #2c3e50;
+        }
+        
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .chapter-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .chapter-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .chapter-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .chapter-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .chapter-card:hover .chapter-img img {
+            transform: scale(1.1);
+        }
+        
+        .chapter-content {
+            padding: 1.5rem;
+        }
+        
+        .chapter-content h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .chapter-content p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+        
+        /* Page Sections */
+        .page-section {
+            padding: 6rem 0 4rem;
+            min-height: 100vh;
+            display: none;
+        }
+        
+        .page-section.active {
+            display: block;
+        }
+        
+        .page-section h2 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .page-section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .page-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            background: #3498db;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #2980b9;
+        }
+        
+        /* Quiz Section */
+        .quiz-section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .quiz-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+        
+        .quiz-timer {
+            background: #f1f1f1;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .quiz-question {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .quiz-options {
+            margin-bottom: 2rem;
+        }
+        
+        .quiz-option {
+            display: block;
+            background: #f9f9f9;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .quiz-option:hover {
+            background: #f1f1f1;
+        }
+        
+        .quiz-option.selected {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+        
+        .quiz-option.correct {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+        
+        .quiz-option.incorrect {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+
+        .quiz-explanation {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+        
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .quiz-btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .quiz-prev {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .quiz-next {
+            background: #007bff;
+            color: white;
+        }
+        
+        .quiz-submit {
+            background: #28a745;
+            color: white;
+            display: none;
+        }
+        
+        .quiz-result {
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+        
+        .quiz-result h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #28a745;
+            margin: 1rem 0;
+        }
+        
+        .quiz-feedback {
+            margin-bottom: 1.5rem;
+        }
+        
+        .quiz-restart {
+            background: #17a2b8;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        /* Resources Section */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-icon {
+            font-size: 2.5rem;
+            margin-right: 1.5rem;
+            color: #3498db;
+        }
+
+        .resource-content {
+            flex: 1;
+        }
+
+        .resource-content h3 {
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+        }
+
+        .resource-content p {
+            color: #666;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Eye Shield */
+        .eye-shield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 243, 205, 0.2);
+            pointer-events: none;
+            z-index: 999;
+            display: none;
+        }
+
+        .eye-shield.active {
+            display: block;
+        }
+
+        /* Large Text */
+        .large-text {
+            font-size: 1.3em !important;
+        }
+
+        .large-text h1 { font-size: 3.5rem !important; }
+        .large-text h2 { font-size: 2.5rem !important; }
+        .large-text h3 { font-size: 1.8rem !important; }
+        .large-text p, .large-text li, .large-text .quiz-question, .large-text .quiz-option {
+            font-size: 1.4rem !important;
+        }
+
+        /* Accessibility Controls */
+        .accessibility-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #fff;
+            padding: 0.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .accessibility-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            background: #3498db;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .accessibility-btn:hover {
+            background: #2980b9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                text-align: center;
+            }
+            
+            .header-accessibility {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-bottom: 0.8rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            nav ul {
+                margin-top: 0.5rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .chapter-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quiz-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .quiz-btn {
+                width: 100%;
+            }
+
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resource-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .resource-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .accessibility-controls {
+                bottom: 10px;
+                left: 10px;
+                padding: 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="header-accessibility">
+                <button class="accessibility-btn" id="toggleEyeShield" aria-label="Toggle Day or Night Mode"><span class="icon">🌞</span> Day Mode</button>
+                <button class="accessibility-btn" id="toggleLargeText" aria-label="Toggle Large Text">Large Text</button>
+                <button class="accessibility-btn" id="readAloud" aria-label="Read Aloud"><span class="icon">▶️</span> Read Aloud</button>
+            </div>
+            <div class="nav-container">
+                <a href="homepage_html.html" class="home-link">← Back to FutureLearn</a>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-target="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-target="biology-technology">Biology & Tech</a></li>
+                        <li><a href="#" class="nav-link" data-target="animal">Animals</a></li>
+                        <li><a href="#" class="nav-link" data-target="enzyme">Enzymes</a></li>
+                        <li><a href="#" class="nav-link" data-target="genetics">Genetics</a></li>
+                        <li><a href="#" class="nav-link" data-target="human-body">Human Body</a></li>
+                        <li><a href="#" class="nav-link" data-target="population">Population</a></li>
+                        <li><a href="#" class="nav-link" data-target="resources-section">Resources</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Eye Shield Overlay -->
+    <div class="eye-shield" id="eyeShield"></div>
+
+    <!-- Accessibility Controls -->
+    <div class="accessibility-controls">
+        <button class="accessibility-btn" id="pauseReadBtn" aria-label="Pause Reading"><span class="icon">⏸️</span> Pause Reading</button>
+        <button class="accessibility-btn" id="resumeReadBtn" aria-label="Resume Reading"><span class="icon">▶️</span> Resume Reading</button>
+    </div>
+
+    <!-- Home Page -->
+    <section class="page-section active" id="home">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Explore the Wonders of Biology</h1>
+                <p>Discover fascinating concepts from genetics to ecosystems with our comprehensive biology learning resources.</p>
+                <a href="#" class="btn nav-link" data-target="chapters">Start Learning</a>
+            </div>
+        </section>
+
+        <section class="chapters" id="chapters">
+            <div class="container">
+                <h2 class="section-title">Biology Chapters</h2>
+                <div class="chapter-grid">
+                    <div class="chapter-card">
+                        <div class="chapter-img">
+                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Biology and Technology">
+                        </div>
+                        <div class="chapter-content">
+                            <h3>Biology and Technology</h3>
+                            <p>Explore how biological knowledge is applied in technology, from medical devices to biotech innovations.</p>
+                            <a href="#" class="btn nav-link" data-target="biology-technology">Learn More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <div class="chapter-img">
+                            <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Animal Biology">
+                        </div>
+                        <div class="chapter-content">
+                            <h3>Animal Biology</h3>
+                            <p>Discover the diversity of animal life, their anatomy, physiology, and evolutionary adaptations.</p>
+                            <a href="#" class="btn nav-link" data-target="animal">Learn More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <div class="chapter-img">
+                            <img src="https://media.istockphoto.com/id/2198369384/vector/allosteric-inhibition-and-allosteric-activation.jpg?s=1024x1024&w=is&k=20&c=I1grBetbTMNNBm5-CSaF2_99rWHYFmUQ3felqIEOdnc=" alt="Enzymes">
+                        </div>
+                        <div class="chapter-content">
+                            <h3>Enzymes</h3>
+                            <p>.This educational resource was created to support Ethiopian Grade 11 biolohy students. All content aligns with the Ethiopian national curriculum.</p>
+                            <a href="#" class="btn nav-link" data-target="enzyme">Learn More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <div class="chapter-img">
+                            <img src="https://images.unsplash.com/photo-1641903202531-bfa6bf0c6419?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3" alt="Genetics">
+                        </div>
+                        <div class="chapter-content">
+                            <h3>Genetics</h3>
+                            <p>Understand the principles of heredity, DNA structure, and genetic variation in populations.</p>
+                            <a href="#" class="btn nav-link" data-target="genetics">Learn More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <div class="chapter-img">
+                            <img src="https://media.istockphoto.com/id/2166388157/photo/human-circulatory-system-heart-anatomy.jpg?s=1024x1024&w=is&k=20&c=UGvvrq5YafmGL85RwxlU4LrKMx6lrJYrqtqFJw-Gec8=" alt="Human Body Systems">
+                        </div>
+                        <div class="chapter-content">
+                            <h3>Human Body Systems</h3>
+                            <p>Explore the complex systems that keep our bodies functioning, from circulation to digestion.</p>
+                            <a href="#" class="btn nav-link" data-target="human-body">Learn More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <div class="chapter-img">
+                            <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Population and Natural Resources">
+                        </div>
+                        <div class="chapter-content">
+                            <h3>Population and Natural Resources</h3>
+                            <p>Understand the relationship between human populations and the natural resources they depend on.</p>
+                            <a href="#" class="btn nav-link" data-target="population">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Biology and Technology Page -->
+    <section class="page-section" id="biology-technology">
+        <div class="container">
+            <h2>Biology and Technology</h2>
+            <img src="https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Biotechnology lab">
+            <p>Biotechnology is the application of biological knowledge and techniques to develop products and technologies that help improve our lives and the health of our planet.</p>
+            
+            <h3>Key Areas and Technologies:</h3>
+            <ul>
+                <li>CRISPR: Precise gene editing for disease treatment and crop improvement.</li>
+                <li>Genomics: Fast DNA sequencing for personalized medicine and research.</li>
+                <li>AI: Analyzes biological data, predicts diseases, and aids drug discovery.</li>
+                <li>Wearables/Implants: Monitor health or interface with the brain (e.g., Neuralink).</li>
+                <li>3D Bioprinting: Creates tissues/organs for transplants or testing.</li>
+                <li>Nanotech: Delivers drugs or diagnoses at the molecular level.</li>
+                <li>Medical biotechnology (vaccines, antibiotics)</li>
+                <li>Agricultural biotechnology (GMOs, pest-resistant crops)</li>
+                <li>Industrial biotechnology (biofuels, biodegradable plastics)</li>
+                <li>Environmental biotechnology (bioremediation, waste treatment)</li>
+            </ul>
+            <h4>Applications</h4>
+            <ul>
+                <li>Healthcare: Precision medicine, regenerative therapies, AI diagnostics.</li>
+                <li>Agriculture: GMOs and precision farming boost yield and sustainability.</li>
+                <li>Environment: Bioremediation and biofuels address pollution and energy.</li>
+                <li>Neuroscience: Brain-computer interfaces and neuroimaging advance brain research.</li>
+            </ul>
+            <h5>Ethics & Challenges:</h5>
+            <ul>
+                <li>Ethical concerns: Gene editing, data privacy, equitable access.</li>
+                <li>Regulation: Needs global standards for safety and biosecurity.</li>
+                <li>Technical: Scaling solutions, ensuring safety, managing data.</li>
+            </ul>    
+            <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="DNA sequencing">
+            <p>Modern techniques like CRISPR gene editing, DNA sequencing, and stem cell therapy are revolutionizing medicine and agriculture. The intersection of biology and technology continues to create innovative solutions to global challenges.</p>
+            
+            <div class="quiz-section" id="biology-tech-quiz">
+                <div class="quiz-header">
+                    <h3 class="quiz-title">Biology & Technology Quiz</h3>
+                    <div class="quiz-timer">Time: <span id="biology-tech-time">05:00</span></div>
+                </div>
+                
+                <div class="quiz-question-container">
+                    <div class="quiz-question">1. What is the primary application of medical biotechnology?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="true">Developing vaccines and antibiotics</div>
+                        <div class="quiz-option" data-explanation="Biofuels are part of industrial biotechnology, not medical biotechnology.">Creating biofuels</div>
+                        <div class="quiz-option" data-explanation="Biodegradable plastics are developed through industrial biotechnology, not medical biotechnology.">Producing biodegradable plastics</div>
+                        <div class="quiz-option" data-explanation="Waste treatment is part of environmental biotechnology, not medical biotechnology.">Waste treatment</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-question-container" style="display:none">
+                    <div class="quiz-question">2. Which technology allows for precise editing of DNA sequences?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="DNA sequencing is used to read DNA sequences, not edit them.">DNA sequencing</div>
+                        <div class="quiz-option" data-correct="true">CRISPR</div>
+                        <div class="quiz-option" data-explanation="PCR amplifies DNA for analysis, but does not edit DNA sequences.">PCR</div>
+                        <div class="quiz-option" data-explanation="Gel electrophoresis is used to separate DNA fragments, not edit DNA.">Gel electrophoresis</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-question-container" style="display:none">
+                    <div class="quiz-question">3. What does GMO stand for?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="This is not the correct term for GMO.">General Medical Organism</div>
+                        <div class="quiz-option" data-explanation="This is not the correct term for GMO.">Genetic Molecular Operation</div>
+                        <div class="quiz-option" data-correct="true">Genetically Modified Organism</div>
+                        <div class="quiz-option" data-explanation="This is not the correct term for GMO.">Global Microbial Organization</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-navigation">
+                    <button class="quiz-btn quiz-prev" disabled>Previous</button>
+                    <button class="quiz-btn quiz-next">Next</button>
+                    <button class="quiz-btn quiz-submit">Submit Quiz</button>
+                </div>
+                
+                <div class="quiz-result">
+                    <h3>Quiz Completed!</h3>
+                    <div class="quiz-score">0/3</div>
+                    <p class="quiz-feedback">Keep learning to improve your score!</p>
+                    <button class="quiz-restart">Restart Quiz</button>
+                </div>
+            </div>
+            
+            <a href="#" class="back-btn nav-link" data-target="home">Back to Home</a>
+        </div>
+    </section>
+    
+    <!-- Animal Biology Page -->
+    <section class="page-section" id="animal">
+        <div class="container">
+            <h2>Animal Biology</h2>
+            <img src="https://images.unsplash.com/photo-1543946207-39bd91e70ca7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Animal diversity">
+            <p>Animals are multicellular, eukaryotic organisms that form the biological kingdom Animalia. They are characterized by their ability to move, consume organic material, and reproduce sexually.</p>
+            
+            <h3>Major Animal Groups:</h3>
+            <ul>
+                <li>Invertebrates (arthropods, mollusks, worms)</li>
+                <li>Vertebrates (fish, amphibians, reptiles, birds, mammals)</li>
+            </ul>
+            <h3>Key Characteristics:</h3>
+            <ul>
+                <li>Heterotrophic: Animals consume other organisms for energy.</li>
+                <li>Mobility: Most can move voluntarily (e.g., walking, flying, swimming).</li>
+                <li>Multicellular: Composed of specialized cells forming tissues and organs.</li>
+                <li>Reproduction: Mostly sexual, some asexual (e.g., starfish regeneration).</li>
+                <li>Sensory Systems: Detect stimuli via eyes, ears, noses, or other organs.</li>
+            </ul>
+            <h3>Adaptations:</h3>
+            <ul>
+                <li>Physical: Camouflage (e.g., chameleons), insulation (e.g., polar bear fur), or flight (e.g., bat wings).</li>
+                <li>Behavioral: Migration (e.g., whales), hibernation (e.g., bears), or social structures (e.g., wolf packs).</li>
+                <li>Environmental: Desert animals conserve water; deep-sea creatures withstand pressure.</li>
+            </ul>
+            <h3>Reproduction in Animals:</h3>
+            <ul>
+                <li>Asexual reproduction: One parent, offspring identical to parent (e.g., fission, budding, regeneration in hydra, flatworms).</li>
+                <li>Sexual reproduction: Involves gametes (sperm and egg), results in genetic variation.</li>
+            </ul>
+            <img src="https://images.unsplash.com/photo-1551969014-7d2c4cddf0b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Animal anatomy">
+            <p>Animal biology studies anatomy, physiology, behavior, evolution, and ecology. Key concepts include adaptation, homeostasis, and the complex interactions between animals and their environments.</p>
+            
+            <div class="quiz-section" id="animal-quiz">
+                <div class="quiz-header">
+                    <h3 class="quiz-title">Animal Biology Quiz</h3>
+                    <div class="quiz-timer">Time: <span id="animal-time">05:00</span></div>
+                </div>
+                
+                <div class="quiz-question-container">
+                    <div class="quiz-question">1. Which of these is NOT a characteristic of animals?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="Animals are multicellular organisms, so this is a characteristic.">Multicellular</div>
+                        <div class="quiz-option" data-explanation="Animals are eukaryotic, meaning their cells have a nucleus.">Eukaryotic</div>
+                        <div class="quiz-option" data-correct="true">Photosynthetic</div>
+                        <div class="quiz-option" data-explanation="Most animals are capable of movement, which is a key characteristic.">Capable of movement</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-question-container" style="display:none">
+                    <div class="quiz-question">2. Which group makes up the majority of animal species?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="true">Invertebrates</div>
+                        <div class="quiz-option" data-explanation="Vertebrates, while diverse, make up a smaller proportion of animal species compared to invertebrates.">Vertebrates</div>
+                        <div class="quiz-option" data-explanation="Mammals are a subset of vertebrates and represent a small fraction of animal species.">Mammals</div>
+                        <div class="quiz-option" data-explanation="Birds are also a subset of vertebrates and do not make up the majority of animal species.">Birds</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-question-container" style="display:none">
+                    <div class="quiz-question">3. What is the study of animal behavior called?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="Anatomy is the study of structure, not behavior.">Anatomy</div>
+                        <div class="quiz-option" data-explanation="Physiology studies the functions of organisms, not specifically their behavior.">Physiology</div>
+                        <div class="quiz-option" data-correct="true">Ethology</div>
+                        <div class="quiz-option" data-explanation="Ecology studies interactions between organisms and their environment, not specifically animal behavior.">Ecology</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-navigation">
+                    <button class="quiz-btn quiz-prev" disabled>Previous</button>
+                    <button class="quiz-btn quiz-next">Next</button>
+                    <button class="quiz-btn quiz-submit">Submit Quiz</button>
+                </div>
+                
+                <div class="quiz-result">
+                    <h3>Quiz Completed!</h3>
+                    <div class="quiz-score">0/3</div>
+                    <p class="quiz-feedback">Keep learning to improve your score!</p>
+                    <button class="quiz-restart">Restart Quiz</button>
+                </div>
+            </div>
+            
+            <a href="#" class="back-btn nav-link" data-target="home">Back to Home</a>
+        </div>
+    </section>
+    
+    <!-- Enzymes Page -->
+    <section class="page-section" id="enzyme">
+        <div class="container">
+            <h2>Enzymes</h2>
+            <img src="https://media.istockphoto.com/id/2198369384/vector/allosteric-inhibition-and-allosteric-activation.jpg?s=1024x1024&w=is&k=20&c=I1grBetbTMNNBm5-CSaF2_99rWHYFmUQ3felqIEOdnc=" alt="Enzyme structure">
+            <p>Enzymes are biological catalysts that accelerate chemical reactions in living organisms. They are typically proteins that lower the activation energy of reactions, enabling metabolic processes to occur at rates sufficient for life.</p>
+            
+            <h3>Key Characteristics:</h3>
+            <ul>
+                <li>Specificity: Each enzyme catalyzes a particular reaction.</li>
+                <li>Reusability: Enzymes are not consumed in reactions.</li>
+                <li>Regulation: Enzyme activity can be controlled.</li>
+            </ul>
+            <h3>Enzyme Regulation:</h3>
+            <ul>
+                <li>Activators: Increase activity.</li>
+                <li>Inhibitors: Decrease or stop activity (competitive and non-competitive).</li>
+            </ul>
+            <h3>Types of Enzymes:</h3>
+            <ul>
+                <li>Structural classification: Based on shape or structure.</li>
+                <li>Functional classification: Based on the reaction catalyzed.</li>
+            </ul>
+            <h3>Uses of Enzymes:</h3>
+            <ul>
+                <li>Industrial applications: Food production (cheese making), biofuels, detergents.</li>
+                <li>Medical use: Diagnostics, drug production.</li>
+            </ul>
+            <p>Enzymes follow the lock-and-key model where the substrate fits into the enzyme's active site. Factors like temperature, pH, and substrate concentration affect enzyme activity. Enzymes are crucial in digestion, DNA replication, and many other biological processes.</p>
+            
+            <div class="quiz-section" id="enzyme-quiz">
+                <div class="quiz-header">
+                    <h3 class="quiz-title">Enzymes Quiz</h3>
+                    <div class="quiz-timer">Time: <span id="enzyme-time">05:00</span></div>
+                </div>
+                
+                <div class="quiz-question-container">
+                    <div class="quiz-question">1. What is the primary function of enzymes?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="Enzymes do not provide energy; they facilitate reactions by lowering activation energy.">To provide energy for reactions</div>
+                        <div class="quiz-option" data-correct="true">To lower activation energy of reactions</div>
+                        <div class="quiz-option" data-explanation="Enzymes catalyze reactions but do not create new molecules on their own.">To create new molecules</div>
+                        <div class="quiz-option" data-explanation="Genetic information is stored in DNA, not enzymes.">To store genetic information</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-question-container" style="display:none">
+                    <div class="quiz-question">2. Which model describes how enzymes work with substrates?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="The ball-and-stick model is used in chemistry to represent molecular structures, not enzyme function.">Ball-and-stick model</div>
+                        <div class="quiz-option" data-explanation="The fluid mosaic model describes cell membranes, not enzyme-substrate interactions.">Fluid mosaic model</div>
+                        <div class="quiz-option" data-correct="true">Lock-and-key model</div>
+                        <div class="quiz-option" data-explanation="The double helix model describes DNA structure, not enzyme function.">Double helix model</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-question-container" style="display:none">
+                    <div class="quiz-question">3. What happens to an enzyme when exposed to extremely high temperatures?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="High temperatures may initially increase reaction rates, but extreme heat causes denaturation.">It works faster</div>
+                        <div class="quiz-option" data-explanation="Enzyme specificity is not affected by temperature; high temperatures cause loss of function.">It becomes more specific</div>
+                        <div class="quiz-option" data-correct="true">It denatures and loses function</div>
+                        <div class="quiz-option" data-explanation="Enzymes cannot change into substrates; they are proteins that catalyze reactions.">It changes into a substrate</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-navigation">
+                    <button class="quiz-btn quiz-prev" disabled>Previous</button>
+                    <button class="quiz-btn quiz-next">Next</button>
+                    <button class="quiz-btn quiz-submit">Submit Quiz</button>
+                </div>
+                
+                <div class="quiz-result">
+                    <h3>Quiz Completed!</h3>
+                    <div class="quiz-score">0/3</div>
+                    <p class="quiz-feedback">Keep learning to improve your score!</p>
+                    <button class="quiz-restart">Restart Quiz</button>
+                </div>
+            </div>
+            
+            <a href="#" class="back-btn nav-link" data-target="home">Back to Home</a>
+        </div>
+    </section>
+    
+    <!-- Genetics Page -->
+    <section class="page-section" id="genetics">
+        <div class="container">
+            <h2>Genetics</h2>
+            <img src="https://images.unsplash.com/photo-1641903202531-bfa6bf0c6419?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3" alt="DNA structure">
+            <p>Genetics is the study of genes, genetic variation, and heredity in organisms. It explains how traits are passed from parents to offspring and how genetic information is expressed and regulated.</p>
+            
+            <h3>Key Concepts:</h3>
+            <ul>
+                <li>DNA structure and replication</li>
+                <li>Mendelian inheritance patterns</li>
+                <li>Gene expression and regulation</li>
+                <li>Mutations and genetic disorders</li>
+                <li>Non-Mendelian inheritance</li>
+                <li>Sex determination and sex-linked traits</li>
+            </ul>
+            <h3>Basic Genetic Terminologies:</h3>
+            <ul>
+                <li>Gene: Unit of inheritance.</li>
+                <li>Allele: Different forms of a gene.</li>
+                <li>Genotype: Genetic makeup (e.g., TT, Tt).</li>
+                <li>Phenotype: Observable traits (e.g., tall or short).</li>
+                <li>Homozygous: Same alleles (TT or tt).</li>
+                <li>Heterozygous: Different alleles (Tt).</li>
+                <li>Dominant allele: Expressed when present.</li>
+                <li>Recessive allele: Expressed only when homozygous.</li>
+            </ul>
+            <p>Modern genetics includes molecular genetics (study of gene structure and function), population genetics (study of genetic variation in populations), and quantitative genetics (study of continuously varying traits). Applications include genetic testing, gene therapy, and genetically modified organisms.</p>
+            
+            <div class="quiz-section" id="genetics-quiz">
+                <div class="quiz-header">
+                    <h3 class="quiz-title">Genetics Quiz</h3>
+                    <div class="quiz-timer">Time: <span id="genetics-time">05:00</span></div>
+                </div>
+                
+                <div class="quiz-question-container">
+                    <div class="quiz-question">1. What is the basic unit of heredity?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="Chromosomes contain many genes, but the gene is the basic unit of heredity.">Chromosome</div>
+                        <div class="quiz-option" data-correct="true">Gene</div>
+                        <div class="quiz-option" data-explanation="Proteins are products of genes, not the units of heredity.">Protein</div>
+                        <div class="quiz-option" data-explanation="Nucleotides are the building blocks of DNA, but genes are the functional units of heredity.">Nucleotide</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-question-container" style="display:none">
+                    <div class="quiz-question">2. Who is considered the father of genetics?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="Charles Darwin developed the theory of evolution, not genetics.">Charles Darwin</div>
+                        <div class="quiz-option" data-correct="true">Gregor Mendel</div>
+                        <div class="quiz-option" data-explanation="James Watson co-discovered DNA structure, but Mendel founded genetics.">James Watson</div>
+                        <div class="quiz-option" data-explanation="Rosalind Franklin contributed to DNA structure discovery, not the foundation of genetics.">Rosalind Franklin</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-question-container" style="display:none">
+                    <div class="quiz-question">3. What does DNA stand for?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="This is not the correct term for DNA.">Dynamic Nuclear Acid</div>
+                        <div class="quiz-option" data-explanation="This is not the correct term for DNA.">Dual Nucleic Assembly</div>
+                        <div class="quiz-option" data-correct="true">Deoxyribonucleic Acid</div>
+                        <div class="quiz-option" data-explanation="This is not the correct term for DNA.">Dependent Nucleotide Association</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-navigation">
+                    <button class="quiz-btn quiz-prev" disabled>Previous</button>
+                    <button class="quiz-btn quiz-next">Next</button>
+                    <button class="quiz-btn quiz-submit">Submit Quiz</button>
+                </div>
+                
+                <div class="quiz-result">
+                    <h3>Quiz Completed!</h3>
+                    <div class="quiz-score">0/3</div>
+                    <p class="quiz-feedback">Keep learning to improve your score!</p>
+                    <button class="quiz-restart">Restart Quiz</button>
+                </div>
+            </div>
+            
+            <a href="#" class="back-btn nav-link" data-target="home">Back to Home</a>
+        </div>
+    </section>
+    
+    <!-- Human Body Systems Page -->
+    <section class="page-section" id="human-body">
+        <div class="container">
+            <h2>Human Body Systems</h2>
+            <img src="https://media.istockphoto.com/id/2166388157/photo/human-circulatory-system-heart-anatomy.jpg?s=1024x1024&w=is&k=20&c=UGvvrq5YafmGL85RwxlU4LrKMx6lrJYrqtqFJw-Gec8=" alt="Human anatomy">
+            <p>The human body is composed of several interconnected systems that work together to maintain homeostasis and ensure survival. Each system has specialized organs and tissues that perform specific functions.</p>
+            
+            <h3>Major Systems:</h3>
+            <ul>
+                <li>Circulatory system (heart, blood vessels)</li>
+                <li>Respiratory system (lungs, airways)</li>
+                <li>Digestive system (stomach, intestines)</li>
+                <li>Nervous system (brain, spinal cord, nerves)</li>
+                <li>Musculoskeletal system (bones, muscles)</li>
+                <li>Endocrine system (hormone-producing glands)</li>
+                <li>Reproductive system (penis, vagina, scrotum, urethra, vas deferens)</li>
+                <li>Skeletal system (joint, bone, cartilage)</li>
+                <li>Immune system (lymph nodes, spleen, WBCs)</li>
+                <li>Excretory system (kidney, bladder, lung, skin)</li>
+            </ul>
+            
+            <p>These systems work in coordination to perform essential functions like nutrient absorption, oxygen transport, waste removal, movement, and response to stimuli. Understanding these systems is crucial for medical science and maintaining health.</p>
+            
+            <div class="quiz-section" id="human-body-quiz">
+                <div class="quiz-header">
+                    <h3 class="quiz-title">Human Body Systems Quiz</h3>
+                    <div class="quiz-timer">Time: <span id="human-body-time">05:00</span></div>
+                </div>
+                
+                <div class="quiz-question-container">
+                    <div class="quiz-question">1. Which system is responsible for oxygen transport?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="true">Circulatory system</div>
+                        <div class="quiz-option" data-explanation="The digestive system breaks down food for nutrient absorption, not oxygen transport.">Digestive system</div>
+                        <div class="quiz-option" data-explanation="The nervous system controls body responses, not oxygen transport.">Nervous system</div>
+                        <div class="quiz-option" data-explanation="The endocrine system regulates hormones, not oxygen transport.">Endocrine system</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-question-container" style="display:none">
+                    <div class="quiz-question">2. What is the body's process of maintaining stable internal conditions called?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="Metabolism refers to chemical reactions for energy, not maintaining stable conditions.">Metabolism</div>
+                        <div class="quiz-option" data-correct="true">Homeostasis</div>
+                        <div class="quiz-option" data-explanation="Respiration refers to breathing or cellular energy production, not overall stability.">Respiration</div>
+                        <div class="quiz-option" data-explanation="Digestion is the breakdown of food, not the maintenance of stable conditions.">Digestion</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-question-container" style="display:none">
+                    <div class="quiz-question">3. Which system produces hormones?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="The nervous system controls body responses via nerve signals, not hormones.">Nervous system</div>
+                        <div class="quiz-option" data-explanation="The immune system defends against pathogens, not hormone production.">Immune system</div>
+                        <div class="quiz-option" data-correct="true">Endocrine system</div>
+                        <div class="quiz-option" data-explanation="The muscular system enables movement, not hormone production.">Muscular system</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-navigation">
+                    <button class="quiz-btn quiz-prev" disabled>Previous</button>
+                    <button class="quiz-btn quiz-next">Next</button>
+                    <button class="quiz-btn quiz-submit">Submit Quiz</button>
+                </div>
+                
+                <div class="quiz-result">
+                    <h3>Quiz Completed!</h3>
+                    <div class="quiz-score">0/3</div>
+                    <p class="quiz-feedback">Keep learning to improve your score!</p>
+                    <button class="quiz-restart">Restart Quiz</button>
+                </div>
+            </div>
+            
+            <a href="#" class="back-btn nav-link" data-target="home">Back to Home</a>
+        </div>
+    </section>
+    
+    <!-- Population and Resources Page -->
+    <section class="page-section" id="population">
+        <div class="container">
+            <h2>Population and Natural Resources</h2>
+            <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Earth from space">
+            <p>The relationship between human populations and natural resources is a critical area of study in environmental biology. As the global population grows, sustainable management of resources becomes increasingly important.</p>
+            
+            <h3>Key Issues:</h3>
+            <ul>
+                <li>Carrying capacity and population growth</li>
+                <li>Renewable vs. non-renewable resources</li>
+                <li>Ecological footprint and sustainability</li>
+                <li>Biodiversity conservation</li>
+            </ul>
+            <h3>Population Characteristics:</h3>
+            <ul>
+                <li>Size: Number of individuals</li>
+                <li>Density: Number of individuals per unit area</li>
+                <li>Growth: Increase or decrease in population size over time</li>
+                <li>Distribution: How individuals are spread out (clumped, uniform, or random)</li>
+            </ul>
+            <h3>Key Points:</h3>
+            <ul>
+                <li>Same species: All individuals belong to the same kind (e.g., all deer in a forest)</li>
+                <li>Same area: They live in a defined place (e.g., pond, forest, or desert)</li>
+                <li>Interbreeding: They can reproduce with one another</li>
+            </ul>
+            <img src="https://images.unsplash.com/photo-1511497584788-876760111969?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sustainable resources">
+            <p>Solutions include developing renewable energy sources, sustainable agriculture practices, water conservation, and policies that balance human needs with environmental protection. Understanding these dynamics is essential for creating a sustainable future.</p>
+            
+            <div class="quiz-section" id="population-quiz">
+                <div class="quiz-header">
+                    <h3 class="quiz-title">Population & Resources Quiz</h3>
+                    <div class="quiz-timer">Time: <span id="population-time">05:00</span></div>
+                </div>
+                
+                <div class="quiz-question-container">
+                    <div class="quiz-question">1. What is the maximum population size an environment can sustain called?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="Population density measures individuals per unit area, not the maximum sustainable population.">Population density</div>
+                        <div class="quiz-option" data-correct="true">Carrying capacity</div>
+                        <div class="quiz-option" data-explanation="Ecological footprint measures resource use, not the maximum population an environment can support.">Ecological footprint</div>
+                        <div class="quiz-option" data-explanation="Biotic potential is the maximum reproductive capacity, not the sustainable population size.">Biotic potential</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-question-container" style="display:none">
+                    <div class="quiz-question">2. Which of these is a renewable resource?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="Coal is a non-renewable fossil fuel.">Coal</div>
+                        <div class="quiz-option" data-explanation="Natural gas is a non-renewable fossil fuel.">Natural gas</div>
+                        <div class="quiz-option" data-correct="true">Solar energy</div>
+                        <div class="quiz-option" data-explanation="Mineral ores are non-renewable resources.">Mineral ores</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-question-container" style="display:none">
+                    <div class="quiz-question">3. What does the term 'ecological footprint' measure?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-explanation="The size of an ecosystem is not what ecological footprint measures.">The size of an ecosystem</div>
+                        <div class="quiz-option" data-explanation="Biodiversity measures species variety, not resource use.">The biodiversity in an area</div>
+                        <div class="quiz-option" data-correct="true">Human demand on Earth's ecosystems</div>
+                        <div class="quiz-option" data-explanation="Population growth rate measures how fast a population grows, not resource use.">The rate of population growth</div>
+                    </div>
+                    <div class="quiz-explanation"></div>
+                </div>
+                
+                <div class="quiz-navigation">
+                    <button class="quiz-btn quiz-prev" disabled>Previous</button>
+                    <button class="quiz-btn quiz-next">Next</button>
+                    <button class="quiz-btn quiz-submit">Submit Quiz</button>
+                </div>
+                
+                <div class="quiz-result">
+                    <h3>Quiz Completed!</h3>
+                    <div class="quiz-score">0/3</div>
+                    <p class="quiz-feedback">Keep learning to improve your score!</p>
+                    <button class="quiz-restart">Restart Quiz</button>
+                </div>
+            </div>
+            
+            <a href="#" class="back-btn nav-link" data-target="home">Back to Home</a>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="page-section" id="resources-section">
+        <div class="container">
+            <h2>Learning Resources</h2>
+            
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📚</div>
+                    <div class="resource-content">
+                        <h3>Textbook PDF</h3>
+                        <p>Read through the complete Grade 11 Biology textbook approved by the Ethiopian Ministry of Education.</p>
+                        <a href="https://drive.google.com/file/d/1cRjEvezvLaFxOjyECUiF2swIIDBV1zVY/view?usp=sharing" target="_blank" class="btn">Open Textbook</a>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">🎬</div>
+                    <div class="resource-content">
+                        <h3>Video Lessons</h3>
+                        <p>Watch explanations of key biology concepts in this playlist by Crash Course on YouTube.</p>
+                        <a href="https://www.youtube.com/watch?v=PWGBqskV1UQ&list=PL8dPuuaLjXtPW_ofbxdHNciuLoTRLPMgB" target="_blank" class="btn">Watch Videos</a>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#" class="back-btn nav-link" data-target="home">Back to Home</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Educational resource for biology students</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navigation functionality
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('data-target');
+                    
+                    document.querySelectorAll('.page-section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    document.getElementById(targetId).classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            // Eye Shield Toggle
+            const eyeShield = document.getElementById('eyeShield');
+            const toggleEyeShieldBtn = document.getElementById('toggleEyeShield');
+            const eyeShieldIcon = toggleEyeShieldBtn.querySelector('.icon');
+
+            toggleEyeShieldBtn.addEventListener('click', () => {
+                eyeShield.classList.toggle('active');
+                if (eyeShield.classList.contains('active')) {
+                    eyeShieldIcon.textContent = '🌙';
+                    toggleEyeShieldBtn.textContent = '🌙 Night Mode';
+                } else {
+                    eyeShieldIcon.textContent = '🌞';
+                    toggleEyeShieldBtn.textContent = '🌞 Day Mode';
+                }
+            });
+
+            // Large Text Toggle
+            const toggleLargeTextBtn = document.getElementById('toggleLargeText');
+            const body = document.body;
+
+            toggleLargeTextBtn.addEventListener('click', () => {
+                body.classList.toggle('large-text');
+                toggleLargeTextBtn.textContent = body.classList.contains('large-text') 
+                    ? 'Normal Text' 
+                    : 'Large Text';
+            });
+
+            // Read Aloud Functionality
+            const readAloudBtn = document.getElementById('readAloud');
+            const pauseReadBtn = document.getElementById('pauseReadBtn');
+            const resumeReadBtn = document.getElementById('resumeReadBtn');
+            let utterance = null;
+            let isPaused = false;
+
+            function getPageContent() {
+                const activeSection = document.querySelector('.page-section.active');
+                if (!activeSection) return '';
+
+                const elements = activeSection.querySelectorAll('h1, h2, h3, h4, h5, p, li, .quiz-question, .quiz-option');
+                let content = '';
+                elements.forEach(el => {
+                    if (!el.classList.contains('quiz-option') || el.parentNode.parentNode.style.display !== 'none') {
+                        content += el.textContent + ' ';
+                    }
+                });
+                return content.trim();
+            }
+
+            readAloudBtn.addEventListener('click', () => {
+                if (utterance) {
+                    window.speechSynthesis.cancel();
+                }
+
+                const content = getPageContent();
+                if (!content) {
+                    alert('No content to read.');
+                    return;
+                }
+
+                utterance = new SpeechSynthesisUtterance(content);
+                utterance.lang = 'en-US';
+                utterance.rate = 1.0;
+                utterance.pitch = 1.0;
+
+                utterance.onend = () => {
+                    isPaused = false;
+                    pauseReadBtn.style.display = 'none';
+                    resumeReadBtn.style.display = 'none';
+                    utterance = null;
+                };
+
+                isPaused = false;
+                pauseReadBtn.style.display = 'block';
+                resumeReadBtn.style.display = 'none';
+
+                window.speechSynthesis.speak(utterance);
+            });
+
+            pauseReadBtn.addEventListener('click', () => {
+                if (!isPaused && window.speechSynthesis.speaking) {
+                    window.speechSynthesis.pause();
+                    isPaused = true;
+                    pauseReadBtn.style.display = 'none';
+                    resumeReadBtn.style.display = 'block';
+                }
+            });
+
+            resumeReadBtn.addEventListener('click', () => {
+                if (isPaused && utterance) {
+                    window.speechSynthesis.resume();
+                    isPaused = false;
+                    pauseReadBtn.style.display = 'block';
+                    resumeReadBtn.style.display = 'none';
+                }
+            });
+
+            // Initialize button states
+            pauseReadBtn.style.display = 'none';
+            resumeReadBtn.style.display = 'none';
+
+            // Quiz functionality
+            const quizzes = document.querySelectorAll('.quiz-section');
+            
+            quizzes.forEach(quiz => {
+                const questionContainers = quiz.querySelectorAll('.quiz-question-container');
+                const prevBtn = quiz.querySelector('.quiz-prev');
+                const nextBtn = quiz.querySelector('.quiz-next');
+                const submitBtn = quiz.querySelector('.quiz-submit');
+                const restartBtn = quiz.querySelector('.quiz-restart');
+                const resultSection = quiz.querySelector('.quiz-result');
+                const scoreDisplay = quiz.querySelector('.quiz-score');
+                const timerDisplay = quiz.querySelector('.quiz-timer span');
+                
+                let currentQuestion = 0;
+                let score = 0;
+                let timeLeft = 300;
+                let timer;
+                
+                function initQuiz() {
+                    currentQuestion = 0;
+                    score = 0;
+                    timeLeft = 300;
+                    updateTimerDisplay();
+                    
+                    questionContainers.forEach((container, index) => {
+                        container.style.display = index === 0 ? 'block' : 'none';
+                        const explanation = container.querySelector('.quiz-explanation');
+                        if (explanation) {
+                            explanation.style.display = 'none';
+                            explanation.textContent = '';
+                        }
+                    });
+                    
+                    prevBtn.disabled = true;
+                    nextBtn.style.display = 'block';
+                    submitBtn.style.display = 'none';
+                    resultSection.style.display = 'none';
+                    
+                    quiz.querySelectorAll('.quiz-option').forEach(option => {
+                        option.classList.remove('selected', 'correct', 'incorrect');
+                    });
+                    
+                    clearInterval(timer);
+                    timer = setInterval(updateTimer, 1000);
+                }
+                
+                function updateTimerDisplay() {
+                    const minutes = Math.floor(timeLeft / 60);
+                    const seconds = timeLeft % 60;
+                    timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+                
+                function updateTimer() {
+                    timeLeft--;
+                    updateTimerDisplay();
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timer);
+                        submitQuiz();
+                    }
+                }
+                
+                function showQuestion(index) {
+                    questionContainers.forEach((container, i) => {
+                        container.style.display = i === index ? 'block' : 'none';
+                        const explanation = container.querySelector('.quiz-explanation');
+                        if (explanation) {
+                            explanation.style.display = 'none';
+                            explanation.textContent = '';
+                        }
+                    });
+                    
+                    prevBtn.disabled = index === 0;
+                    nextBtn.style.display = index === questionContainers.length - 1 ? 'none' : 'block';
+                    submitBtn.style.display = index === questionContainers.length - 1 ? 'block' : 'none';
+                }
+                
+                function submitQuiz() {
+                    clearInterval(timer);
+                    
+                    const selectedOptions = quiz.querySelectorAll('.quiz-option.selected');
+                    selectedOptions.forEach(option => {
+                        if (option.hasAttribute('data-correct')) {
+                            score++;
+                        }
+                    });
+                    
+                    scoreDisplay.textContent = `${score}/${questionContainers.length}`;
+                    const percentage = (score / questionContainers.length) * 100;
+                    
+                    let feedback;
+                    if (percentage >= 80) {
+                        feedback = "Excellent work! You've mastered this topic.";
+                    } else if (percentage >= 60) {
+                        feedback = "Good job! You have a solid understanding.";
+                    } else if (percentage >= 40) {
+                        feedback = "Not bad! Review the material to improve.";
+                    } else {
+                        feedback = "Keep studying! You'll get better with practice.";
+                    }
+                    
+                    quiz.querySelector('.quiz-feedback').textContent = feedback;
+                    resultSection.style.display = 'block';
+                }
+                
+                prevBtn.addEventListener('click', () => {
+                    if (currentQuestion > 0) {
+                        currentQuestion--;
+                        showQuestion(currentQuestion);
+                    }
+                });
+                
+                nextBtn.addEventListener('click', () => {
+                    if (currentQuestion < questionContainers.length - 1) {
+                        currentQuestion++;
+                        showQuestion(currentQuestion);
+                    }
+                });
+                
+                submitBtn.addEventListener('click', submitQuiz);
+                
+                restartBtn.addEventListener('click', initQuiz);
+                
+                quiz.querySelectorAll('.quiz-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        const questionOptions = this.parentNode.querySelectorAll('.quiz-option');
+                        questionOptions.forEach(opt => {
+                            opt.classList.remove('selected', 'correct', 'incorrect');
+                        });
+                        
+                        this.classList.add('selected');
+                        
+                        const explanationDiv = this.parentNode.nextElementSibling;
+                        if (this.hasAttribute('data-correct')) {
+                            this.classList.add('correct');
+                            explanationDiv.style.display = 'none';
+                            explanationDiv.textContent = '';
+                        } else {
+                            this.classList.add('incorrect');
+                            const correctOption = this.parentNode.querySelector('[data-correct="true"]');
+                            if (correctOption) {
+                                correctOption.classList.add('correct');
+                            }
+                            if (this.hasAttribute('data-explanation')) {
+                                explanationDiv.textContent = this.getAttribute('data-explanation');
+                                explanationDiv.style.display = 'block';
+                            }
+                        }
+                    });
+                });
+                
+                initQuiz();
+            });
+        });
+    </script>
+</body>
+</html>

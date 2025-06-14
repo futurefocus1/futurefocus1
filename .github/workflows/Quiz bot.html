@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 11 Quiz Bot - Ethiopian Curriculum</title>
+    <style>
+        :root {
+            --primary-color: #1a5276;
+            --secondary-color: #2874a6;
+            --accent-color: #3498db;
+            --correct-color: #28a745;
+            --incorrect-color: #dc3545;
+            --light-bg: #f0f8ff;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--light-bg);
+            line-height: 1.6;
+        }
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 8px;
+            margin-top: 25px;
+        }
+
+        .home-link {
+            color: #1a5276;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        .home-link:hover {
+            color: #448ec0;;
+        }
+
+        .subject {
+            background-color: var(--white);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .subject:hover {
+            transform: translateY(-3px);
+        }
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border-left: 4px solid var(--accent-color);
+        }
+        .options {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .options label {
+            display: block;
+            padding: 8px 0;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border-radius: 4px;
+            padding-left: 10px;
+        }
+        .options label:hover {
+            background-color: #e6f2ff;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 15px auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .quiz-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .quiz-title {
+            flex: 1;
+            min-width: 300px;
+        }
+        .quiz-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .flag {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #555;
+            font-size: 1.1em;
+        }
+        button {
+            padding: 12px 25px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+            font-size: 0.9em;
+        }
+        .timer {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 15px 0;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .result-container {
+            display: none;
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: var(--accent-color);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        .correct-answer {
+            background-color: #d4edda;
+            border-left: 4px solid var(--correct-color);
+        }
+        .incorrect-answer {
+            background-color: #f8d7da;
+            border-left: 4px solid var(--incorrect-color);
+        }
+        .answer-feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .correct-feedback {
+            background-color: #d4edda;
+            color: var(--correct-color);
+        }
+        .incorrect-feedback {
+            background-color: #f8d7da;
+            color: var(--incorrect-color);
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+            .subject {
+                padding: 15px;
+            }
+            .question {
+                padding: 10px;
+            }
+            .quiz-header {
+                flex-direction: column;
+            }
+            .quiz-image {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flag">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Flag_of_Ethiopia.svg" alt="Ethiopian Flag" width="150">
+    </div>
+    
+    <div class="quiz-header">
+        <div class="quiz-title">
+            <a href="homepage_html.html" class="home-link">← Back to FutureLearn</a>
+            <h1>Grade 11 Quiz Bot</h1>
+            <div class="intro">
+                <p>Test your knowledge of Grade 11 subjects based on the Ethiopian curriculum.</p>
+                <div class="timer" id="timer">Time: 20:00</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Biology Section -->
+    <div class="subject">
+        <h2>Biology</h2>
+        
+        <div class="question">
+            <p>1. Which of the following is the basic unit of life?</p>
+            <div class="options">
+                <label><input type="radio" name="bio1" value="a"> Atom</label>
+                <label><input type="radio" name="bio1" value="b"> Cell</label>
+                <label><input type="radio" name="bio1" value="c"> Molecule</label>
+                <label><input type="radio" name="bio1" value="d"> Organ</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="bio1-feedback">Correct! The cell is the basic unit of life.</div>
+        </div>
+        
+        <div class="question">
+            <p>2. Photosynthesis occurs in which part of the plant cell?</p>
+            <div class="options">
+                <label><input type="radio" name="bio2" value="a"> Mitochondria</label>
+                <label><input type="radio" name="bio2" value="b"> Chloroplast</label>
+                <label><input type="radio" name="bio2" value="c"> Nucleus</label>
+                <label><input type="radio" name="bio2" value="d"> Ribosome</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="bio2-feedback">Correct! Photosynthesis occurs in chloroplasts which contain chlorophyll.</div>
+        </div>
+        
+        <div class="question">
+            <p>3. Which of these is NOT a function of the cell membrane?</p>
+            <div class="options">
+                <label><input type="radio" name="bio3" value="a"> Regulating what enters and leaves the cell</label>
+                <label><input type="radio" name="bio3" value="b"> Providing structural support</label>
+                <label><input type="radio" name="bio3" value="c"> Producing ATP energy</label>
+                <label><input type="radio" name="bio3" value="d"> Recognizing chemical signals</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="bio3-feedback">Correct! Mitochondria produce ATP, not the cell membrane.</div>
+        </div>
+    </div>
+
+    <!-- Chemistry Section -->
+    <div class="subject">
+        <h2>Chemistry</h2>
+        
+        <div class="question">
+            <p>1. What is the chemical symbol for gold?</p>
+            <div class="options">
+                <label><input type="radio" name="chem1" value="a"> Ag</label>
+                <label><input type="radio" name="chem1" value="b"> Au</label>
+                <label><input type="radio" name="chem1" value="c"> Fe</label>
+                <label><input type="radio" name="chem1" value="d"> Pb</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="chem1-feedback">Correct! Au comes from the Latin word for gold, "aurum".</div>
+        </div>
+        
+        <div class="question">
+            <p>2. Which of the following is NOT a state of matter?</p>
+            <div class="options">
+                <label><input type="radio" name="chem2" value="a"> Solid</label>
+                <label><input type="radio" name="chem2" value="b"> Liquid</label>
+                <label><input type="radio" name="chem2" value="c"> Gas</label>
+                <label><input type="radio" name="chem2" value="d"> Energy</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="chem2-feedback">Correct! Energy is a property, not a state of matter.</div>
+        </div>
+        
+        <div class="question">
+            <p>3. What is the pH value of a neutral solution?</p>
+            <div class="options">
+                <label><input type="radio" name="chem3" value="a"> 0</label>
+                <label><input type="radio" name="chem3" value="b"> 7</label>
+                <label><input type="radio" name="chem3" value="c"> 10</label>
+                <label><input type="radio" name="chem3" value="d"> 14</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="chem3-feedback">Correct! Pure water has a pH of 7 at 25°C.</div>
+        </div>
+    </div>
+
+    <!-- Mathematics Section -->
+    <div class="subject">
+        <h2>Mathematics</h2>
+        
+        <div class="question">
+            <p>1. What is the value of π (pi) to two decimal places?</p>
+            <div class="options">
+                <label><input type="radio" name="math1" value="a"> 3.14</label>
+                <label><input type="radio" name="math1" value="b"> 3.16</label>
+                <label><input type="radio" name="math1" value="c"> 2.71</label>
+                <label><input type="radio" name="math1" value="d"> 1.61</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="math1-feedback">Correct! π is approximately 3.14159...</div>
+        </div>
+        
+        <div class="question">
+            <p>2. Solve for x: 2x + 5 = 15</p>
+            <div class="options">
+                <label><input type="radio" name="math2" value="a"> 5</label>
+                <label><input type="radio" name="math2" value="b"> 10</label>
+                <label><input type="radio" name="math2" value="c"> 7.5</label>
+                <label><input type="radio" name="math2" value="d"> 20</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="math2-feedback">Correct! 2x = 10 → x = 5</div>
+        </div>
+        
+        <div class="question">
+            <p>3. What is the area of a circle with radius 7cm? (π = 22/7)</p>
+            <div class="options">
+                <label><input type="radio" name="math3" value="a"> 44 cm²</label>
+                <label><input type="radio" name="math3" value="b"> 154 cm²</label>
+                <label><input type="radio" name="math3" value="c"> 49 cm²</label>
+                <label><input type="radio" name="math3" value="d"> 22 cm²</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="math3-feedback">Correct! Area = πr² = (22/7)×7×7 = 154 cm²</div>
+        </div>
+    </div>
+
+    <!-- Physics Section -->
+    <div class="subject">
+        <h2>Physics</h2>
+        
+        <div class="question">
+            <p>1. What is the SI unit of force?</p>
+            <div class="options">
+                <label><input type="radio" name="phy1" value="a"> Joule</label>
+                <label><input type="radio" name="phy1" value="b"> Watt</label>
+                <label><input type="radio" name="phy1" value="c"> Newton</label>
+                <label><input type="radio" name="phy1" value="d"> Pascal</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="phy1-feedback">Correct! The newton (N) is the SI unit of force.</div>
+        </div>
+        
+        <div class="question">
+            <p>2. Which of the following best describes the motion described by Newton's First Law?</p>
+            <div class="options">
+                <label><input type="radio" name="phy2" value="a"> An object in motion stays in motion unless acted upon</label>
+                <label><input type="radio" name="phy2" value="b"> For every action there is an equal and opposite reaction</label>
+                <label><input type="radio" name="phy2" value="c"> Force equals mass times acceleration</label>
+                <label><input type="radio" name="phy2" value="d"> Energy cannot be created or destroyed</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="phy2-feedback">Correct! Newton's First Law is about inertia.</div>
+        </div>
+        
+        <div class="question">
+            <p>3. What is the acceleration due to gravity on Earth's surface?</p>
+            <div class="options">
+                <label><input type="radio" name="phy3" value="a"> 6.67 m/s²</label>
+                <label><input type="radio" name="phy3" value="b"> 9.8 m/s²</label>
+                <label><input type="radio" name="phy3" value="c"> 10.2 m/s²</label>
+                <label><input type="radio" name="phy3" value="d"> 5.5 m/s²</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="phy3-feedback">Correct! Standard gravity is approximately 9.8 m/s².</div>
+        </div>
+    </div>
+
+    <!-- English Section -->
+    <div class="subject">
+        <h2>English</h2>
+        
+        <div class="question">
+            <p>1. Which of the following is a preposition?</p>
+            <div class="options">
+                <label><input type="radio" name="eng1" value="a"> Run</label>
+                <label><input type="radio" name="eng1" value="b"> Beautiful</label>
+                <label><input type="radio" name="eng1" value="c"> Under</label>
+                <label><input type="radio" name="eng1" value="d"> Quickly</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="eng1-feedback">Correct! "Under" shows the relationship between objects.</div>
+        </div>
+        
+        <div class="question">
+            <p>2. Identify the correct sentence:</p>
+            <div class="options">
+                <label><input type="radio" name="eng2" value="a"> She don't like apples.</label>
+                <label><input type="radio" name="eng2" value="b"> She doesn't likes apples.</label>
+                <label><input type="radio" name="eng2" value="c"> She doesn't like apples.</label>
+                <label><input type="radio" name="eng2" value="d"> She not like apples.</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="eng2-feedback">Correct! "Doesn't" is the correct auxiliary verb for third person singular.</div>
+        </div>
+        
+        <div class="question">
+            <p>3. Which of these is a compound sentence?</p>
+            <div class="options">
+                <label><input type="radio" name="eng3" value="a"> The cat sat on the mat.</label>
+                <label><input type="radio" name="eng3" value="b"> Running quickly down the street.</label>
+                <label><input type="radio" name="eng3" value="c"> I wanted to go, but it was raining.</label>
+                <label><input type="radio" name="eng3" value="d"> The big, brown dog.</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="eng3-feedback">Correct! A compound sentence joins two independent clauses with a conjunction.</div>
+        </div>
+    </div>
+
+    <!-- History Section -->
+    <div class="subject">
+        <h2>History</h2>
+        
+        <div class="question">
+            <p>1. Which ancient civilization was known for building the pyramids?</p>
+            <div class="options">
+                <label><input type="radio" name="his1" value="a"> Mesopotamia</label>
+                <label><input type="radio" name="his1" value="b"> Egypt</label>
+                <label><input type="radio" name="his1" value="c"> Greece</label>
+                <label><input type="radio" name="his1" value="d"> Rome</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="his1-feedback">Correct! The ancient Egyptians built the pyramids as tombs for their pharaohs.</div>
+        </div>
+        
+        <div class="question">
+            <p>2. The Battle of Adwa (1896) was significant because:</p>
+            <div class="options">
+                <label><input type="radio" name="his2" value="a"> It marked the beginning of Italian colonization</label>
+                <label><input type="radio" name="his2" value="b"> Ethiopia became part of the British Empire</label>
+                <label><input type="radio" name="his2" value="c"> Ethiopia defeated Italy, maintaining its independence</label>
+                <label><input type="radio" name="his2" value="d"> It led to the division of Ethiopia among European powers</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="his2-feedback">Correct! The Ethiopian victory at Adwa preserved the country's sovereignty during the Scramble for Africa.</div>
+        </div>
+        
+        <div class="question">
+            <p>3. Which Ethiopian emperor is known for modernizing the country in the 19th century?</p>
+            <div class="options">
+                <label><input type="radio" name="his3" value="a"> Haile Selassie I</label>
+                <label><input type="radio" name="his3" value="b"> Menelik I</label>
+                <label><input type="radio" name="his3" value="c"> Emperor Tewodros II</label>
+                <label><input type="radio" name="his3" value="d"> Yohannes IV</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="his3-feedback">Correct! Emperor Tewodros II initiated modernization efforts including military reforms and infrastructure development.</div>
+        </div>
+    </div>
+
+    <!-- Economics Section -->
+    <div class="subject">
+        <h2>Economics</h2>
+        
+        <div class="question">
+            <p>1. What is the primary function of money?</p>
+            <div class="options">
+                <label><input type="radio" name="eco1" value="a"> To be a store of value</label>
+                <label><input type="radio" name="eco1" value="b"> To serve as a medium of exchange</label>
+                <label><input type="radio" name="eco1" value="c"> To be a unit of account</label>
+                <label><input type="radio" name="eco1" value="d"> All of the above</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="eco1-feedback">Correct! Money serves all these functions in an economy.</div>
+        </div>
+        
+        <div class="question">
+            <p>2. Which of these is a characteristic of a command economy?</p>
+            <div class="options">
+                <label><input type="radio" name="eco2" value="a"> Private ownership of resources</label>
+                <label><input type="radio" name="eco2" value="b"> Market-determined prices</label>
+                <label><input type="radio" name="eco2" value="c"> Central government planning</label>
+                <label><input type="radio" name="eco2" value="d"> Consumer sovereignty</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="eco2-feedback">Correct! In a command economy, the central government makes major economic decisions.</div>
+        </div>
+        
+        <div class="question">
+            <p>3. Inflation refers to:</p>
+            <div class="options">
+                <label><input type="radio" name="eco3" value="a"> A general increase in prices</label>
+                <label><input type="radio" name="eco3" value="b"> A general decrease in prices</label>
+                <label><input type="radio" name="eco3" value="c"> An increase in unemployment</label>
+                <label><input type="radio" name="eco3" value="d"> A decrease in GDP</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="eco3-feedback">Correct! Inflation is the sustained increase in the general price level of goods and services.</div>
+        </div>
+    </div>
+
+    <!-- Agriculture Section -->
+    <div class="subject">
+        <h2>Agriculture</h2>
+        
+        <div class="question">
+            <p>1. Which of these is NOT a major cereal crop in Ethiopia?</p>
+            <div class="options">
+                <label><input type="radio" name="agr1" value="a"> Teff</label>
+                <label><input type="radio" name="agr1" value="b"> Maize</label>
+                <label><input type="radio" name="agr1" value="c"> Wheat</label>
+                <label><input type="radio" name="agr1" value="d"> Coffee</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="agr1-feedback">Correct! While coffee is an important cash crop, it's not classified as a cereal crop.</div>
+        </div>
+        
+        <div class="question">
+            <p>2. What is the primary purpose of crop rotation?</p>
+            <div class="options">
+                <label><input type="radio" name="agr2" value="a"> To increase soil fertility</label>
+                <label><input type="radio" name="agr2" value="b"> To reduce pest and disease buildup</label>
+                <label><input type="radio" name="agr2" value="c"> To improve soil structure</label>
+                <label><input type="radio" name="agr2" value="d"> All of the above</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="agr2-feedback">Correct! Crop rotation provides all these benefits to agricultural systems.</div>
+        </div>
+        
+        <div class="question">
+            <p>3. Which farming system is most common in Ethiopia's highlands?</p>
+            <div class="options">
+                <label><input type="radio" name="agr3" value="a"> Large-scale commercial farming</label>
+                <label><input type="radio" name="agr3" value="b"> Pastoralism</label>
+                <label><input type="radio" name="agr3" value="c"> Smallholder mixed farming</label>
+                <label><input type="radio" name="agr3" value="d"> Plantation agriculture</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="agr3-feedback">Correct! Smallholder mixed farming (crop and livestock) dominates Ethiopia's highland agriculture.</div>
+        </div>
+    </div>
+
+    <!-- ICT Section -->
+    <div class="subject">
+        <h2>ICT</h2>
+        
+        <div class="question">
+            <p>1. What does CPU stand for?</p>
+            <div class="options">
+                <label><input type="radio" name="ict1" value="a"> Central Processing Unit</label>
+                <label><input type="radio" name="ict1" value="b"> Computer Processing Unit</label>
+                <label><input type="radio" name="ict1" value="c"> Central Program Unit</label>
+                <label><input type="radio" name="ict1" value="d"> Computer Program Unit</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="ict1-feedback">Correct! The CPU is the brain of the computer that performs most processing.</div>
+        </div>
+        
+        <div class="question">
+            <p>2. Which of these is an example of an operating system?</p>
+            <div class="options">
+                <label><input type="radio" name="ict2" value="a"> Microsoft Word</label>
+                <label><input type="radio" name="ict2" value="b"> Windows</label>
+                <label><input type="radio" name="ict2" value="c"> Google Chrome</label>
+                <label><input type="radio" name="ict2" value="d"> Adobe Photoshop</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="ict2-feedback">Correct! Windows is an operating system, while the others are application software.</div>
+        </div>
+        
+        <div class="question">
+            <p>3. What is the primary purpose of a spreadsheet program?</p>
+            <div class="options">
+                <label><input type="radio" name="ict3" value="a"> Word processing</label>
+                <label><input type="radio" name="ict3" value="b"> Graphic design</label>
+                <label><input type="radio" name="ict3" value="c"> Numerical data organization and analysis</label>
+                <label><input type="radio" name="ict3" value="d"> Web browsing</label>
+            </div>
+            <div class="answer-feedback correct-feedback" id="ict3-feedback">Correct! Spreadsheets like Excel are designed for organizing and analyzing numerical data.</div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <button id="submitBtn">Submit Answers</button>
+        <button id="resetBtn" style="background-color: #95a5a6;">Reset</button>
+        <button id="showResultsBtn" style="background-color: #5cb85c;">Show Results</button>
+    </div>
+
+    <div class="result-container" id="resultContainer">
+        <h2 style="text-align: center;">Quiz Results</h2>
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+        <p style="text-align: center;" id="scoreText">Your score: 0/24 (0%)</p>
+        <div id="detailedResults"></div>
+    </div>
+
+    <div class="footer">
+        <p><small>Ethiopian Grade 11 Curriculum Quiz - Test your knowledge across multiple subjects</small></p>
+        <p>© 2023 Ethiopian Education Quiz Bot</p>
+    </div>
+
+    <script>
+        // Correct answers
+        const correctAnswers = {
+            bio1: "b",
+            bio2: "b",
+            bio3: "c",
+            chem1: "b",
+            chem2: "d",
+            chem3: "b",
+            math1: "a",
+            math2: "a",
+            math3: "b",
+            phy1: "c",
+            phy2: "a",
+            phy3: "b",
+            eng1: "c",
+            eng2: "c",
+            eng3: "c",
+            his1: "b",
+            his2: "c",
+            his3: "c",
+            eco1: "d",
+            eco2: "c",
+            eco3: "a",
+            agr1: "d",
+            agr2: "d",
+            agr3: "c",
+            ict1: "a",
+            ict2: "b",
+            ict3: "c"
+        };
+
+        // Timer functionality
+        let timeLeft = 1200; // 20 minutes in seconds
+        const timerElement = document.getElementById('timer');
+        
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                submitQuiz();
+            } else {
+                timeLeft--;
+            }
+        }
+        
+        const timerInterval = setInterval(updateTimer, 1000);
+        
+        // Quiz submission and evaluation
+        document.getElementById('submitBtn').addEventListener('click', submitQuiz);
+        document.getElementById('showResultsBtn').addEventListener('click', showResults);
+        document.getElementById('resetBtn').addEventListener('click', resetQuiz);
+        
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            let score = 0;
+            const totalQuestions = Object.keys(correctAnswers).length;
+            
+            // Check each answer
+            for (const question in correctAnswers) {
+                const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
+                const feedbackElement = document.getElementById(`${question}-feedback`);
+                
+                if (selectedOption) {
+                    if (selectedOption.value === correctAnswers[question]) {
+                        score++;
+                        selectedOption.parentElement.classList.add('correct-answer');
+                        if (feedbackElement) feedbackElement.style.display = 'block';
+                    } else {
+                        selectedOption.parentElement.classList.add('incorrect-answer');
+                        if (feedbackElement) {
+                            feedbackElement.classList.remove('correct-feedback');
+                            feedbackElement.classList.add('incorrect-feedback');
+                            feedbackElement.textContent = `Incorrect. The correct answer is ${correctAnswers[question].toUpperCase()}. ${feedbackElement.textContent}`;
+                            feedbackElement.style.display = 'block';
+                        }
+                    }
+                }
+            }
+            
+            // Calculate percentage
+            const percentage = Math.round((score / totalQuestions) * 100);
+            
+            // Update results
+            document.getElementById('scoreText').textContent = `Your score: ${score}/${totalQuestions} (${percentage}%)`;
+            document.getElementById('progressBar').style.width = `${percentage}%`;
+            
+            // Disable all inputs after submission
+            const allInputs = document.querySelectorAll('input[type="radio"]');
+            allInputs.forEach(input => {
+                input.disabled = true;
+            });
+            
+            // Hide submit button, show results button
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('showResultsBtn').style.display = 'inline-block';
+        }
+        
+        function showResults() {
+            document.getElementById('resultContainer').style.display = 'block';
+            document.getElementById('showResultsBtn').style.display = 'none';
+            
+            // Scroll to results
+            document.getElementById('resultContainer').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+        
+        function resetQuiz() {
+            // Reset all selections
+            const allInputs = document.querySelectorAll('input[type="radio"]');
+            allInputs.forEach(input => {
+                input.checked = false;
+                input.disabled = false;
+                input.parentElement.classList.remove('correct-answer', 'incorrect-answer');
+            });
+            
+            // Hide all feedback
+            const allFeedback = document.querySelectorAll('.answer-feedback');
+            allFeedback.forEach(feedback => {
+                feedback.style.display = 'none';
+                feedback.classList.remove('incorrect-feedback');
+                feedback.classList.add('correct-feedback');
+            });
+            
+            // Reset timer
+            timeLeft = 1200;
+            clearInterval(timerInterval);
+            timerInterval = setInterval(updateTimer, 1000);
+            
+            // Hide results, show submit button
+            document.getElementById('resultContainer').style.display = 'none';
+            document.getElementById('submitBtn').style.display = 'inline-block';
+            document.getElementById('showResultsBtn').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

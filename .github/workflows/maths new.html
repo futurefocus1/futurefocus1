@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive Grade 11 Mathematics Learning Platform">
+    <title>Grade 11 Mathematics Mastery</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --accent: #3498db;
+            --success: #27ae60;
+            --warning: #f1c40f;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark), #34495e);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .home-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 2rem 0;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary);
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .topic-card h2 {
+            color: var(--dark);
+            margin-top: 0;
+        }
+
+        .topic-card a {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .topic-card a:hover {
+            background: #2980b9;
+        }
+
+        .topic-content {
+            display: none;
+            padding: 2rem 0;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--dark);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .subtopic {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .subtopic h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .home-link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        .home-link:hover {
+            color: #3498db;
+        }
+
+        .equation {
+            color: var(--secondary);
+            font-size: 1.1em;
+            margin: 1rem 0;
+            padding: 0.8rem;
+            background-color: #f5f5f5;
+            border-left: 4px solid var(--secondary);
+            overflow-x: auto;
+        }
+
+        .example {
+            background: #f0f7ff;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .quiz {
+            background: #fff8e1;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--warning);
+        }
+
+        .quiz-question {
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .quiz-options {
+            margin-left: 1.5rem;
+        }
+
+        .quiz-option {
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-submit {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--warning);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .quiz-result {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .correct {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .incorrect {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .score-display {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--dark);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .home-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="homepage_html.html" class="home-link">← Back to FutureLearn</a>
+            <h1>Grade 11 Mathematics</h1>
+            <p>Master key concepts with interactive quizzes</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Homepage Grid -->
+        <div id="home" class="active">
+            <h2 style="text-align: center; margin-top: 2rem; color: var(--dark);">Select a Topic</h2>
+            <div class="home-grid">
+                <!-- Matrix Card -->
+                <div class="topic-card">
+                    <h2>Matrix</h2>
+                    <p>Learn about matrix operations, determinants, and applications</p>
+                    <a href="#matrix" onclick="showTopic('matrix')">Learn Matrices</a>
+                </div>
+                
+                <!-- Probability Card -->
+                <div class="topic-card">
+                    <h2>Probability</h2>
+                    <p>Understand probability concepts and calculations</p>
+                    <a href="#probability" onclick="showTopic('probability')">Learn Probability</a>
+                </div>
+                
+                <!-- Relation Card -->
+                <div class="topic-card">
+                    <h2>Relation</h2>
+                    <p>Explore different types of mathematical relations</p>
+                    <a href="#relation" onclick="showTopic('relation')">Learn Relations</a>
+                </div>
+                
+                <!-- Statistics Card -->
+                <div class="topic-card">
+                    <h2>Statistics</h2>
+                    <p>Study data analysis and interpretation</p>
+                    <a href="#statistics" onclick="showTopic('statistics')">Learn Statistics</a>
+                </div>
+                
+                <!-- Determinants Card -->
+                <div class="topic-card">
+                    <h2>Determinants</h2>
+                    <p>Master determinant calculations and properties</p>
+                    <a href="#determinants" onclick="showTopic('determinants')">Learn Determinants</a>
+                </div>
+                
+                <!-- Quiz Card -->
+                <div class="topic-card" style="border-top-color: var(--warning);">
+                    <h2>Comprehensive Quiz</h2>
+                    <p>Test your knowledge across all topics</p>
+                    <a href="#quiz" onclick="showTopic('quiz')">Take Quiz</a>
+                </div>
+
+                <!-- Resources Card -->
+                <div class="topic-card" style="border-top-color: var(--accent);">
+                    <h2>Resources</h2>
+                    <p>Access textbooks, video lessons, and practice materials</p>
+                    <a href="#resources" onclick="showTopic('resources')">View Resources</a>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Matrix Content -->
+        <div id="matrix" class="topic-content">
+            <a href="#home" class="back-btn" onclick="showHome()">← Back to Topics</a>
+            <h2>Matrix Algebra</h2>
+            
+            <div class="subtopic">
+                <h3>Matrix Basics</h3>
+                <p>A matrix is a rectangular array of numbers arranged in rows and columns.</p>
+                <p class="equation">\[ A = \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix} \]</p>
+                
+                <div class="example">
+                    <h4>Example: Matrix Addition</h4>
+                    <p>Add the following matrices:</p>
+                    <p class="equation">\[ \begin{pmatrix} 2 & 3 \\ 1 & 4 \end{pmatrix} + \begin{pmatrix} 1 & -1 \\ 2 & 0 \end{pmatrix} = \begin{pmatrix} 3 & 2 \\ 3 & 4 \end{pmatrix} \]</p>
+                </div>
+            </div>
+            
+            <div class="subtopic">
+                <h3>Matrix Multiplication</h3>
+                <p>Matrix multiplication is not element-wise. The number of columns in the first matrix must equal the number of rows in the second.</p>
+                <p class="equation">\[ AB = \begin{pmatrix} a_{11}b_{11} + a_{12}b_{21} & a_{11}b_{12} + a_{12}b_{22} \\ a_{21}b_{11} + a_{22}b_{21} & a_{21}b_{12} + a_{22}b_{22} \end{pmatrix} \]</p>
+                
+                <div class="example">
+                    <h4>Example: Matrix Multiplication</h4>
+                    <p>Multiply these matrices:</p>
+                    <p class="equation">\[ \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 4 & 3 \end{pmatrix} \]</p>
+                </div>
+            </div>
+            
+            <div class="subtopic">
+                <h3>Identity Matrix</h3>
+                <p>The identity matrix I is a square matrix with 1s on the diagonal and 0s elsewhere.</p>
+                <p class="equation">\[ I_2 = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \]</p>
+                <p>For any matrix A: AI = IA = A</p>
+            </div>
+            
+            <div class="quiz">
+                <h3>Matrix Quiz</h3>
+                <div class="quiz-question">1. What is the result of multiplying \(\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}\) by \(\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\)?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1a"> <label for="q1a">\(\begin{pmatrix} 2 & 1 \\ 4 & 3 \end{pmatrix}\)</label></div>
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1b"> <label for="q1b">\(\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}\)</label></div>
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1c"> <label for="q1c">\(\begin{pmatrix} 0 & 2 \\ 3 & 0 \end{pmatrix}\)</label></div>
+                </div>
+                
+                <div class="quiz-question">2. Which of these is the identity matrix for 2×2 matrices?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option"><input type="radio" name="q2" id="q2a"> <label for="q2a">\(\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\)</label></div>
+                    <div class="quiz-option"><input type="radio" name="q2" id="q2b"> <label for="q2b">\(\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\)</label></div>
+                    <div class="quiz-option"><input type="radio" name="q2" id="q2c"> <label for="q2c">\(\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\)</label></div>
+                </div>
+                
+                <button class="quiz-submit" onclick="checkQuiz('matrix')">Submit Answers</button>
+                <div id="matrix-result" class="quiz-result"></div>
+                <div id="matrix-score" class="score-display"></div>
+            </div>
+        </div>
+        
+        <!-- Probability Content -->
+        <div id="probability" class="topic-content">
+            <a href="#home" class="back-btn" onclick="showHome()">← Back to Topics</a>
+            <h2>Probability</h2>
+            
+            <div class="subtopic">
+                <h3>Basic Probability</h3>
+                <p>Probability measures the likelihood of an event occurring.</p>
+                <p class="equation">\[ P(E) = \frac{\text{Number of favorable outcomes}}{\text{Total number of outcomes}} \]</p>
+                
+                <div class="example">
+                    <h4>Example: Dice Probability</h4>
+                    <p>Probability of rolling an even number on a standard die:</p>
+                    <p class="equation">\[ P(\text{even}) = \frac{3}{6} = \frac{1}{2} \]</p>
+                </div>
+            </div>
+            
+            <div class="subtopic">
+                <h3>Conditional Probability</h3>
+                <p>The probability of an event given that another event has occurred.</p>
+                <p class="equation">\[ P(A|B) = \frac{P(A \cap B)}{P(B)} \]</p>
+                
+                <div class="example">
+                    <h4>Example: Card Drawing</h4>
+                    <p>Probability of drawing a king given that the card is a heart:</p>
+                    <p class="equation">\[ P(\text{King}|\text{Heart}) = \frac{1}{13} \]</p>
+                </div>
+            </div>
+            
+            <div class="subtopic">
+                <h3>Independent Events</h3>
+                <p>Two events are independent if the occurrence of one does not affect the probability of the other.</p>
+                <p class="equation">\[ P(A \cap B) = P(A) \times P(B) \]</p>
+            </div>
+            
+            <div class="quiz">
+                <h3>Probability Quiz</h3>
+                <div class="quiz-question">1. What is the probability of drawing a heart from a standard deck of cards?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1a"> <label for="q1a">1/4</label></div>
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1b"> <label for="q1b">1/13</label></div>
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1c"> <label for="q1c">1/52</label></div>
+                </div>
+                
+                <div class="quiz-question">2. If P(A) = 0.3 and P(B) = 0.4, and A and B are independent, what is P(A and B)?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option"><input type="radio" name="q2" id="q2a"> <label for="q2a">0.7</label></div>
+                    <div class="quiz-option"><input type="radio" name="q2" id="q2b"> <label for="q2b">0.12</label></div>
+                    <div class="quiz-option"><input type="radio" name="q2" id="q2c"> <label for="q2c">0.1</label></div>
+                </div>
+                
+                <button class="quiz-submit" onclick="checkQuiz('probability')">Submit Answers</button>
+                <div id="probability-result" class="quiz-result"></div>
+                <div id="probability-score" class="score-display"></div>
+            </div>
+        </div>
+        
+        <!-- Relation Content -->
+        <div id="relation" class="topic-content">
+            <a href="#home" class="back-btn" onclick="showHome()">← Back to Topics</a>
+            <h2>Relations</h2>
+            
+            <div class="subtopic">
+                <h3>Types of Relations</h3>
+                <ul>
+                    <li><strong>Reflexive:</strong> (a, a) ∈ R for every a ∈ A</li>
+                    <li><strong>Symmetric:</strong> If (a, b) ∈ R then (b, a) ∈ R</li>
+                    <li><strong>Transitive:</strong> If (a, b) ∈ R and (b, c) ∈ R then (a, c) ∈ R</li>
+                </ul>
+                
+                <div class="example">
+                    <h4>Example: Relation Properties</h4>
+                    <p>The relation "is equal to" is reflexive, symmetric, and transitive.</p>
+                    <p>The relation "is less than" is only transitive.</p>
+                </div>
+            </div>
+            
+            <div class="subtopic">
+                <h3>Equivalence Relations</h3>
+                <p>A relation that is reflexive, symmetric, and transitive.</p>
+                <p>Examples: congruence modulo n, geometric similarity</p>
+            </div>
+            
+            <div class="quiz">
+                <h3>Relations Quiz</h3>
+                <div class="quiz-question">1. Which relation is reflexive?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1a"> <label for="q1a">"Is parent of"</label></div>
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1b"> <label for="q1b">"Is equal to"</label></div>
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1c"> <label for="q1c">"Is less than"</label></div>
+                </div>
+                
+                <button class="quiz-submit" onclick="checkQuiz('relation')">Submit Answers</button>
+                <div id="relation-result" class="quiz-result"></div>
+                <div id="relation-score" class="score-display"></div>
+            </div>
+        </div>
+        
+        <!-- Statistics Content -->
+        <div id="statistics" class="topic-content">
+            <a href="#home" class="back-btn" onclick="showHome()">← Back to Topics</a>
+            <h2>Statistics</h2>
+            
+            <div class="subtopic">
+                <h3>Measures of Central Tendency</h3>
+                <p class="equation">\[ \text{Mean} = \frac{\sum x_i}{n} \]</p>
+                <p class="equation">\[ \text{Median} = \text{Middle value of ordered data} \]</p>
+                <p class="equation">\[ \text{Mode} = \text{Most frequent value} \]</p>
+                
+                <div class="example">
+                    <h4>Example: Test Scores</h4>
+                    <p>For scores [75, 80, 90, 90, 100]:</p>
+                    <p>Mean = 87, Median = 90, Mode = 90</p>
+                </div>
+            </div>
+            
+            <div class="subtopic">
+                <h3>Measures of Dispersion</h3>
+                <p class="equation">\[ \text{Range} = \text{Max} - \text{Min} \]</p>
+                <p class="equation">\[ \text{Variance} = \frac{\sum (x_i - \bar{x})^2}{n} \]</p>
+                <p class="equation">\[ \text{Standard Deviation} = \sqrt{\text{Variance}} \]</p>
+            </div>
+            
+            <div class="quiz">
+                <h3>Statistics Quiz</h3>
+                <div class="quiz-question">1. For the data set [2, 3, 3, 5, 7], what is the mean?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1a"> <label for="q1a">3</label></div>
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1b"> <label for="q1b">4</label></div>
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1c"> <label for="q1c">5</label></div>
+                </div>
+                
+                <div class="quiz-question">2. What is the median of [10, 20, 30, 40, 50]?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option"><input type="radio" name="q2" id="q2a"> <label for="q2a">20</label></div>
+                    <div class="quiz-option"><input type="radio" name="q2" id="q2b"> <label for="q2b">30</label></div>
+                    <div class="quiz-option"><input type="radio" name="q2" id="q2c"> <label for="q2c">40</label></div>
+                </div>
+                
+                <button class="quiz-submit" onclick="checkQuiz('statistics')">Submit Answers</button>
+                <div id="statistics-result" class="quiz-result"></div>
+                <div id="statistics-score" class="score-display"></div>
+            </div>
+        </div>
+        
+        <!-- Determinants Content -->
+        <div id="determinants" class="topic-content">
+            <a href="#home" class="back-btn" onclick="showHome()">← Back to Topics</a>
+            <h2>Determinants</h2>
+            
+            <div class="subtopic">
+                <h3>Calculating Determinants</h3>
+                <p>For a 2×2 matrix:</p>
+                <p class="equation">\[ \text{det}\begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc \]</p>
+                
+                <p>For a 3×3 matrix:</p>
+                <p class="equation">\[ \text{det}\begin{pmatrix} a & b & c \\ d & e & f \\ g & h & i \end{pmatrix} = a(ei - fh) - b(di - fg) + c(dh - eg) \]</p>
+                
+                <div class="example">
+                    <h4>Example: 2×2 Determinant</h4>
+                    <p class="equation">\[ \text{det}\begin{pmatrix} 3 & 1 \\ 4 & 2 \end{pmatrix} = (3)(2) - (1)(4) = 6 - 4 = 2 \]</p>
+                </div>
+            </div>
+            
+            <div class="subtopic">
+                <h3>Properties of Determinants</h3>
+                <ul>
+                    <li>Swapping two rows changes the sign</li>
+                    <li>Identical rows → determinant = 0</li>
+                    <li>Multiplying a row by k multiplies determinant by k</li>
+                    <li>Adding a multiple of one row to another doesn't change determinant</li>
+                </ul>
+            </div>
+            
+            <div class="quiz">
+                <h3>Determinants Quiz</h3>
+                <div class="quiz-question">1. What is the determinant of \(\begin{pmatrix} 3 & 1 \\ 4 & 2 \end{pmatrix}\)?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1a"> <label for="q1a">2</label></div>
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1b"> <label for="q1b">10</label></div>
+                    <div class="quiz-option"><input type="radio" name="q1" id="q1c"> <label for="q1c">-2</label></div>
+                </div>
+                
+                <div class="quiz-question">2. What happens to the determinant if you swap two rows of a matrix?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option"><input type="radio" name="q2" id="q2a"> <label for="q2a">It doubles</label></div>
+                    <div class="quiz-option"><input type="radio" name="q2" id="q2b"> <label for="q2b">It changes sign</label></div>
+                    <div class="quiz-option"><input type="radio" name="q2" id="q2c"> <label for="q2c">It becomes zero</label></div>
+                </div>
+                
+                <button class="quiz-submit" onclick="checkQuiz('determinants')">Submit Answers</button>
+                <div id="determinants-result" class="quiz-result"></div>
+                <div id="determinants-score" class="score-display"></div>
+            </div>
+        </div>
+        
+        <!-- Comprehensive Quiz -->
+        <div id="quiz" class="topic-content">
+            <a href="#home" class="back-btn" onclick="showHome()">← Back to Topics</a>
+            <h2>Comprehensive Quiz</h2>
+            <p>Test your knowledge across all mathematics topics:</p>
+            <div class="quiz">
+                <div class="quiz-question">1. What is the result of \(\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \times \begin{pmatrix} 2 & 3 \\ 4 & 5 \end{pmatrix}\)?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option"><input type="radio" name="cq1" id="cq1a"> <label for="cq1a">\(\begin{pmatrix} 2 & 3 \\ 4 & 5 \end{pmatrix}\)</label></div>
+                    <div class="quiz-option"><input type="radio" name="cq1" id="cq1b"> <label for="cq1b">\(\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\)</label></div>
+                    <div class="quiz-option"><input type="radio" name="cq1" id="cq1c"> <label for="cq1c">\(\begin{pmatrix} 3 & 3 \\ 4 & 6 \end{pmatrix}\)</label></div>
+                </div>
+                
+                <div class="quiz-question">2. What is the probability of getting at least one head when flipping two coins?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option"><input type="radio" name="cq2" id="cq2a"> <label for="cq2a">1/4</label></div>
+                    <div class="quiz-option"><input type="radio" name="cq2" id="cq2b"> <label for="cq2b">1/2</label></div>
+                    <div class="quiz-option"><input type="radio" name="cq2" id="cq2c"> <label for="cq2c">3/4</label></div>
+                </div>
+                
+                <div class="quiz-question">3. Which relation property does "≤" satisfy?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option"><input type="radio" name="cq3" id="cq3a"> <label for="cq3a">Only reflexive</label></div>
+                    <div class="quiz-option"><input type="radio" name="cq3" id="cq3b"> <label for="cq3b">Reflexive and transitive</label></div>
+                    <div class="quiz-option"><input type="radio" name="cq3" id="cq3c"> <label for="cq3c">All three properties</label></div>
+                </div>
+                
+                <div class="quiz-question">4. What is the median of [5, 2, 8, 1, 9]?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option"><input type="radio" name="cq4" id="cq4a"> <label for="cq4a">5</label></div>
+                    <div class="quiz-option"><input type="radio" name="cq4" id="cq4b"> <label for="cq4b">4</label></div>
+                    <div class="quiz-option"><input type="radio" name="cq4" id="cq4c"> <label for="cq4c">8</label></div>
+                </div>
+                
+                <div class="quiz-question">5. What is the determinant of \(\begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}\)?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option"><input type="radio" name="cq5" id="cq5a"> <label for="cq5a">10</label></div>
+                    <div class="quiz-option"><input type="radio" name="cq5" id="cq5b"> <label for="cq5b">14</label></div>
+                    <div class="quiz-option"><input type="radio" name="cq5" id="cq5c"> <label for="cq5c">5</label></div>
+                </div>
+                
+                <button class="quiz-submit" onclick="checkComprehensiveQuiz()">Submit Quiz</button>
+                <div id="comprehensive-result" class="quiz-result"></div>
+                <div id="comprehensive-score" class="score-display"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resources Content -->
+<div id="resources" class="topic-content">
+    <a href="#home" class="back-btn" onclick="showHome()">← Back to Topics</a>
+    <h2>Learning Resources</h2>
+    
+    <div class="subtopic">
+        <h3>Textbook Materials</h3>
+        <div class="example">
+            <h4>Grade 11 Mathematics Textbook</h4>
+            <p>Download the complete textbook covering all topics in the curriculum.</p>
+            <a href="https://drive.google.com/file/d/1I9cPXeJ3jxXT8S_rCqcwPhQox9gQ7_Wo/view?usp=sharing" target="_blank" class="btn" style="background-color: var(--accent);">Open Textbook</a>
+        </div>
+    </div>
+    
+    <div class="subtopic">
+        <h3>Video Lessons</h3>
+        <div class="example">
+            <h3>Video Lessons</h3>
+            <p>Watch explanations of mathematics concepts in this playlist by Professor Dave Explains on Youtube.</p>
+            <a href="https://www.youtube.com/watch?v=JbhBdOfMEPs&list=PLybg94GvOJ9FoGQeUMFZ4SWZsr30jlUYK&pp=0gcJCV8EOCosWNin" target = "_blank" class="btn">Watch Videos</a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>2024 Grade 11 Mathematics | Interactive Learning Platform</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functions
+        function showTopic(topicId) {
+            document.querySelectorAll('.topic-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById('home').classList.remove('active');
+            document.getElementById(topicId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+        
+        function showHome() {
+            document.querySelectorAll('.topic-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById('home').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Quiz checking logic
+        function checkQuiz(topic) {
+            let score = 0;
+            const answers = {
+                'matrix': ['q1a', 'q2b'],
+                'probability': ['q1a', 'q2b'],
+                'relation': ['q1b'],
+                'statistics': ['q1b', 'q2b'],
+                'determinants': ['q1a', 'q2b']
+            };
+            
+            const questions = document.querySelectorAll(`#${topic} .quiz-question`);
+            questions.forEach((_, i) => {
+                const selected = document.querySelector(`#${topic} input[name="q${i+1}"]:checked`);
+                if (selected && answers[topic][i] === selected.id) {
+                    score++;
+                }
+            });
+            
+            const resultDiv = document.getElementById(`${topic}-result`);
+            const scoreDiv = document.getElementById(`${topic}-score`);
+            
+            resultDiv.style.display = 'block';
+            resultDiv.className = `quiz-result ${score === questions.length ? 'correct' : 'incorrect'}`;
+            resultDiv.innerHTML = score === questions.length ? 
+                '✓ All answers correct! Well done!' : 
+                '✗ Some answers incorrect. Review the material and try again.';
+                
+            scoreDiv.textContent = `Score: ${score}/${questions.length}`;
+            scoreDiv.style.color = score === questions.length ? '#2ecc71' : (score >= questions.length/2 ? '#f39c12' : '#e74c3c');
+        }
+
+        function checkComprehensiveQuiz() {
+            let score = 0;
+            const answers = ['cq1a', 'cq2c', 'cq3b', 'cq4a', 'cq5a'];
+            
+            answers.forEach((ans, i) => {
+                const selected = document.querySelector(`input[name="cq${i+1}"]:checked`);
+                if (selected && ans === selected.id) {
+                    score++;
+                }
+            });
+            
+            const resultDiv = document.getElementById('comprehensive-result');
+            const scoreDiv = document.getElementById('comprehensive-score');
+            
+            resultDiv.style.display = 'block';
+            resultDiv.className = `quiz-result ${score === answers.length ? 'correct' : 'incorrect'}`;
+            resultDiv.innerHTML = score === answers.length ? 
+                '✓ Perfect score! Excellent work!' : 
+                (score >= 3 ? '✓ Good job! You passed!' : '✗ Keep practicing! Review the topics and try again.');
+                
+            scoreDiv.textContent = `Your score: ${score}/${answers.length}`;
+            scoreDiv.style.color = score >= 3 ? '#2ecc71' : '#e74c3c';
+        }
+
+        // Initialize interactive elements
+        document.addEventListener('DOMContentLoaded', () => {
+            // Enable quiz submit buttons when answers are selected
+            document.querySelectorAll('.quiz-option input').forEach(input => {
+                input.addEventListener('change', function() {
+                    this.closest('.quiz').querySelector('.quiz-submit').disabled = false;
+                });
+            });
+            
+            // Initialize all quiz submit buttons as disabled
+            document.querySelectorAll('.quiz-submit').forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            // MathJax configuration
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                }
+            };
+        });
+
+        function showTopic(topicId) {
+            document.querySelectorAll('.topic-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById('home').classList.remove('active');
+            document.getElementById(topicId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ethiopian Grade 11 History</title>
+<style>
+        /* CSS Variables for Theming */
+        :root {
+            --primary-color: #1a2a6c;
+            --secondary-color: #b21f1f;
+            --accent-color: #f7b733;
+            --background-color: #f0f7fa;
+            --text-color: #2c2c2c;
+            --card-bg: #fff;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Dark Mode */
+        [data-theme="dark"] {
+            --primary-color: #4a6cb6;
+            --secondary-color: #e63939;
+            --accent-color: #f7b733;
+            --background-color: #1c2526;
+            --text-color: #e0e0e0;
+            --card-bg: #2c3e50;
+            --shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin-top: 60px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #f0a91a;
+        }
+
+        /* Page Sections */
+        .page-section {
+            padding: 6rem 0 4rem;
+            min-height: calc(100vh - 60px);
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+        }
+
+        h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        p, ul, li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        ul {
+            list-style-position: inside;
+        }
+
+        /* Timeline Section */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .timeline-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .timeline-content {
+            padding: 1.5rem;
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .quiz-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .quiz-timer {
+            background: #f1f1f1;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .quiz-question {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .quiz-options {
+            margin-bottom: 2rem;
+        }
+
+        .quiz-option {
+            display: block;
+            background: #f9f9f9;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .quiz-option:hover {
+            background: #f1f1f1;
+        }
+
+        .quiz-option.selected {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+
+        .quiz-option.correct {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+
+        .quiz-option.incorrect {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .quiz-btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .quiz-prev {
+            background: #6c757d;
+            color: white;
+        }
+
+        .quiz-next {
+            background: #007bff;
+            color: white;
+        }
+
+        .quiz-submit {
+            background: #28a745;
+            color: white;
+            display: none;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+
+        .quiz-score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #28a745;
+            margin: 1rem 0;
+        }
+
+        .quiz-feedback {
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-restart {
+            background: #17a2b8;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background: #e5e7eb;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .progress-bar {
+            background: #3a3a3a;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-color);
+            width: 0;
+            transition: width 0.3s;
+        }
+
+        /* Explanation Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: var(--shadow);
+        }
+
+        .modal-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .modal-close {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+        }
+
+        /* Resource List */
+        .resource-list {
+            list-style: none;
+        }
+
+        .resource-list li {
+            margin-bottom: 1rem;
+        }
+
+        .resource-list a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .resource-list a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .timeline-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quiz-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .quiz-btn {
+                width: 100%;
+            }
+        }
+
+        /* Screen Reader Only */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+    </style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<style>
+.explanation-shield {
+    margin-top: 10px;
+    background-color: #ffffff;
+    border-left: 4px solid #000000;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    color: #000000;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+</style><style>
+/* Accessibility Features */
+body.accessibility-large-text {
+    font-size: 1.3rem;
+}
+
+.explanation-shield {
+    margin-top: 10px;
+    background-color: #ffffff;
+    border-left: 4px solid #000000;
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: #000000;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+</style></head>
+<body>
+<!-- Header -->
+<header>
+<div class="container header-content">
+<div class="logo">Ethiopian History <span>Grade 11</span></div>
+<a href="homepage_html.html" class="home-button">← Back to FutureLearn</a>
+<nav>
+<ul>
+<li><a class="nav-link" data-target="home" href="#">Home</a></li>
+<li><a class="nav-link" data-target="topics" href="#">Topics</a></li>
+<li><a class="nav-link" data-target="notes" href="#">Detailed Notes</a></li>
+<li><a class="nav-link" data-target="timeline" href="#">Timeline</a></li>
+<li><a class="nav-link" data-target="quizzes" href="#">Quizzes</a></li>
+<li><a class="nav-link" data-target="resources" href="#">Resources</a></li>
+<li><a class="nav-link" data-target="about" href="#">About</a></li>
+</ul>
+</nav>
+<button aria-label="Toggle dark mode" class="theme-toggle">🌙</button>
+</div>
+</header>
+<!-- Home Page -->
+<section class="page-section active" id="home">
+<section class="hero">
+<div class="container hero-content">
+<h1>Explore Ethiopian History</h1>
+<p>Dive into the rich history of Ethiopia and the world with comprehensive notes, interactive quizzes, and a historical timeline.</p>
+<a class="btn nav-link" data-target="topics" href="#">Start Exploring</a>
+</div>
+</section>
+</section>
+<!-- Topics Page -->
+<section class="page-section" id="topics">
+<div class="container">
+<h2 class="section-title">Topics</h2>
+<ul>
+<li>Unit 1: History, Historiography, and Human Evolution</li>
+<li>Unit 2: Major Spots of Ancient World Civilizations up to c.500 A.D</li>
+<li>Unit 3: Peoples, States, and Historical Processes in Ethiopia and the Horn to the End of the 13th Century</li>
+<li>Unit 4: The Middle Ages and Early Modern World, c. 500 AD–1789</li>
+<li>Unit 5: Peoples and States of Africa to 1500</li>
+<li>Unit 6: Africa and the Outside World: 1500–1880s</li>
+<li>Unit 7: States, Principalities, Population Movements and Interactions in Ethiopia</li>
+<li>Unit 8: Political, Social, and Economic Processes in Ethiopia, Mid-16th to Mid-19th Century</li>
+<li>Unit 9: The Age of Revolutions, 1789 to 1815</li>
+</ul>
+</div>
+</section>
+<!-- Detailed Notes Page -->
+<section class="page-section" id="notes">
+<div class="container">
+<h2 class="section-title">Detailed Notes</h2>
+<h3>Unit 1: History, Historiography, and Human Evolution</h3>
+<p><strong>1.1 History and Historiography:</strong> History is the critical study of past human actions, societies, and developments using primary and secondary sources. Historiography examines how history is written, emphasizing objectivity and evidence. Ethiopian historiography evolved from religious chronicles to academic studies.</p>
+<p><strong>1.2 Origin of Human Beings:</strong> Compares Creationist and Evolutionist views. Early hominids like Australopithecus and Homo species developed in Africa, particularly Ethiopia. Tools evolved from Oldowan to Acheulean, and the Neolithic Revolution marked the shift to agriculture.</p>
+<p><strong>1.3 Emergence of States:</strong> States arose due to agriculture, trade, war, and religion. Early civilizations developed near rivers with social hierarchies and written records. Theories like divine kingship explain leadership evolution.</p>
+<h3>Unit 2: Major Spots of Ancient World Civilizations up to c.500 A.D</h3>
+<p><strong>2.1 Ancient Civilizations of Africa:</strong> Egyptian civilization thrived along the Nile, building pyramids and hieroglyphics. Kush-Meroe developed iron smelting and trade, later declining with Aksum’s rise.</p>
+<p><strong>2.2 Civilizations in Asia:</strong> Mesopotamia’s Sumerians and Babylonians invented cuneiform and the Code of Hammurabi. Assyrians used iron weaponry for empire-building.</p>
+<p><strong>2.3 Civilizations in Europe:</strong> Greeks developed democracy and philosophy; Romans contributed law, architecture, and military organization.</p>
+<p><strong>2.4 Civilizations in Latin America:</strong> Olmecs, Mayas, and Incas built cities and developed writing and calendars despite lacking metal tools.</p>
+<p><strong>2.5 Rise and Spread of Christianity:</strong> Christianity emerged in the Roman Empire, becoming its official religion under Constantine, influencing Europe and beyond.</p>
+<h3>Unit 3: Peoples, States, and Historical Processes in Ethiopia and the Horn to the End of the 13th Century</h3>
+<p><strong>3.1 Languages, Religions, and Peoples:</strong> Ethiopia hosts Semitic, Cushitic, Omotic, and Nilo-Saharan languages, with diverse religions before Christianity and Islam.</p>
+<p><strong>3.2 Pre-Aksumite States:</strong> States like D’mt laid foundations for Aksum, influenced by South Arabian culture.</p>
+<p><strong>3.3 The Aksumite Kingdom:</strong> Aksum controlled trade, minted coins, and adopted Christianity under King Ezana, declining due to environmental and trade shifts.</p>
+<p><strong>3.4 The Sultanate of Shewa:</strong> A 9th-century Muslim state influential in trade.</p>
+<p><strong>3.5 The Zagwe Dynasty:</strong> Known for Lalibela’s rock-hewn churches, ruled until the Solomonic Dynasty in 1270.</p>
+<p><strong>3.6 The Kingdom of Damot:</strong> A multi-ethnic kingdom in south-central Ethiopia.</p>
+<p><strong>3.7 The Bete-Israel:</strong> Ethiopian Jews preserving ancient Jewish traditions in Gondar and Lake Tana.</p>
+<h3>Unit 4: The Middle Ages and Early Modern World, c. 500 AD–1789</h3>
+<p><strong>4.1 The European Middle Ages:</strong> Feudalism and the Catholic Church dominated post-Rome Europe. Monasteries preserved knowledge.</p>
+<p><strong>4.2 Main Features:</strong> The manorial system and Crusades spurred trade and cultural exchange.</p>
+<p><strong>4.3 The Middle Ages in Asia:</strong> Tang and Song dynasties advanced science; Islamic Caliphates led a Golden Age.</p>
+<p><strong>4.4 Early Capitalism:</strong> Trade and banking grew, especially during the Renaissance.</p>
+<p><strong>4.5 Age of Exploration:</strong> European voyages led to colonization and globalization, but also exploitation.</p>
+<p><strong>4.6 The Renaissance:</strong> A cultural rebirth emphasizing humanism, art, and science.</p>
+<p><strong>4.7 The Reformation:</strong> Martin Luther’s challenge to the Catholic Church birthed Protestantism.</p>
+<p><strong>4.8 Scientific Revolution and Enlightenment:</strong> Scientific discoveries and ideas of reason and liberty shaped modern thought.</p>
+<h3>Unit 5: Peoples and States of Africa to 1500</h3>
+<p><strong>5.1 Ancient and Medieval African States:</strong> Complex governance and trade systems developed in resource-rich regions.</p>
+<p><strong>5.2 North Africa:</strong> Influenced by Phoenicians, Romans, and Islam, with cities like Cairo as learning centers.</p>
+<p><strong>5.3 Spread of Islam:</strong> Introduced Arabic and trade networks to North Africa.</p>
+<p><strong>5.4 West Africa:</strong> Ghana, Mali, and Songhai thrived on gold and salt trade, with Timbuktu as a learning hub.</p>
+<p><strong>5.5 Central and Eastern Africa:</strong> Kongo, Luba, and Swahili coast city-states like Kilwa flourished through trade.</p>
+<p><strong>5.6 Southern Africa:</strong> Great Zimbabwe controlled gold trade with impressive stone architecture.</p>
+<p><strong>5.7 Exchanges:</strong> Trade in gold, ivory, and slaves fostered cultural blends.</p>
+<h3>Unit 6: Africa and the Outside World: 1500–1880s</h3>
+<p><strong>6.1 Medieval African States:</strong> Benin, Oyo, and Ethiopia had strong governments and trade.</p>
+<p><strong>6.2 Contacts with the Outside World:</strong> Trade with Arabs, Asians, and Europeans intensified.</p>
+<p><strong>6.3 Slavery and Slave Trade:</strong> The trans-Atlantic slave trade devastated African societies.</p>
+<p><strong>6.4 Legitimate Trade:</strong> Post-slave trade focused on palm oil, gold, and ivory.</p>
+<p><strong>6.5 White Settlement in South Africa:</strong> Dutch and British settlers displaced locals, sowing seeds of apartheid.</p>
+<p><strong>6.6 Explorers and Missionaries:</strong> Europeans mapped Africa and spread Christianity, aiding colonization.</p>
+<h3>Unit 7: States, Principalities, Population Movements and Interactions in Ethiopia</h3>
+<p><strong>7.1 Solomonic Dynasty:</strong> Restored in 1270, it promoted Christianity and expanded under kings like Zara Yaqob.</p>
+<p><strong>7.2 Muslim Sultanates:</strong> Ifat and Adal thrived on trade and adopted Arabic culture.</p>
+<p><strong>7.3 Southern States:</strong> Diverse kingdoms like Damot and Hadiya had unique economies.</p>
+<p><strong>7.4 Christian-Muslim Relations:</strong> Conflicts with Adal, led by Ahmed Gragn, were intense but ended with Portuguese aid.</p>
+<p><strong>7.5 Population Movements:</strong> Oromo expansion and the Gadaa system reshaped Ethiopia.</p>
+<h3>Unit 8: Political, Social, and Economic Processes in Ethiopia, Mid-16th to Mid-19th Century</h3>
+<p><strong>8.1 Regional States:</strong> Kaffa, Wolayta, and Harar had diverse cultures and economies.</p>
+<p><strong>8.2 Zemene Mesafint:</strong> A period of fragmentation with power held by regional nobles until Tewodros II’s unification in 1855.</p>
+<h3>Unit 9: The Age of Revolutions, 1789 to 1815</h3>
+<p><strong>9.1 Industrial Revolution:</strong> Introduced mechanization but caused social inequalities.</p>
+<p><strong>9.2 American War of Independence:</strong> Colonies gained independence over taxation disputes.</p>
+<p><strong>9.3 French Revolution:</strong> Overthrew the monarchy, promoting liberty but leading to chaos.</p>
+<p><strong>9.4 Napoleon:</strong> Implemented the Napoleon Code but fell after Waterloo in 1815.</p>
+</div>
+</section>
+<!-- Timeline Page -->
+<section class="page-section" id="timeline">
+<div class="container">
+<h2 class="section-title">Historical Timeline</h2>
+<div class="timeline-grid">
+<div class="timeline-card">
+<div class="timeline-content">
+<h3>1st Century A.D.</h3>
+<p>Aksumite Kingdom emerges, controlling Red Sea trade routes.</p>
+</div>
+</div>
+<div class="timeline-card">
+<div class="timeline-content">
+<h3>4th Century A.D.</h3>
+<p>Aksum adopts Christianity under King Ezana.</p>
+</div>
+</div>
+<div class="timeline-card">
+<div class="timeline-content">
+<h3>1270</h3>
+<p>Solomonic Dynasty restored by Yekuno Amlak.</p>
+</div>
+</div>
+<div class="timeline-card">
+<div class="timeline-content">
+<h3>16th Century</h3>
+<p>Ahmed Gragn’s jihad against the Christian kingdom.</p>
+</div>
+</div>
+<div class="timeline-card">
+<div class="timeline-content">
+<h3>1855</h3>
+<p>Tewodros II ends Zemene Mesafint, begins reunification.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Quizzes Section -->
+<section class="page-section" id="quizzes">
+<div class="container">
+<h2 class="section-title">Quizzes</h2>
+<div class="progress-tracker">
+<p>Quiz Progress: <span id="progress-text">0%</span></p>
+<div class="progress-bar">
+<div class="progress-fill" id="progress-fill"></div>
+</div>
+</div>
+<!-- Unit 1 Quiz -->
+<div class="quiz-section" data-unit="unit1">
+<div class="quiz-header">
+<h3 class="quiz-title">Unit 1: History, Historiography, and Human Evolution</h3>
+<div class="quiz-timer">Time: <span id="unit1-timer">05:00</span></div>
+</div>
+<div class="quiz-question-container">
+<div class="quiz-question">1. Which of the following best describes the relationship between history and historiography?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="History is not fictional storytelling, and historiography is not about myths; it studies how history is written.">a) History is fictional storytelling, while historiography is ancient myths.</div>
+<div class="quiz-option" data-explanation="History does not focus on natural sciences, and historiography is unrelated to biology.">b) History focuses on natural sciences, while historiography deals with biology.</div>
+<div class="quiz-option" data-correct="true">c) History is the study of past events, and historiography is the study of how history is written.</div>
+<div class="quiz-option" data-explanation="History and historiography are distinct from political science.">d) History is a branch of political science, while historiography is not.</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">2. According to the theory of evolution, how did human beings originate?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Divine creation is a Creationist view, not part of evolutionary theory.">a) Through sudden divine creation with all features.</div>
+<div class="quiz-option" data-explanation="Evolution occurred over millions of years, not 2,000 years.">b) By emerging from fully modern ancestors only 2,000 years ago.</div>
+<div class="quiz-option" data-correct="true">c) From a complex process of natural change from simpler organisms over millions of years.</div>
+<div class="quiz-option" data-explanation="Evolution is a scientific process, not magical transformation from unrelated animals.">d) From animals like lions and tigers through magic.</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">3. Which of the following statements correctly compares Oldowan and Acheulean tools?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Both tool types were made of stone, not iron or wood.">a) Acheulean tools were made of iron, Oldowan tools of wood.</div>
+<div class="quiz-option" data-explanation="Acheulean tools were more advanced than Oldowan tools.">b) Oldowan tools were sharper and more advanced than Acheulean tools.</div>
+<div class="quiz-option" data-correct="true">c) Acheulean tools were bifacial hand axes; Oldowan tools were simple flakes and cores.</div>
+<div class="quiz-option" data-explanation="Earlier hominids, not just Homo sapiens, made these tools.">d) Both tools were made exclusively by Homo sapiens.</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">4. What was one major contribution of the Neolithic Revolution?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Gold mining was not the primary contribution of the Neolithic Revolution.">a) Introduction of gold mining as the main economy.</div>
+<div class="quiz-option" data-correct="true">b) Transition from food gathering to food production through agriculture.</div>
+<div class="quiz-option" data-explanation="Writing developed after the Neolithic period, not before the Stone Age.">c) Invention of writing before the Stone Age began.</div>
+<div class="quiz-option" data-explanation="The Neolithic Revolution led to settled communities, not nomadic life.">d) Decline of human settlement and rise of nomadic life.</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">5. Which theory explains the rise of states based on religious authority and kingship?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Economic exchange theory focuses on trade, not religious authority.">a) Economic exchange theory</div>
+<div class="quiz-option" data-explanation="Oriental despotism theory emphasizes authoritarian rule, not specifically religious kingship.">b) Oriental despotism theory</div>
+<div class="quiz-option" data-correct="true">c) Divine right theory</div>
+<div class="quiz-option" data-explanation="Secular power theory does not emphasize religious authority.">d) Secular power theory</div>
+</div>
+</div>
+<div class="quiz-navigation">
+<button class="quiz-btn quiz-prev" disabled="">Previous</button>
+<button class="quiz-btn quiz-next">Next</button>
+<button class="quiz-btn quiz-submit" style="display:none">Submit Quiz</button>
+</div>
+<div class="quiz-result" style="display:none">
+<h3>Quiz Completed!</h3>
+<div class="quiz-score">0/5</div>
+<p class="quiz-feedback">Keep learning to improve your score!</p>
+<button class="quiz-restart">Restart Quiz</button>
+</div>
+</div>
+<!-- Unit 2 Quiz -->
+<div class="quiz-section" data-unit="unit2">
+<div class="quiz-header">
+<h3 class="quiz-title">Unit 2: Ancient World Civilizations</h3>
+<div class="quiz-timer">Time: <span id="unit2-timer">05:00</span></div>
+</div>
+<div class="quiz-question-container">
+<div class="quiz-question">1. Why was the Nile River important to the development of ancient Egyptian civilization?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="The Nile facilitated trade, not acted as a barrier.">a) It served as a barrier to prevent trade with other countries.</div>
+<div class="quiz-option" data-correct="true">b) It provided water, fertile soil, and a route for transportation and trade.</div>
+<div class="quiz-option" data-explanation="The Nile did not connect Egypt with China or India directly.">c) It helped connect Egypt with China and India.</div>
+<div class="quiz-option" data-explanation="The Nile was not primarily for desert fortresses.">d) It allowed for the building of large fortresses in the desert.</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">2. Which of the following statements about Kush-Meroe is correct?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Kush had extensive contact with Egypt.">a) Kush had no contact with Egypt and developed in isolation.</div>
+<div class="quiz-option" data-explanation="Meroe was known for iron smelting and trade.">b) Meroe had no access to iron or trade routes.</div>
+<div class="quiz-option" data-correct="true">c) Kush adopted many Egyptian cultural elements but later developed its own identity.</div>
+<div class="quiz-option" data-explanation="Kush was not destroyed by Romans in the 2nd century B.C.">d) The civilization of Kush was destroyed by Roman invaders in the 2nd century B.C.</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">3. Which of the following is a contribution of the Sumerian civilization?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="The Great Wall was built by China, not Sumerians.">a) Building the Great Wall of China</div>
+<div class="quiz-option" data-correct="true">b) Developing a calendar based on the moon and cuneiform writing</div>
+<div class="quiz-option" data-explanation="The Latin alphabet was developed by Romans.">c) Inventing the Latin alphabet</div>
+<div class="quiz-option" data-explanation="Democracy was established in Athens, not Sumer.">d) Establishing democracy in Athens</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">4. What was the significance of the Code of Hammurabi in Babylon?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="The Code did not mandate monotheism.">a) It legalized the worship of only one god.</div>
+<div class="quiz-option" data-explanation="It did not grant voting rights to slaves.">b) It introduced voting rights for slaves.</div>
+<div class="quiz-option" data-correct="true">c) It established a legal system with both economic and criminal laws.</div>
+<div class="quiz-option" data-explanation="It included punishments, not abolished them.">d) It abolished all forms of punishment.</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">5. How did Christianity spread during the Roman Empire?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Christianity did not spread through forced migration.">a) Through forced migration of Romans to Africa</div>
+<div class="quiz-option" data-explanation="Pyramids were not related to Christianity’s spread.">b) By military conquest and the building of pyramids</div>
+<div class="quiz-option" data-correct="true">c) Through the efforts of missionaries and eventually became the state religion</div>
+<div class="quiz-option" data-explanation="Silk trade was unrelated to Christianity’s spread.">d) By merchants who traded silk from China</div>
+</div>
+</div>
+<div class="quiz-navigation">
+<button class="quiz-btn quiz-prev" disabled="">Previous</button>
+<button class="quiz-btn quiz-next">Next</button>
+<button class="quiz-btn quiz-submit" style="display:none">Submit Quiz</button>
+</div>
+<div class="quiz-result" style="display:none">
+<h3>Quiz Completed!</h3>
+<div class="quiz-score">0/5</div>
+<p class="quiz-feedback">Keep learning to improve your score!</p>
+<button class="quiz-restart">Restart Quiz</button>
+</div>
+</div>
+<!-- Unit 3 Quiz -->
+<div class="quiz-section" data-unit="unit3">
+<div class="quiz-header">
+<h3 class="quiz-title">Unit 3: Ethiopia and the Horn to 13th Century</h3>
+<div class="quiz-timer">Time: <span id="unit3-timer">05:00</span></div>
+</div>
+<div class="quiz-question-container">
+<div class="quiz-question">1. Which of the following language families is NOT native to Ethiopia and the Horn of Africa?</div>
+<div class="quiz-options">
+<div class="quiz-option">a) Semitic</div>
+<div class="quiz-option">b) Cushitic</div>
+<div class="quiz-option" data-correct="true">c) Dravidian</div>
+<div class="quiz-option">d) Omotic</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">2. Which early state is considered the direct predecessor of the Aksumite Kingdom?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Ifat was a later Muslim sultanate.">a) The Sultanate of Ifat</div>
+<div class="quiz-option" data-correct="true">b) D’mt</div>
+<div class="quiz-option" data-explanation="Damot was a separate southern kingdom.">c) The Kingdom of Damot</div>
+<div class="quiz-option" data-explanation="The Zagwe Dynasty followed Aksum.">d) The Zagwe Dynasty</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">3. Why was the Aksumite Kingdom considered a major ancient African civilization?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="The steam engine was invented much later.">a) It invented the steam engine.</div>
+<div class="quiz-option" data-explanation="Aksum was a major trade hub.">b) It had no contact with foreign traders.</div>
+<div class="quiz-option" data-correct="true">c) It minted coins, controlled trade routes, and adopted Christianity.</div>
+<div class="quiz-option" data-explanation="Aksum was a monarchy, not a democracy.">d) It was ruled by a democracy.</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">4. What was a major architectural achievement of the Zagwe Dynasty?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Gondar castles were built later.">a) Construction of castles in Gondar</div>
+<div class="quiz-option" data-explanation="Obelisks were associated with Aksum.">b) Building of obelisks in Adulis</div>
+<div class="quiz-option" data-correct="true">c) Rock-hewn churches in Lalibela</div>
+<div class="quiz-option" data-explanation="Pyramid structures were not associated with Zagwe.">d) Temples with pyramid structures</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">5. Who are the Bete-Israel of Ethiopia?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Bete-Israel are not a Muslim community.">a) A Muslim trading community</div>
+<div class="quiz-option" data-explanation="They were not European missionaries.">b) A group of European missionaries</div>
+<div class="quiz-option" data-correct="true">c) Ethiopian Jews preserving ancient Jewish traditions</div>
+<div class="quiz-option" data-explanation="They are not a Christian monastic community.">d) A Christian monastic community from the north</div>
+</div>
+</div>
+<div class="quiz-navigation">
+<button class="quiz-btn quiz-prev" disabled="">Previous</button>
+<button class="quiz-btn quiz-next">Next</button>
+<button class="quiz-btn quiz-submit" style="display:none">Submit Quiz</button>
+</div>
+<div class="quiz-result" style="display:none">
+<h3>Quiz Completed!</h3>
+<div class="quiz-score">0/5</div>
+<p class="quiz-feedback">Keep learning to improve your score!</p>
+<button class="quiz-restart">Restart Quiz</button>
+</div>
+</div>
+<!-- Unit 4 Quiz -->
+<div class="quiz-section" data-unit="unit4">
+<div class="quiz-header">
+<h3 class="quiz-title">Unit 4: The Middle Ages and Early Modern World</h3>
+<div class="quiz-timer">Time: <span id="unit4-timer">05:00</span></div>
+</div>
+<div class="quiz-question-container">
+<div class="quiz-question">1. Which social and political system dominated Europe during the Middle Ages?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Capitalism emerged later in Europe.">a) Capitalism</div>
+<div class="quiz-option" data-explanation="Democracy was not prevalent in the Middle Ages.">b) Democracy</div>
+<div class="quiz-option" data-correct="true">c) Feudalism</div>
+<div class="quiz-option" data-explanation="Socialism is a modern ideology.">d) Socialism</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">2. What was one major consequence of the Crusades?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Steam power was invented in the Industrial Revolution.">a) The invention of steam power</div>
+<div class="quiz-option" data-explanation="The Crusades increased religious influence.">b) Decrease in religious influence</div>
+<div class="quiz-option" data-correct="true">c) Increased trade and cultural exchange between Europe and the Middle East</div>
+<div class="quiz-option" data-explanation="Europe was not unified post-Crusades.">d) Immediate unification of Europe under one empire</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">3. Which civilization is associated with a Golden Age of science, medicine, and literature in the Middle Ages?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Byzantine Empire preserved knowledge but was not the Golden Age.">a) Byzantine Empire</div>
+<div class="quiz-option" data-correct="true">b) Islamic Caliphates</div>
+<div class="quiz-option" data-explanation="Mongols were known for conquests, not a golden age.">c) Mongol Empire</div>
+<div class="quiz-option" data-explanation="Vikings were not known for scientific advancements.">d) Viking kingdoms</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">4. What did the Renaissance primarily emphasize?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="The Renaissance promoted religious tolerance.">a) Religious intolerance</div>
+<div class="quiz-option" data-explanation="It moved away from mysticism.">b) Mysticism and superstition</div>
+<div class="quiz-option" data-correct="true">c) Humanism, art, and science</div>
+<div class="quiz-option" data-explanation="It challenged feudal hierarchies.">d) Monarchical rule and feudal hierarchy</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">5. What was a major idea promoted by Enlightenment thinkers?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Enlightenment opposed divine right of kings.">a) Divine right of kings</div>
+<div class="quiz-option" data-explanation="Enlightenment thinkers criticized slavery and imperialism.">b) Slavery and imperialism</div>
+<div class="quiz-option" data-correct="true">c) Reason, liberty, and human rights</div>
+<div class="quiz-option" data-explanation="Enlightenment challenged church control.">d) Complete control by the church</div>
+</div>
+</div>
+<div class="quiz-navigation">
+<button class="quiz-btn quiz-prev" disabled="">Previous</button>
+<button class="quiz-btn quiz-next">Next</button>
+<button class="quiz-btn quiz-submit" style="display:none">Submit Quiz</button>
+</div>
+<div class="quiz-result" style="display:none">
+<h3>Quiz Completed!</h3>
+<div class="quiz-score">0/5</div>
+<p class="quiz-feedback">Keep learning to improve your score!</p>
+<button class="quiz-restart">Restart Quiz</button>
+</div>
+</div>
+<!-- Unit 5 Quiz -->
+<div class="quiz-section" data-unit="unit5">
+<div class="quiz-header">
+<h3 class="quiz-title">Unit 5: Peoples and States of Africa to 1500</h3>
+<div class="quiz-timer">Time: <span id="unit5-timer">05:00</span></div>
+</div>
+<div class="quiz-question-container">
+<div class="quiz-question">1. Which of the following was a major West African empire known for its wealth and Islamic influence?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Kongo was in Central Africa with different characteristics.">a) Kongo</div>
+<div class="quiz-option" data-explanation="Great Zimbabwe was in Southern Africa.">b) Great Zimbabwe</div>
+<div class="quiz-option" data-correct="true">c) Mali</div>
+<div class="quiz-option" data-explanation="Kush was an earlier civilization.">d) Kush</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">2. What role did the city of Timbuktu play in medieval West Africa?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Timbuktu was not a center of pagan worship.">a) A center of pagan worship</div>
+<div class="quiz-option" data-explanation="Timbuktu was not primarily a military base.">b) A major military base</div>
+<div class="quiz-option" data-correct="true">c) A center of Islamic learning and trade</div>
+<div class="quiz-option" data-explanation="Timbuktu was not the Roman Empire’s capital.">d) The capital of the Roman Empire</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">3. What was a major factor in the spread of Islam to North and parts of Sub-Saharan Africa?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="European colonization occurred later.">a) European colonization</div>
+<div class="quiz-option" data-explanation="Christian missionaries did not spread Islam.">b) Christian missionaries</div>
+<div class="quiz-option" data-correct="true">c) Trade and conquest by Muslim rulers</div>
+<div class="quiz-option" data-explanation="Mongol invasions did not affect African Islam.">d) Invasion by the Mongols</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">4. Which of the following civilizations was known for its impressive stone buildings and control of gold trade in Southern Africa?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Axum was in East Africa.">a) Axum</div>
+<div class="quiz-option" data-explanation="Songhai was in West Africa.">b) Songhai</div>
+<div class="quiz-option" data-correct="true">c) Great Zimbabwe</div>
+<div class="quiz-option" data-explanation="Carthage was in North Africa.">d) Carthage</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">5. What cultural and linguistic blend developed in East African coastal cities as a result of Indian Ocean trade?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Phoenician culture was not prevalent in East Africa.">a) Phoenician</div>
+<div class="quiz-option" data-explanation="Zulu is a Southern African culture.">b) Zulu</div>
+<div class="quiz-option" data-correct="true">c) Swahili</div>
+<div class="quiz-option" data-explanation="Oromo is an inland African culture.">d) Oromo</div>
+</div>
+</div>
+<div class="quiz-navigation">
+<button class="quiz-btn quiz-prev" disabled="">Previous</button>
+<button class="quiz-btn quiz-next">Next</button>
+<button class="quiz-btn quiz-submit" style="display:none">Submit Quiz</button>
+</div>
+<div class="quiz-result" style="display:none">
+<h3>Quiz Completed!</h3>
+<div class="quiz-score">0/5</div>
+<p class="quiz-feedback">Keep learning to improve your score!</p>
+<button class="quiz-restart">Restart Quiz</button>
+</div>
+</div>
+<!-- Unit 6 Quiz -->
+<div class="quiz-section" data-unit="unit6">
+<div class="quiz-header">
+<h3 class="quiz-title">Unit 6: Africa and the Outside World</h3>
+<div class="quiz-timer">Time: <span id="unit6-timer">05:00</span></div>
+</div>
+<div class="quiz-question-container">
+<div class="quiz-question">1. What was a major consequence of the trans-Atlantic slave trade on African societies?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Industrialization did not occur due to the slave trade.">a) Rise in industrialization</div>
+<div class="quiz-option" data-correct="true">b) Massive depopulation and increased warfare</div>
+<div class="quiz-option" data-explanation="Democracy did not develop during this period.">c) Development of modern democracy</div>
+<div class="quiz-option" data-explanation="Indigenous religions persisted despite the slave trade.">d) Total elimination of indigenous religions</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">2. What was the main goal of the European "legitimate trade" in Africa after the abolition of the slave trade?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="The slave trade was abolished, not continued.">a) To supply slaves to the Americas</div>
+<div class="quiz-option" data-explanation="Legitimate trade did not aim to spread Islam.">b) To spread Islam</div>
+<div class="quiz-option" data-correct="true">c) To trade in goods like palm oil, ivory, and rubber</div>
+<div class="quiz-option" data-explanation="Legitimate trade was not focused on African independence.">d) To promote African independence</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">3. Which African country maintained Christianity and resisted both Islamic expansion and European colonization during this period?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Ghana was influenced by Islam.">a) Ghana</div>
+<div class="quiz-option" data-correct="true">b) Ethiopia</div>
+<div class="quiz-option" data-explanation="Mali was an Islamic state.">c) Mali</div>
+<div class="quiz-option" data-explanation="Libya was influenced by Islam and later colonized.">d) Libya</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">4. Why did European explorers and missionaries come to Africa between 1770 and 1870?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Explorers did not primarily fight in wars.">a) To fight in African wars</div>
+<div class="quiz-option" data-explanation="Industries were established later.">b) To establish industries</div>
+<div class="quiz-option" data-correct="true">c) To explore geography, convert people to Christianity, and open trade routes</div>
+<div class="quiz-option" data-explanation="Slave trade was declining during this period.">d) To trade slaves directly</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">5. What effect did white settlement have in South Africa during the 17th–19th centuries?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Settlement led to conflicts, not coexistence.">a) Peaceful coexistence with native populations</div>
+<div class="quiz-option" data-explanation="African political systems were disrupted.">b) Preservation of African political systems</div>
+<div class="quiz-option" data-correct="true">c) Displacement of indigenous peoples and beginning of racial segregation</div>
+<div class="quiz-option" data-explanation="Equality was not achieved.">d) Full equality between settlers and Africans</div>
+</div>
+</div>
+<div class="quiz-navigation">
+<button class="quiz-btn quiz-prev" disabled="">Previous</button>
+<button class="quiz-btn quiz-next">Next</button>
+<button class="quiz-btn quiz-submit" style="display:none">Submit Quiz</button>
+</div>
+<div class="quiz-result" style="display:none">
+<h3>Quiz Completed!</h3>
+<div class="quiz-score">0/5</div>
+<p class="quiz-feedback">Keep learning to improve your score!</p>
+<button class="quiz-restart">Restart Quiz</button>
+</div>
+</div>
+<!-- Unit 7 Quiz -->
+<div class="quiz-section" data-unit="unit7">
+<div class="quiz-header">
+<h3 class="quiz-title">Unit 7: States and Interactions in Ethiopia</h3>
+<div class="quiz-timer">Time: <span id="unit7-timer">05:00</span></div>
+</div>
+<div class="quiz-question-container">
+<div class="quiz-question">1. What was a key claim made by the restored Solomonic dynasty after 1270?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="The dynasty did not claim Roman descent.">a) Descent from the Roman Empire</div>
+<div class="quiz-option" data-explanation="The dynasty was not allied with Muslim sultanates.">b) Alliance with Muslim sultanates</div>
+<div class="quiz-option" data-correct="true">c) Lineage from King Solomon and the Queen of Sheba</div>
+<div class="quiz-option" data-explanation="The dynasty promoted Christianity, not rejected it.">d) Rejection of Christianity</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">2. What was the main reason for the Christian kingdom’s conflict with the Sultanate of Adal?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Conflicts were not centered on European alliances.">a) Dispute over European alliances</div>
+<div class="quiz-option" data-correct="true">b) Religious and territorial rivalry</div>
+<div class="quiz-option" data-explanation="Slave trade routes were not the primary issue.">c) Control of slave trade routes</div>
+<div class="quiz-option" data-explanation="Buddhism was not involved in this conflict.">d) Desire to spread Buddhism</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">3. Which Muslim leader led a large jihad against the Christian kingdom in the 16th century?</div>
+<div class="quiz-options">
+<div class="quiz-option" data-explanation="Mansa Musa was a West African leader, not involved in Ethiopia.">a) Mansa Musa</div>
+<div class="quiz-option" data-correct="true">b) Ahmed Ibn Ibrahim (Ahmed Gragn)</div>
+<div class="quiz-option" data-explanation="Zara Yaqob was a Christian emperor.">c) Zara Yaqob</div>
+<div class="quiz-option" data-explanation="Lebna Dengel was a Christian emperor, not a Muslim leader.">d) Lebna Dengel</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">4. What was the Gadaa system associated with?</div>
+<div class="quiz-options">
+<div "="" class="quiz-option" data-explanation="The Gadaa system is unrelated to Solomonic kingship.">a) The Solomonic dynasty</div>
+<div "="" class="quiz-option" data-explanation="The Gadaa system is not linked to the Egyptian calendar.">b) The Egyptian calendar</div>
+<div "="" class="quiz-option" data-correct="true">c) Oromo social and political organization</div>
+<div "="" class="quiz-option" data-explanation="The Gadaa system is not Islamic sharia law.">d) Islamic sharia law</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">5. Which of the following best describes the southern and central Ethiopian states before integration into the Christian kingdom?</div>
+<div class="quiz-options">
+<div "="" class="quiz-option" data-explanation="These states were not unified under one emperor.">a) Unified under one emperor</div>
+<div "="" class="quiz-option" data-explanation="These regions were populated and active.">b) Largely empty and uninhabited</div>
+<div "="" class="quiz-option" data-correct="true">c) Politically and culturally diverse kingdoms and communities</div>
+<div "="" class="quiz-option" data-explanation="These states were not European colonies.">d) Mostly European colonies</div>
+</div>
+</div>
+<div class="quiz-navigation">
+<button class="quiz-btn quiz-prev" disabled="">Previous</button>
+<button class="quiz-btn quiz-next">Next</button>
+<button class="quiz-btn quiz-submit" style="display:none">Submit Quiz</button>
+</div>
+<div class="quiz-result" style="display:none">
+<h3>Quiz Completed!</h3>
+<div class="quiz-score">0/5</div>
+<p class="quiz-feedback">Keep learning to improve your score!</p>
+<button class="quiz-restart">Restart Quiz</button>
+</div>
+</div>
+<!-- Unit 8 Quiz -->
+<div class="quiz-section" data-unit="unit8">
+<div class="quiz-header">
+<h3 class="quiz-title">Unit 8: Political and Social Processes in Ethiopia</h3>
+<div class="quiz-timer">Time: <span id="unit8-timer">05:00</span></div>
+</div>
+<div class="quiz-question-container">
+<div class="quiz-question">1. What was the main characteristic of the Zemene Mesafint period in Ethiopia?</div>
+<div class="quiz-options">
+<div "="" class="quiz-option" data-explanation="Zemene Mesafint lacked strong central leadership.">a) Strong central leadership under emperors</div>
+<div "="" class="quiz-option" data-explanation="Ethiopia was not colonized during this period.">b) Colonization by European powers</div>
+<div "="" class="quiz-option" data-correct="true">c) Rule by powerful regional nobles and princes</div>
+<div "="" class="quiz-option" data-explanation="No democratic parliament existed.">d) Establishment of a democratic system</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">2. Which Ethiopian leader ended the Zemene Mesafint and began reunification in 1855?</div>
+<div class="quiz-options">
+<div "="" class="quiz-option" data-explanation="Menelik II ruled later.">a) Menelik II</div>
+<div "="" class="quiz-option" data-explanation="Ahmed Gragn was a 16th-century Muslim leader.">b) Ahmed Gragn</div>
+<div class="quiz-option" data-correct="true">c) Tewodros II</div>
+<div "="" class="quiz-option" data-explanation="Yohannes ruled after Tewodros.">d) Yohannes IV</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">3. What was a common feature of the southern, western, and eastern states of Ethiopia during this period?</div>
+<div class="quiz-options">
+<div "="" class="quiz-option" data-explanation="These states were not on a central government.">a) Total dependence on the central government
+</div>
+<div "="" class="quiz-option" data-explanation="These states had diverse religions and languages.">b) Uniform religion and language</div>
+<div class="quiz-option" data-correct="true">c) Cultural, religious, and political diversity</div>
+<div "="" class="quiz-option" data-explanation="Trade and agriculture were active.">d) Abandonment of trade and agriculture</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">4. Why was the mid-16th to mid-19th century considered a time of both conflict and resilience in Ethiopia?</div>
+<div class="quiz-options">
+<div "="" class="quiz-option" data-explanation="Local rulers were present and active.">a) Because there were no local rulers</div>
+<div "="" class="quiz-option" data-explanation="Ethiopia was not colonized by foreigners.">b) Due to foreign colonization and occupation</div>
+<div class="quiz-option" data-correct="true">c) Despite political instability, trade and local governance continued</div>
+<div "="" class="quiz-option" data-explanation="Ethiopia was not united under one ruler.">d) Because all Ethiopian states were united under one ruler</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">5. Which city-state in eastern Ethiopia was a center of Islamic culture and commerce?</div>
+<div class="quiz-options">
+<div "="" class="quiz-option" data-explanation="Gondar was a Christian center.">a) Gondar</div>
+<div class="quiz-option" data-correct="true">b) Harar</div>
+<div "="" class="quiz-option" data-explanation="Axum was a Christian kingdom.">d</div>
+<div "="" class="quiz-option" data-explanation="Lalibela was known for Christian churches.">d) Lalibela</div>
+</div>
+</div>
+<div class="quiz-navigation">
+<button class="quiz-btn quiz-prev" disabled="">Previous</button>
+<button class="quiz-btn quiz-next">Next</button>
+<button class="quiz-btn quiz-submit" style="display:none">Submit Quiz</button>
+</div>
+<div class="quiz-result" style="display:none">
+<h3>Quiz Completed!</h3>
+<div class="quiz-score">0/5</div>
+<p class="quiz-feedback">Keep learning to improve your score!</p>
+<button class="quiz-restart">Restart Quiz</button>
+</div>
+</div>
+<!-- Unit 9 Quiz -->
+<div class="quiz-section" data-unit="unit9">
+<div class="quiz-header">
+<h3 class="quiz-title">Unit 9: The Age of Revolutions</h3>
+<div class="quiz-timer">Time: <span id="unit9-timer">05:00</span></div>
+</div>
+<div class="quiz-question-container">
+<div class="quiz-question">1. What was a major effect of the Industrial Revolution?</div>
+<div class="quiz-options">
+<div "="" class="quiz-option" data-explanation="Urban populations grew during the Industrial Revolution.">a) Decline in urban population</div>
+<div "="" class="quiz-option" data-explanation="Factory workers increased significantly.">b) Decrease in factory jobs</div>
+<div class="quiz-option" data-correct="true">c) Introduction of mass production and mechanization</div>
+<div "="" class="quiz-option" data-explanation="Child labor remained during this period.">d) Complete end of child labor</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">2. What was the main cause of the American War of Independence?</div>
+<div class="quiz-options">
+<div "="" class="quiz-option" data-explanation="The war was not primarily about expanding slavery.">a) Desire to expand slavery</div>
+<div "="" class="quiz-option" data-explanation="The French monarchy was unrelated to this war.">b) Conflict over monarchy in France</div>
+<div class="quiz-option" data-correct="true">c) Colonists’ desire for British taxation and desire for self-rule</div>
+<div "="" class="quiz-option" data-explanation="The war was led by colonists, not Native Americans.">d) A revolution led by Native Americans</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">3. Which slogan best summarizes the ideals of the French Revolution?</div>
+<div class="quiz-options">
+<div "="" class="quiz-option" data-explanation="This slogan is unrelated to the French Revolution.">a) Work, pay, retire</div>
+<div "="" class="quiz-option" data-explanation="This does not reflect revolutionary ideals.">b) War, wealth, and wisdom</div>
+<div class="quiz-option" data-correct="true">c) Liberty, equality, fraternity</div>
+<div "="" class="quiz-option" data-explanation="This slogan is unrelated to the revolution.">d) Obey, protect, survive</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">4. What was one significant contribution of Napoleon Bonaparte?</div>
+<div class="quiz-options">
+<div "="" class="quiz-option" data-explanation="Communism was not a Napoleonic concept.">a) Spread of communism</div>
+<div "="" class="quiz-option" data-explanation="Napoleon did not destroy all monarchies.">b) Destruction of all European monarchies</div>
+<div class="quiz-option" data-correct="true">c) Legal reform through the Napoleonic Code</div>
+<div "="" class="quiz-option" data-explanation="Napoleon moved away from feudalism.">d) Return to feudalism</div>
+</div>
+</div>
+<div class="quiz-question-container" style="display:none">
+<div class="quiz-question">5. What event marked the end of Napoleon’s reign in Europe?</div>
+<div class="quiz-options">
+<div "="" class="quiz-option" data-explanation="The Magna Carta was signed in 1215.">a) The signing of the Magna Carta</div>
+<div class="quiz-option" data-correct="true">b) The Battle of Waterloo in 1815</div>
+<div "="" class="quiz-option" data-explanation="The discovery of America was in 1492.">c) The discovery of America</div>
+<div "="" class="quiz-option" data-explanation="The Cold War began in the 20th century.">d) The start of the Cold War</div>
+</div>
+</div>
+<div class="quiz-navigation">
+<button class="quiz-btn quiz-prev" disabled="">Previous</button>
+<button class="quiz-btn quiz-next">Next</button>
+<button class="quiz-btn quiz-submit" style="display:none">Submit Quiz</button>
+</div>
+<div class="quiz-result" style="display:none">
+<h3>Quiz Completed!</h3>
+<div class="quiz-score">0/5</div>
+<p class="quiz-feedback">Keep learning to improve your score!</p>
+<button class="quiz-restart">Restart Quiz</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Resources Section -->
+<section class="page-section" id="resources">
+<div class="container">
+<h2 class="section-title">Resources</h2>
+<ul class="resource-list">
+<li><a href="https://t.me/ExtremeSeries" target="_blank">Extreme Series New Curriculum History Grade 11 and 12</a> - Access the Ethiopian Grade 11 History textbook.</li>
+<li><a href="https://www.unesco.org" target="_blank">UNESCO World Heritage Sites</a> - Learn about Ethiopian cultural sites like Lalibela.</li>
+<li><a href="https://www.britannica.com" target="_blank">Encyclopedia Britannica</a> - Detailed articles on ancient civilizations.</li>
+<li><a href="https://www.khanacademy.org" target="_blank">Khan Academy</a> - Free history courses and videos.</li>
+ <li><a href="https://drive.google.com/file/d/1lOob_a08QDQfgtoiTCi5V_NPUg6F2AnI/view?usp=sharing" target="_blank" class="btn">Open Textbook</a></li>
+</ul>
+</div>
+</section>
+<!-- About Section -->
+<section class="page-section" id="about">
+<div class="container">
+<h2 class="section-title">About</h2>
+<p>This website is designed to help Ethiopian Grade 11 students master their history curriculum. It offers detailed notes, interactive quizzes, a historical timeline, and curated resources. Switch themes for a personalized experience. Contact us at <a href="mailto:futurefocus527@gmail.com">futurefocus527@gmail.com</a>.</p>
+</div>
+</section>
+<!-- Footer -->
+<footer>
+<div class="container">
+<p>© 2025 Ethiopian Grade 11 History Lessons. All rights reserved.</p>
+</div>
+</footer>
+<!-- Explanation Modal -->
+<div class="modal" id="explanation-modal">
+<div class="modal-content">
+<button class="modal-close">Close</button>
+<h3>Incorrect Answer</h3>
+<p id="modal-explanation"></p>
+</div>
+</div>
+<!-- Back to Top Button -->
+<button aria-label="Back to top" class="back-to-top">⬆️</button>
+<!-- JavaScript Code (Existing) -->
+<script>
+    // Theme Toggle
+    const themeToggleBtn = document.querySelector('.theme-toggle');
+    const setTheme = theme => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        themeToggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    };
+
+    // Load theme from localStorage or default to light
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+    });
+
+    // Navigation
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.page-section');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const targetId = link.getAttribute('data-target');
+            sections.forEach(section => {
+                section.classList.toggle('active', section.id === targetId);
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+
+    // Quiz Functionality
+    const quizSections = document.querySelectorAll('.quiz-section');
+    let totalProgress = 0;
+
+    quizSections.forEach(quizSection => {
+        const unit = quizSection.getAttribute('data-unit');
+        const questions = quizSection.querySelectorAll('.quiz-question-container');
+        const prevBtn = quizSection.querySelector('.quiz-prev');
+        const nextBtn = quizSection.querySelector('.quiz-next');
+        const submitBtn = quizSection.querySelector('.quiz-submit');
+        const result = quizSection.querySelector('.quiz-result');
+        const scoreDisplay = quizSection.querySelector('.quiz-score');
+        const feedback = quizSection.querySelector('.quiz-feedback');
+        const restartBtn = quizSection.querySelector('.quiz-restart');
+        const timerDisplay = quizSection.querySelector(`#${unit}-timer`);
+        let currentQuestion = 0;
+        let score = 0;
+        let timeLeft = 300; // 5 minutes in seconds
+        let timer;
+        let userAnswers = new Array(questions.length).fill(null);
+
+        // Initialize progress tracker
+        const updateProgress = () => {
+            const answeredQuestions = userAnswers.filter(answer => answer !== null).length;
+            const progress = (answeredQuestions / questions.length) * 100;
+            totalProgress = quizSections.length > 0 
+                ? (answeredQuestions / (quizSections.length * questions.length)) * 100 
+                : 0;
+            document.getElementById('progress-text').textContent = `${Math.round(totalProgress)}%`;
+            document.getElementById('progress-fill').style.width = `${totalProgress}%`;
+        };
+
+        // Timer
+        const startTimer = () => {
+            timer = setInterval(() => {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    submitQuiz();
+                }
+            }, 1000);
+        };
+
+        // Show Question
+        const showQuestion = index => {
+            questions.forEach((q, i) => {
+                q.style.display = i === index ? 'block' : 'none';
+            });
+            prevBtn.disabled = index === 0;
+            nextBtn.style.display = index === questions.length - 1 ? 'none' : 'block';
+            submitBtn.style.display = index === questions.length - 1 ? 'block' : 'none';
+            updateProgress();
+        };
+
+        // Handle Option Selection
+        questions.forEach((question, qIndex) => {
+            const options = question.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    options.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                    userAnswers[qIndex] = option.textContent;
+                    updateProgress();
+                });
+            });
+        });
+
+        // Navigation
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (userAnswers[currentQuestion] === null) {
+                alert('Please select an answer before proceeding.');
+                return;
+            }
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        // Modal for Explanation
+        const modal = document.getElementById('explanation-modal');
+        const modalExplanation = document.getElementById('modal-explanation');
+        const modalClose = document.querySelector('.modal-close');
+
+        const showModal = explanation => {
+            modalExplanation.textContent = explanation;
+            modal.style.display = 'flex';
+        };
+
+        modalClose.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', e => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Submit Quiz
+        const submitQuiz = () => {
+            clearInterval(timer);
+            score = 0;
+            questions.forEach((question, index) => {
+                const selectedOption = Array.from(question.querySelectorAll('.quiz-option'))
+                    .find(opt => opt.textContent === userAnswers[index]);
+                const correctOption = question.querySelector('.quiz-option[data-correct="true"]');
+                if (selectedOption) {
+                    if (selectedOption === correctOption) {
+                        score++;
+                        selectedOption.classList.add('correct');
+                    } else {
+                        selectedOption.classList.add('incorrect');
+                        correctOption.classList.add('correct');
+                        const explanation = selectedOption.getAttribute('data-explanation');
+                        if (explanation) {
+                            showModal(explanation);
+                        }
+                    }
+                }
+            });
+
+            scoreDisplay.textContent = `${score}/${questions.length}`;
+            feedback.textContent = score === questions.length ? 'Perfect score! Great job!' :
+                                  score >= questions.length / 2 ? 'Good effort! Review to improve.' :
+                                  'Keep studying to boost your score!';
+            quizSection.querySelector('.quiz-header').style.display = 'none';
+            questions.forEach(q => q.style.display = 'none');
+            quizSection.querySelector('.quiz-navigation').style.display = 'none';
+            result.style.display = 'block';
+            updateProgress();
+        };
+
+        submitBtn.addEventListener('click', () => {
+            if (userAnswers[currentQuestion] === null) {
+                alert('Please select an answer before submitting.');
+                return;
+            }
+            submitQuiz();
+        });
+
+        // Restart Quiz
+        restartBtn.addEventListener('click', () => {
+            currentQuestion = 0;
+            score = 0;
+            timeLeft = 300;
+            userAnswers.fill(null);
+            questions.forEach(q => {
+                q.style.display = 'none';
+                q.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('selected', 'correct', 'incorrect');
+                });
+            });
+            quizSection.querySelector('.quiz-header').style.display = 'flex';
+            showQuestion(0);
+            result.style.display = 'none';
+            quizSection.querySelector('.quiz-navigation').style.display = 'flex';
+            timerDisplay.textContent = '05:00';
+            startTimer();
+            updateProgress();
+        });
+
+        // Start quiz
+        showQuestion(0);
+        startTimer();
+    });
+</script>
+<!-- New JavaScript Code (Back to Top) -->
+<script>
+    // Back to Top Button
+    const backToTopBtn = document.querySelector('.back-to-top');
+
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.style.display = 'block';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    });
+
+    // Smooth scroll to top
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
+<script>
+document.querySelectorAll('.quiz-option').forEach(option => {
+    option.addEventListener('click', function() {
+        // Remove existing shields
+        document.querySelectorAll('.explanation-shield').forEach(el => el.remove());
+
+        // Check if this is incorrect and has explanation
+        if (!option.classList.contains('correct') && option.dataset.explanation) {
+            const explanation = document.createElement('div');
+            explanation.className = 'explanation-shield';
+            explanation.innerHTML = '<strong>Explanation:</strong> ' + option.dataset.explanation;
+            option.appendChild(explanation);
+        }
+    });
+});
+</script>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+<button id="toggle-accessibility" style="
+        background-color: #000;
+        color: #fff;
+        padding: 0.7rem 1.2rem;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    ">Toggle Accessibility</button>
+</div>
+<script>
+document.getElementById('toggle-accessibility').addEventListener('click', function() {
+    document.body.classList.toggle('accessibility-large-text');
+});
+</script></body>
+</html>

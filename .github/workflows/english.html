@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Learning Portal</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f4f8fc;
+      color: #2c3e50;
+    }
+    header {
+      background-color: #4D96FF;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #e0eaff;
+      padding: 10px;
+      text-align: center;
+    }
+    nav button {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      margin: 0 10px;
+      padding: 10px;
+      cursor: pointer;
+      color: #2c3e50;
+    }
+    nav button:hover {
+      color: #4D96FF;
+    }
+    .tab {
+      display: none;
+      padding: 30px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .tab.active {
+      display: block;
+    }
+    h2 {
+      color: #4D96FF;
+    }
+
+    .home-link {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: color 0.3s;
+        position: absolute;
+        left: 20px;
+        top: 20px;
+    }
+
+    .home-link:hover {
+        color: #f0f0f0;
+    }
+    .audio-example {
+      margin: 10px 0;
+    }
+    .vocab-topic {
+      margin: 15px 0;
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .vocab-topic h3 {
+      margin-bottom: 5px;
+      color: #4D96FF;
+    }
+    .vocab-word {
+      margin: 8px 0;
+      font-weight: bold;
+    }
+    .vocab-definition {
+      margin-left: 20px;
+      color: #555;
+      font-size: 0.9em;
+    }
+    .reading-question {
+      margin-top: 10px;
+      display: none;
+    }
+    .reading-question.active {
+      display: block;
+    }
+    .reading-question input[type="radio"] {
+      margin-right: 5px;
+    }
+    .feedback {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .correct {
+      color: green;
+    }
+    .incorrect {
+      color: red;
+    }
+    .flashcards {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    .flashcard {
+      background: #f0f7ff;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 8px;
+      text-align: center;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .flashcard-controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+    button {
+      background-color: #4D96FF;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3a7bd5;
+    }
+    select {
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    .reading-passage {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    /* Resource Grid Styles */
+    .resource-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+    }
+
+    .resource-card {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .resource-icon {
+        font-size: 2.5rem;
+        margin-right: 15px;
+    }
+
+    .resource-card h3 {
+        margin-top: 0;
+        color: #4D96FF;
+    }
+
+    .resource-card p {
+        margin: 10px 0;
+        color: #555;
+    }
+
+    .btn {
+        display: inline-block;
+        background-color: #4D96FF;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 4px;
+        text-decoration: none;
+        margin-top: 10px;
+    }
+
+    .btn:hover {
+        background-color: #3a7bd5;
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 768px) {
+        .resource-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .resource-card {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .resource-icon {
+            margin-right: 0;
+            margin-bottom: 15px;
+        }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="home-link">← Back to FutureLearn</a>
+    <h1>📚 English Learning Portal</h1>
+    <p>Learn English step-by-step — designed for 11th grade students in Ethiopia</p>
+  </header>
+
+  <nav>
+    <button onclick="showTab('grammar')">Grammar</button>
+    <button onclick="showTab('speaking')">Speaking</button>
+    <button onclick="showTab('vocab')">Vocabulary</button>
+    <button onclick="showTab('reading')">Reading</button>
+    <button onclick="showTab('resources')">Resources</button>
+  </nav>
+
+  <div id="grammar" class="tab active">
+    <h2>Grammar Lessons</h2>
+    
+    <div class="vocab-topic">
+      <h3>Present Simple</h3>
+      <p><strong>Usage:</strong> Facts and regular actions.</p>
+      <p>Example: "She <em>goes</em> to school every day."</p>
+      <p><strong>11th Grade Tip:</strong> Use this tense when discussing scientific facts or daily routines in your essays.</p>
+      <p><strong>Practice:</strong> Write 2 sentences about your daily routine using present simple.</p>
+    </div>
+
+    <div class="vocab-topic">
+      <h3>Past Simple</h3>
+      <p><strong>Usage:</strong> Completed actions in the past.</p>
+      <p>Example: "They <em>visited</em> Addis Ababa last year."</p>
+      <p><strong>11th Grade Tip:</strong> Essential for writing personal narratives or historical accounts.</p>
+      <p><strong>Practice:</strong> Describe 2 important events from last year using past simple.</p>
+    </div>
+
+    <div class="vocab-topic">
+      <h3>Future (will)</h3>
+      <p><strong>Usage:</strong> Future intentions or predictions.</p>
+      <p>Example: "I <em>will study</em> for the test tomorrow."</p>
+      <p><strong>11th Grade Tip:</strong> Useful for writing about future goals in college applications.</p>
+      <p><strong>Practice:</strong> Write 2 sentences about your plans after high school.</p>
+    </div>
+
+    <div class="vocab-topic">
+      <h3>Present Continuous</h3>
+      <p><strong>Usage:</strong> Actions happening now.</p>
+      <p>Example: "She <em>is reading</em> a book."</p>
+      <p><strong>11th Grade Tip:</strong> Often used in descriptive writing to create vivid scenes.</p>
+      <p><strong>Practice:</strong> Describe 2 things happening around you right now.</p>
+    </div>
+
+    <div class="vocab-topic">
+      <h3>Past Continuous</h3>
+      <p><strong>Usage:</strong> Actions happening at a specific time in the past.</p>
+      <p>Example: "I <em>was cooking</em> when you called."</p>
+      <p><strong>11th Grade Tip:</strong> Combines well with past simple to show interrupted actions.</p>
+      <p><strong>Practice:</strong> Write 2 sentences combining past continuous and past simple.</p>
+    </div>
+
+    <div class="vocab-topic">
+      <h3>Present Perfect</h3>
+      <p><strong>Usage:</strong> Actions that happened at an unknown time before now.</p>
+      <p>Example: "He <em>has traveled</em> to Kenya."</p>
+      <p><strong>11th Grade Tip:</strong> Important for discussing life experiences in personal statements.</p>
+      <p><strong>Practice:</strong> Write 2 sentences about experiences you've had in high school.</p>
+    </div>
+
+    <div class="vocab-topic">
+      <h3>Conditional Sentences</h3>
+      <p><strong>Usage:</strong> To talk about hypothetical situations and their consequences.</p>
+      <p>Example: "If I <em>study</em> hard, I <em>will pass</em> the exam."</p>
+      <p><strong>11th Grade Tip:</strong> Essential for persuasive writing and discussing possibilities.</p>
+      <p><strong>Practice:</strong> Write 2 conditional sentences about academic success.</p>
+    </div>
+  </div>
+
+  <div id="speaking" class="tab">
+    <h2>Speaking & Pronunciation</h2>
+    
+    <div class="vocab-topic">
+      <h3>Common Pronunciation Challenges</h3>
+      <p><strong>"th" sound:</strong> Place tongue between teeth. Try: <em>thing, think, thanks</em>.</p>
+      <audio controls>
+        <source src="https://www.oxfordlearnersdictionaries.com/media/english/us_pron/t/tha/thank/thank__us_1.mp3" type="audio/mpeg">
+      </audio>
+      
+      <p><strong>"r" and "l" sounds:</strong> For "r", curl tongue back. For "l", touch roof with tongue tip. Practice: <em>light, right, long, wrong</em>.</p>
+      <audio controls>
+        <source src="https://www.oxfordlearnersdictionaries.com/media/english/us_pron/l/lig/light/light__us_1.mp3" type="audio/mpeg">
+      </audio>
+      
+      <p><strong>"v" and "b" sounds:</strong> "v" uses upper teeth on lower lip. "b" is a full lip closure. Practice: <em>very, berry, vote, boat</em>.</p>
+      <audio controls>
+        <source src="https://www.oxfordlearnersdictionaries.com/media/english/us_pron/v/ver/very_/very__us_1.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="vocab-topic">
+      <h3>Academic Presentation Phrases</h3>
+      <p><strong>Introducing:</strong> "Today, I will be discussing..."</p>
+      <p><strong>Transitioning:</strong> "Moving on to my next point..."</p>
+      <p><strong>Concluding:</strong> "In summary, the key points are..."</p>
+      <p><strong>Practice:</strong> Record yourself giving a 1-minute presentation about your favorite subject.</p>
+    </div>
+
+    <div class="vocab-topic">
+      <h3>Debate and Discussion Language</h3>
+      <p><strong>Agreeing:</strong> "I completely agree because..."</p>
+      <p><strong>Disagreeing:</strong> "I see your point, but I think..."</p>
+      <p><strong>Clarifying:</strong> "What I mean is..."</p>
+      <p><strong>Practice:</strong> Find a study partner and debate: "School uniforms should be mandatory."</p>
+    </div>
+  </div>
+
+  <div id="vocab" class="tab">
+    <h2>Vocabulary Builder</h2>
+    
+    <div class="flashcards">
+      <h3>Flashcard Practice</h3>
+      <select id="flashcardTopic">
+        <option value="college">College Applications</option>
+        <option value="travel">Travel</option>
+        <option value="food">Food</option>
+        <option value="academic">Academic Terms</option>
+        <option value="technology">Technology</option>
+      </select>
+      <button onclick="startFlashcards()">Start Practice</button>
+      
+      <div id="flashcardContainer" style="display: none;">
+        <div id="flashcard" class="flashcard" onclick="flipCard()">Click Start Practice to begin</div>
+        <div class="flashcard-controls">
+          <button onclick="prevCard()">Previous</button>
+          <button onclick="nextCard()">Next</button>
+        </div>
+        <div id="flashcardProgress"></div>
+      </div>
+    </div>
+
+    
+
+    <div class="vocab-topic">
+      <h3>College Applications</h3>
+      <div class="vocab-word">Application <span class="vocab-definition">A formal request to be considered for a college or university</span></div>
+      <div class="vocab-word">Transcript <span class="vocab-definition">An official record of a student's academic performance</span></div>
+      <div class="vocab-word">Extracurricular <span class="vocab-definition">Activities outside the regular academic curriculum</span></div>
+      <div class="vocab-word">Scholarship <span class="vocab-definition">Financial aid awarded to a student for academic achievement</span></div>
+      <div class="vocab-word">Motivation <span class="vocab-definition">The reason or reasons one has for acting or behaving in a particular way</span></div>
+      <div class="vocab-word">Essay <span class="vocab-definition">A short piece of writing on a particular subject</span></div>
+      <div class="vocab-word">Deadline <span class="vocab-definition">The latest time or date by which something should be completed</span></div>
+      <div class="vocab-word">Recommendation <span class="vocab-definition">A letter written to support a candidate's application</span></div>
+      <div class="vocab-word">Interview <span class="vocab-definition">A formal meeting where a candidate is asked questions</span></div>
+      <div class="vocab-word">Acceptance <span class="vocab-definition">The action of consenting to receive or undertake something offered</span></div>
+    </div>
+
+    <div class="vocab-topic">
+      <h3>Travel</h3>
+      <div class="vocab-word">Passport <span class="vocab-definition">An official document for international travel</span></div>
+      <div class="vocab-word">Airport <span class="vocab-definition">A complex where aircraft take off and land</span></div>
+      <div class="vocab-word">Luggage <span class="vocab-definition">Bags and suitcases for personal belongings during travel</span></div>
+      <div class="vocab-word">Ticket <span class="vocab-definition">A document giving entitlement to travel or attend an event</span></div>
+      <div class="vocab-word">Reservation <span class="vocab-definition">An arrangement to secure accommodations or services</span></div>
+      <div class="vocab-word">Destination <span class="vocab-definition">The place to which someone or something is going</span></div>
+      <div class="vocab-word">Journey <span class="vocab-definition">An act of traveling from one place to another</span></div>
+      <div class="vocab-word">Tourist <span class="vocab-definition">A person who is traveling for pleasure</span></div>
+    </div>
+
+    <div class="vocab-topic">
+      <h3>Food</h3>
+      <div class="vocab-word">Ingredients <span class="vocab-definition">The components used in making a dish</span></div>
+      <div class="vocab-word">Recipe <span class="vocab-definition">A set of instructions for preparing a dish</span></div>
+      <div class="vocab-word">Meal <span class="vocab-definition">An occasion when food is eaten</span></div>
+      <div class="vocab-word">Dessert <span class="vocab-definition">A sweet course eaten at the end of a meal</span></div>
+      <div class="vocab-word">Vegetables <span class="vocab-definition">Plants or parts of plants used as food</span></div>
+      <div class="vocab-word">Fruits <span class="vocab-definition">The sweet and fleshy product of a tree or plant</span></div>
+      <div class="vocab-word">Spices <span class="vocab-definition">Aromatic substances used to flavor food</span></div>
+      <div class="vocab-word">Delicious <span class="vocab-definition">Highly pleasant to the taste</span></div>
+    </div>
+
+    <div class="vocab-topic">
+      <h3>Academic Terms</h3>
+      <div class="vocab-word">Analysis <span class="vocab-definition">Detailed examination of the elements or structure of something</span></div>
+      <div class="vocab-word">Hypothesis <span class="vocab-definition">A proposed explanation made on the basis of limited evidence</span></div>
+      <div class="vocab-word">Bibliography <span class="vocab-definition">A list of sources used in academic work</span></div>
+      <div class="vocab-word">Thesis <span class="vocab-definition">A statement or theory put forward to be maintained or proved</span></div>
+      <div class="vocab-word">Citation <span class="vocab-definition">A reference to a published or unpublished source</span></div>
+      <div class="vocab-word">Plagiarism <span class="vocab-definition">Presenting someone else's work as your own</span></div>
+      <div class="vocab-word">Paraphrase <span class="vocab-definition">Express the meaning of something using different words</span></div>
+    </div>
+
+    <div class="vocab-topic">
+      <h3>Technology</h3>
+      <div class="vocab-word">Software <span class="vocab-definition">Programs and operating information used by a computer</span></div>
+      <div class="vocab-word">Hardware <span class="vocab-definition">The physical components of a computer system</span></div>
+      <div class="vocab-word">Browser <span class="vocab-definition">A program used to access the internet</span></div>
+      <div class="vocab-word">Database <span class="vocab-definition">A structured set of data held in a computer</span></div>
+      <div class="vocab-word">Algorithm <span class="vocab-definition">A process or set of rules for calculations</span></div>
+      <div class="vocab-word">Encryption <span class="vocab-definition">The process of converting information into code</span></div>
+      <div class="vocab-word">Artificial Intelligence <span class="vocab-definition">The simulation of human intelligence by machines</span></div>
+    </div>
+  </div>
+
+  <div id="reading" class="tab">
+    <h2>Reading Comprehension</h2>
+    
+    <div class="reading-passage" id="passage1">
+      <h3>Passage 1: The Importance of Education</h3>
+      <p>Education is the cornerstone of personal and national development. In Ethiopia, where agriculture forms the backbone of the economy, education provides the tools for innovation and modernization in farming techniques. Beyond economic benefits, education empowers individuals to make informed decisions about health, family planning, and civic participation. The Ethiopian government has made significant investments in education, resulting in increased enrollment rates. However, challenges remain in ensuring quality education reaches all regions equally. For students, education opens doors to higher education opportunities both locally and internationally, creating pathways to careers that can transform their lives and communities.</p>
+      
+      <div class="reading-question active" id="q1-1">
+        <p><strong>Question 1:</strong> What is described as the "cornerstone of personal and national development"?</p>
+        <label><input type="radio" name="q1" value="agriculture"> Agriculture</label><br>
+        <label><input type="radio" name="q1" value="education"> Education</label><br>
+        <label><input type="radio" name="q1" value="government"> Government policies</label><br>
+        <button onclick="checkReadingAnswer('q1','education','q1-2')">Check Answer</button>
+        <div id="feedback-q1" class="feedback"></div>
+      </div>
+      
+      <div class="reading-question" id="q1-2">
+        <p><strong>Question 2:</strong> According to the passage, what has the Ethiopian government invested in significantly?</p>
+        <label><input type="radio" name="q2" value="healthcare"> Healthcare</label><br>
+        <label><input type="radio" name="q2" value="education"> Education</label><br>
+        <label><input type="radio" name="q2" value="agriculture"> Agriculture</label><br>
+        <button onclick="checkReadingAnswer('q2','education','q1-3')">Check Answer</button>
+        <div id="feedback-q2" class="feedback"></div>
+      </div>
+      
+      <div class="reading-question" id="q1-3">
+        <p><strong>Question 3:</strong> What challenge is mentioned regarding education in Ethiopia?</p>
+        <label><input type="radio" name="q3" value="cost"> High cost of education</label><br>
+        <label><input type="radio" name="q3" value="quality"> Ensuring quality reaches all regions</label><br>
+        <label><input type="radio" name="q3" value="interest"> Lack of student interest</label><br>
+        <button onclick="checkReadingAnswer('q3','quality','passage2')">Check Answer</button>
+        <div id="feedback-q3" class="feedback"></div>
+      </div>
+    </div>
+
+    <div class="reading-passage" id="passage2" style="display: none;">
+      <h3>Passage 2: Ethiopian Cultural Heritage</h3>
+      <p>Ethiopia boasts a rich cultural heritage that spans over 3,000 years. From the ancient obelisks of Aksum to the rock-hewn churches of Lalibela, the country's historical sites are UNESCO World Heritage treasures. Traditional Ethiopian music, with its unique scales and instruments like the krar and masenqo, reflects the diversity of its people. The Ethiopian Orthodox Church has preserved ancient religious texts and practices, while Islamic traditions flourish in eastern regions. Cultural events like Timkat (Epiphany) and Meskel (Finding of the True Cross) bring communities together in vibrant celebrations. Preserving this heritage while embracing modernity presents both challenges and opportunities for young Ethiopians today.</p>
+      
+      <div class="reading-question active" id="q2-1">
+        <p><strong>Question 1:</strong> What are the rock-hewn churches of Lalibela considered?</p>
+        <label><input type="radio" name="q4" value="modern"> Modern architectural wonders</label><br>
+        <label><input type="radio" name="q4" value="UNESCO"> UNESCO World Heritage treasures</label><br>
+        <label><input type="radio" name="q4" value="temporary"> Temporary religious structures</label><br>
+        <button onclick="checkReadingAnswer('q4','UNESCO','q2-2')">Check Answer</button>
+        <div id="feedback-q4" class="feedback"></div>
+      </div>
+      
+      <div class="reading-question" id="q2-2">
+        <p><strong>Question 2:</strong> Which instrument is mentioned as part of traditional Ethiopian music?</p>
+        <label><input type="radio" name="q5" value="piano"> Piano</label><br>
+        <label><input type="radio" name="q5" value="krar"> Krar</label><br>
+        <label><input type="radio" name="q5" value="guitar"> Guitar</label><br>
+        <button onclick="checkReadingAnswer('q5','krar','q2-3')">Check Answer</button>
+        <div id="feedback-q5" class="feedback"></div>
+      </div>
+      
+      <div class="reading-question" id="q2-3">
+        <p><strong>Question 3:</strong> What cultural event celebrates the Finding of the True Cross?</p>
+        <label><input type="radio" name="q6" value="Timkat"> Timkat</label><br>
+        <label><input type="radio" name="q6" value="Meskel"> Meskel</label><br>
+        <label><input type="radio" name="q6" value="Easter"> Easter</label><br>
+        <button onclick="checkReadingAnswer('q6','Meskel','passage3')">Check Answer</button>
+        <div id="feedback-q6" class="feedback"></div>
+      </div>
+    </div>
+
+    <div class="reading-passage" id="passage3" style="display: none;">
+      <h3>Passage 3: Climate Change in Ethiopia</h3>
+      <p>Ethiopia faces significant challenges from climate change, with increasing temperatures and unpredictable rainfall patterns affecting agricultural production. The country's highlands may experience reduced coffee yields, while lowland areas could see increased drought frequency. However, Ethiopia has emerged as a leader in climate change mitigation, with ambitious reforestation programs like the Green Legacy Initiative planting billions of trees. Renewable energy projects, particularly hydropower from the Grand Ethiopian Renaissance Dam, demonstrate the country's commitment to sustainable development. Farmers are adopting climate-smart agriculture techniques, such as terracing and crop diversification, to adapt to changing conditions. These efforts highlight how developing nations can take proactive steps to address global environmental challenges.</p>
+      
+      <div class="reading-question active" id="q3-1">
+        <p><strong>Question 1:</strong> What is affecting agricultural production in Ethiopia according to the passage?</p>
+        <label><input type="radio" name="q7" value="prices"> Falling crop prices</label><br>
+        <label><input type="radio" name="q7" value="climate"> Climate change</label><br>
+        <label><input type="radio" name="q7" value="labor"> Lack of farm labor</label><br>
+        <button onclick="checkReadingAnswer('q7','climate','q3-2')">Check Answer</button>
+        <div id="feedback-q7" class="feedback"></div>
+      </div>
+      
+      <div class="reading-question" id="q3-2">
+        <p><strong>Question 2:</strong> What initiative has Ethiopia implemented to combat climate change?</p>
+        <label><input type="radio" name="q8" value="Green Legacy"> Green Legacy Initiative</label><br>
+        <label><input type="radio" name="q8" value="Solar Power"> National Solar Power Plan</label><br>
+        <label><input type="radio" name="q8" value="Water Conservation"> Water Conservation Project</label><br>
+        <button onclick="checkReadingAnswer('q8','Green Legacy','q3-3')">Check Answer</button>
+        <div id="feedback-q8" class="feedback"></div>
+      </div>
+      
+      <div class="reading-question" id="q3-3">
+        <p><strong>Question 3:</strong> What farming techniques are mentioned as adaptations to climate change?</p>
+        <label><input type="radio" name="q9" value="Monocropping"> Monocropping</label><br>
+        <label><input type="radio" name="q9" value="Terracing"> Terracing and crop diversification</label><br>
+        <label><input type="radio" name="q9" value="Irrigation"> Large-scale irrigation</label><br>
+        <button onclick="checkReadingAnswer('q9','Terracing','passage1')">Check Answer</button>
+        <div id="feedback-q9" class="feedback"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="resources" class="tab">
+    <h2>Learning Resources</h2>
+    
+    <div class="resource-grid">
+        <div class="resource-card">
+            <div class="resource-icon">📚</div>
+            <div>
+                <h3>Textbook PDF</h3>
+                <p>Download the complete Grade 11 English textbook approved by the Ethiopian Ministry of Education. Includes all grammar rules, reading passages, and writing exercises.</p>
+                <a href="https://drive.google.com/file/d/1LetjcJ6nnYgspQIof470iNWBeOwqmchU/view?usp=sharing" target="_blank" class="btn">Open Textbook</a>
+            </div>
+        </div>
+        
+        <div class="resource-card">
+            <div class="resource-icon">🎬</div>
+            <div>
+                <h3>Grammar Video Lessons</h3>
+                <p>Watch explanations of English grammar concepts in this Youtube Video!</p>
+                <a href="https://www.youtube.com/watch?v=SceDmiBEESI&pp=ygUcZ2VuZXJhbCBlbmdsaXNoIGNyYXNoIGNvdXJzZQ%3D%3D" target="_blank" class="btn">Watch Video</a>
+            </div>
+        </div>
+    </div>
+
+  <script>
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function checkAnswer(questionName, correctAnswer) {
+      const selected = document.querySelector('input[name="' + questionName + '"]:checked');
+      const feedback = document.getElementById('feedback-' + questionName);
+      if (!selected) {
+        feedback.textContent = 'Please choose an answer.';
+        feedback.className = 'feedback incorrect';
+        return;
+      }
+      if (selected.value === correctAnswer) {
+        feedback.textContent = '✅ Correct!';
+        feedback.className = 'feedback correct';
+      } else {
+        feedback.textContent = '❌ Incorrect. Try again.';
+        feedback.className = 'feedback incorrect';
+      }
+    }
+
+    function checkReadingAnswer(questionName, correctAnswer, nextQuestionId) {
+      const selected = document.querySelector('input[name="' + questionName + '"]:checked');
+      const feedback = document.getElementById('feedback-' + questionName);
+      if (!selected) {
+        feedback.textContent = 'Please choose an answer.';
+        feedback.className = 'feedback incorrect';
+        return;
+      }
+      if (selected.value === correctAnswer) {
+        feedback.textContent = '✅ Correct!';
+        feedback.className = 'feedback correct';
+        // Hide current question
+        document.querySelector('.reading-question.active').classList.remove('active');
+        // Show next question or passage
+        if (nextQuestionId) {
+          if (nextQuestionId.startsWith('passage')) {
+            // Hide current passage and show next one
+            document.querySelector('.reading-passage:not([style*="none"])').style.display = 'none';
+            document.getElementById(nextQuestionId).style.display = 'block';
+          } else {
+            document.getElementById(nextQuestionId).classList.add('active');
+          }
+        }
+      } else {
+        feedback.textContent = '❌ Incorrect. Try again.';
+        feedback.className = 'feedback incorrect';
+      }
+    }
+
+    // Flashcards functionality
+    const flashcards = {
+      college: [
+        {word: "Application", definition: "A formal request to be considered for a college or university"},
+        {word: "Transcript", definition: "An official record of a student's academic performance"},
+        {word: "Extracurricular", definition: "Activities outside the regular academic curriculum"},
+        {word: "Scholarship", definition: "Financial aid awarded to a student for academic achievement"},
+        {word: "Motivation", definition: "The reason or reasons one has for acting or behaving in a particular way"}
+      ],
+      travel: [
+        {word: "Passport", definition: "An official document for international travel"},
+        {word: "Airport", definition: "A complex where aircraft take off and land"},
+        {word: "Luggage", definition: "Bags and suitcases for personal belongings during travel"},
+        {word: "Ticket", definition: "A document giving entitlement to travel or attend an event"},
+        {word: "Reservation", definition: "An arrangement to secure accommodations or services"}
+      ],
+      food: [
+        {word: "Ingredients", definition: "The components used in making a dish"},
+        {word: "Recipe", definition: "A set of instructions for preparing a dish"},
+        {word: "Meal", definition: "An occasion when food is eaten"},
+        {word: "Dessert", definition: "A sweet course eaten at the end of a meal"},
+        {word: "Vegetables", definition: "Plants or parts of plants used as food"}
+      ],
+      academic: [
+        {word: "Analysis", definition: "Detailed examination of the elements or structure of something"},
+        {word: "Hypothesis", definition: "A proposed explanation made on the basis of limited evidence"},
+        {word: "Bibliography", definition: "A list of sources used in academic work"},
+        {word: "Thesis", definition: "A statement or theory put forward to be maintained or proved"},
+        {word: "Citation", definition: "A reference to a published or unpublished source"}
+      ],
+      technology: [
+        {word: "Software", definition: "Programs and operating information used by a computer"},
+        {word: "Hardware", definition: "The physical components of a computer system"},
+        {word: "Browser", definition: "A program used to access the internet"},
+        {word: "Database", definition: "A structured set of data held in a computer"},
+        {word: "Algorithm", definition: "A process or set of rules for calculations"}
+      ]
+    };
+
+    let currentDeck = [];
+    let currentCardIndex = 0;
+    let isFlipped = false;
+
+    function startFlashcards() {
+      const topic = document.getElementById('flashcardTopic').value;
+      currentDeck = [...flashcards[topic]];
+      currentCardIndex = 0;
+      isFlipped = false;
+      document.getElementById('flashcardContainer').style.display = 'block';
+      showCurrentCard();
+    }
+
+    function showCurrentCard() {
+      const flashcard = document.getElementById('flashcard');
+      if (currentCardIndex < currentDeck.length) {
+        flashcard.textContent = isFlipped ? currentDeck[currentCardIndex].definition : currentDeck[currentCardIndex].word;
+        document.getElementById('flashcardProgress').textContent = `Card ${currentCardIndex + 1} of ${currentDeck.length}`;
+      } else {
+        flashcard.textContent = 'You have completed all cards!';
+        document.getElementById('flashcardProgress').textContent = '';
+      }
+    }
+
+    function flipCard() {
+      if (currentCardIndex < currentDeck.length) {
+        isFlipped = !isFlipped;
+        showCurrentCard();
+      }
+    }
+
+    function nextCard() {
+      if (currentCardIndex < currentDeck.length - 1) {
+        currentCardIndex++;
+        isFlipped = false;
+        showCurrentCard();
+      }
+    }
+
+    function prevCard() {
+      if (currentCardIndex > 0) {
+        currentCardIndex--;
+        isFlipped = false;
+        showCurrentCard();
+      }
+    }
+  </script>
+
+</body>
+</html>

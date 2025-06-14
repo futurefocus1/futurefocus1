@@ -1,0 +1,1305 @@
+
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Ethiopian Grade 11 Geography learning platform with accessible notes, quizzes, and resources." name="description"/>
+<title>FutureFocus: Ethiopian Grade 11 Geography</title>
+<style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --link-color: #0077b6;
+            --accent-color: #ff6b35;
+            --button-bg: #2a9d8f;
+            --button-text: #ffffff;
+            --font-size-base: 1.75rem;
+            --font-size-heading: 2.25rem;
+        }
+
+        [data-contrast="high"] {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --link-color: #00b4d8;
+            --accent-color: #f4a261;
+            --button-bg: #e76f51;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--button-bg);
+            color: var(--button-text);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--bg-color);
+            padding: 1rem;
+            border-bottom: 2px solid var(--accent-color);
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 0;
+        }
+
+        nav a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a:focus {
+            color: var(--accent-color);
+            outline: 3px solid var(--accent-color);
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .topic-card {
+            background: var(--bg-color);
+            border: 2px solid var(--button-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: scale(1.05);
+        }
+
+        .notes-details summary {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 0.5rem;
+            background: var(--button-bg);
+            color: var(--button-text);
+            border-radius: 4px;
+        }
+
+        .notes-details[open] summary {
+            background: var(--accent-color);
+        }
+
+        .quiz-question {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border: 1px solid var(--text-color);
+            border-radius: 8px;
+        }
+
+        .quiz-question fieldset {
+            border: none;
+            padding: 0;
+        }
+
+        .quiz-question legend {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-question label {
+            display: block;
+            margin: 0.5rem 0;
+        }
+
+        .quiz-feedback {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .quiz-feedback.show {
+            display: block;
+        }
+
+        .quiz-score {
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .tts-button, .accessibility-button {
+            background: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .tts-button:hover, .accessibility-button:hover,
+        .tts-button:focus, .accessibility-button:focus {
+            background: var(--accent-color);
+            outline: 3px solid var(--link-color);
+        }
+
+        .tts-button.stop {
+            background: #e63946;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: var(--button-bg);
+            color: var(--button-text);
+            padding: 0.75rem;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        footer {
+            background: var(--button-bg);
+            color: var(--button-text);
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: var(--button-text);
+            text-decoration: underline;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            background: var(--button-bg);
+            color: var(--button-text);
+            padding: 0.5rem;
+        }
+
+        .skip-link:focus {
+            left: 10px;
+            top: 10px;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            :root {
+                --font-size-base: 1.5rem;
+                --font-size-heading: 2rem;
+            }
+        }
+    
+.responsive-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .topics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .topics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1025px) {
+    .topics-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header role="banner">
+<h1 style="font-size: var(--font-size-heading);">FutureFocus: Ethiopian Grade 11 Geography / የኢትዮጵያ 11ኛ ክፍል ጂኦግራፊ</h1>
+</header>
+<a href="homepage_html.html" class="home-button">← Back to FutureLearn</a>
+<nav aria-label="Main navigation" role="navigation">
+<ul>
+<li><a href="#home">Home / መነሻ</a></li>
+<li><a href="#topics">Topics / ርዕሶች</a></li>
+<li><a href="#notes">Notes / ማስታወሻዎች</a></li>
+<li><a href="#quizzes">Quizzes / ጥያቄዎች</a></li>
+<li><a href="#resources">Resources / መርጃዎች</a></li>
+<li><a href="#about">About / ስለ</a></li>
+</ul>
+<div style="text-align: center; margin-top: 1rem;">
+<button aria-label="Toggle high contrast mode" class="accessibility-button" onclick="toggleContrast()">Toggle Contrast</button>
+<button aria-label="Increase font size" class="accessibility-button" onclick="adjustFontSize(0.1)">A+</button>
+<button aria-label="Decrease font size" class="accessibility-button" onclick="adjustFontSize(-0.1)">A-</button>
+</div>
+</nav>
+<main id="main-content" role="main">
+<section aria-labelledby="home-heading" class="section" id="home">
+<h2 id="home-heading">Welcome / እንኳን ደህና መጡ</h2>
+<button aria-label="Read welcome section aloud" class="tts-button" id="home-tts" onclick="readSection('home-content', this)">Read Aloud</button>
+<div id="home-content">
+<p>Explore Ethiopian Grade 11 Geography through accessible notes, quizzes, and resources covering 8 units from the Great Rift Valley to GIS applications. Designed for all learners with high contrast, large text, and text-to-speech.</p>
+</div>
+
+<div class="topics-grid" style="margin-top: 2rem;">
+<div class="topic-card">
+<img alt="Geography Science" class="responsive-img" src="https://plus.unsplash.com/premium_photo-1712509212206-ab4e7b3bb593?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8R2VvZ3JhcGh5JTIwU2NpZW5jZXxlbnwwfHwwfHx8MA%3D%3D"/>
+<h3>Unit 1: The Science of Geography</h3>
+<p>Explore geography's methods and applications.</p>
+<a href="#unit1-quiz">Go to Unit</a>
+</div>
+<div class="topic-card">
+<img alt="Physical Geography" class="responsive-img" src="https://media.istockphoto.com/id/2190714141/photo/ethiopian-mountain-waterfall.webp?a=1&b=1&s=612x612&w=0&k=20&c=IjnFY_Dd9g_exe1-H4Xlu189Od-PU6J9eNVeUUFQYL4="/>
+<h3>Unit 2: Physical Geography</h3>
+<p>Discover the Great Rift Valley and Blue Nile.</p>
+<a href="#unit2-quiz">Go to Unit</a>
+</div>
+<div class="topic-card">
+<img alt="Climate and Vegetation" class="responsive-img" src="https://images.unsplash.com/photo-1631548962446-39570e34af3a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Q2xpbWF0ZSUyMGFuZCUyMFZlZ2V0YXRpb258ZW58MHx8MHx8fDA%3D"/>
+<h3>Unit 3: Climate and Vegetation</h3>
+<p>Learn about Ethiopia’s diverse climates.</p>
+<a href="#unit3-quiz">Go to Unit</a>
+</div>
+<div class="topic-card">
+<img alt="Resources and Conflicts" class="responsive-img" src="https://media.istockphoto.com/id/1154455973/photo/fight-power-electricity-concept.jpg?s=612x612&w=0&k=20&c=CA6T8qi-NQIHj1IOfMvFnH1pbWAjq-aLLna-blEbgso="/>
+<h3>Unit 4: Resources and Conflicts</h3>
+<p>Understand land use and natural conflicts.</p>
+<a href="#unit4-quiz">Go to Unit</a>
+</div>
+<div class="topic-card">
+<img alt="Population and Settlement" class="responsive-img" src="https://plus.unsplash.com/premium_photo-1699536874524-bdbcba5ac8c5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8UG9wdWxhdGlvbiUyMGFuZCUyMFNldHRsZW1lbnR8ZW58MHx8MHx8fDA%3D"/>
+<h3>Unit 5: Population and Settlement</h3>
+<p>Examine growth and urbanization.</p>
+<a href="#unit5-quiz">Go to Unit</a>
+</div>
+<div class="topic-card">
+<img alt="Economic Geography" class="responsive-img" src="https://images.unsplash.com/photo-1502920514313-52581002a659?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8RWNvbm9taWMlMjBHZW9ncmFwaHl8ZW58MHx8MHx8fDA%3D"/>
+<h3>Unit 6: Economic Geography</h3>
+<p>Explore Ethiopia's economic activities.</p>
+<a href="#unit6-quiz">Go to Unit</a>
+</div>
+<div class="topic-card">
+<img alt="Environmental Geography" class="responsive-img" src="https://media.istockphoto.com/id/1313932993/photo/scientist-measuring-water-depth-to-install-water-level-data-loggers-in-a-coastal-wetland.webp?a=1&b=1&s=612x612&w=0&k=20&c=HR8V3yh_pL88fLvorOx-LcQFMH7sWPrBUVvSmKYhxbY="/>
+<h3>Unit 7: Environmental Geography</h3>
+<p>Study climate change and conservation.</p>
+<a href="#unit7-quiz">Go to Unit</a>
+</div>
+<div class="topic-card">
+<img alt="Geospatial Technologies" class="responsive-img" src="https://media.istockphoto.com/id/2031611162/photo/geographic-information-system-gis-the-cornerstone-of-modern-industry-in-smart-geography.webp?a=1&b=1&s=612x612&w=0&k=20&c=FyWKUZ0JtgguDqYtcB6LrDuD1EmqBvSBUvDCPgjHLIY="/>
+<h3>Unit 8: Geospatial Technologies</h3>
+<p>Discover GIS and satellite applications.</p>
+<a href="#unit8-quiz">Go to Unit</a>
+</div>
+</div>
+</section>
+<section aria-labelledby="topics-heading" class="section" id="topics">
+<h2 id="topics-heading">Topics / ርዕሶች</h2>
+<button aria-label="Read topics aloud" class="tts-button" id="topics-tts" onclick="readSection('topics-content', this)">Read Aloud</button>
+<div class="topics-grid" id="topics-content">
+<div class="topic-card">
+<h3>Unit 1: The Science of Geography</h3>
+<p>Scope, schools of thought, interdisciplinary links.</p>
+</div>
+<div class="topic-card">
+<h3>Unit 2: Physical Geography</h3>
+<p>Plate tectonics, Rift Valley, Blue Nile systems.</p>
+</div>
+<div class="topic-card">
+<h3>Unit 3: Climate and Vegetation</h3>
+<p>Köppen classification, Afar aridity, Bale forests.</p>
+</div>
+<div class="topic-card">
+<h3>Unit 4: Resources and Conflicts</h3>
+<p>GERD disputes, Tigray gold, land use.</p>
+</div>
+<div class="topic-card">
+<h3>Unit 5: Population and Settlement</h3>
+<p>Youth bulge, Addis urbanization, migration.</p>
+</div>
+<div class="topic-card">
+<h3>Unit 6: Economic Geography</h3>
+<p>Coffee exports, Djibouti trade, Hawassa industry.</p>
+</div>
+<div class="topic-card">
+<h3>Unit 7: Environmental Geography</h3>
+<p>Climate change, Green Legacy, desertification.</p>
+</div>
+<div class="topic-card">
+<h3>Unit 8: Geospatial Technologies</h3>
+<p>GIS in Addis, remote sensing in Bale.</p>
+</div>
+</div>
+</section>
+<section aria-labelledby="notes-heading" class="section" id="notes">
+<h2 id="notes-heading">Notes / ማስታወሻዎች</h2>
+<button aria-label="Read notes aloud" class="tts-button" id="notes-tts" onclick="readSection('notes-content', this)">Read Aloud</button>
+<div id="notes-content">
+<details class="notes-details">
+<summary>Unit 1: The Science of Geography / የጂኦግራፊ ሳይንስ</summary>
+<p><strong>Definition and Scope</strong>: Geography studies spatial patterns and human-environment interactions. In Ethiopia, it analyzes the Rift Valley’s formation and Addis Ababa’s urban growth.</p>
+<p><strong>Determinism vs. Possibilism</strong>: Determinism sees environment shaping human activity (e.g., Afar’s aridity limits farming). Possibilism highlights human adaptation, like terracing in Tigray to farm steep slopes.</p>
+<p><strong>Physical Geography</strong>: Focuses on landforms and climates, e.g., Erta Ale’s volcanism and Blue Nile’s drainage system, critical for GERD’s hydropower.</p>
+<p><strong>Human Geography</strong>: Examines population and economic patterns, like Hawassa’s industrial growth and coffee exports from Sidama.</p>
+<p><strong>Interdisciplinary Links</strong>: Geography connects with economics (trade via Djibouti), geology (Rift Valley tectonics), and sociology (migration to Gulf states).</p>
+<p><strong>Spatial Analysis</strong>: Tools like GIS map Ethiopia’s farmland, aiding agricultural planning in Amhara.</p>
+<p><strong>Schools of Thought</strong>: Quantitative revolution introduced statistical models for Ethiopia’s urban planning; qualitative approaches study cultural landscapes in Lalibela.</p>
+<p><strong>Role in Development</strong>: Geography informs Ethiopia’s Green Legacy for reforestation and sustainable resource use in Awash Valley.</p>
+</details>
+<details class="notes-details">
+<summary>Unit 2: Physical Geography of Ethiopia / የኢትዮጵያ አካላዊ ጂኦግራፊ</summary>
+<p><strong>Plate Tectonics</strong>: Ethiopia lies on the East African Rift, a divergent boundary splitting the African plate, forming the Rift Valley over millions of years.</p>
+<p><strong>Rift Valley Features</strong>: Stretches from Afar to Lake Abaya, with volcanic peaks (Erta Ale) and lakes (Abaya, Chamo). It shapes Ethiopia’s seismic activity.</p>
+<p><strong>Volcanism</strong>: Danakil Depression hosts Erta Ale, an active shield volcano, influencing Afar’s geothermal energy potential.</p>
+<p><strong>Drainage Systems</strong>: Blue Nile (Abay) originates at Lake Tana, supporting GERD’s 6,450 MW hydropower, vital for Ethiopia’s energy.</p>
+<p><strong>Relief Structure</strong>: Ethiopian Highlands (3,000–4,500m) contrast with Danakil’s -125m, affecting climate and farming patterns.</p>
+<p><strong>Geological History</strong>: Precambrian rocks underlie Tigray; Cenozoic volcanism shaped Simien Mountains, a UNESCO site.</p>
+<p><strong>Earthquakes</strong>: Rift Valley’s tectonic activity causes frequent tremors, impacting infrastructure in Addis Ababa.</p>
+<p><strong>Soil Types</strong>: Volcanic soils in Bale support coffee; arid soils in Somali suit pastoralism.</p>
+</details>
+<details class="notes-details">
+<summary>Unit 3: Climate and Natural Vegetation / የአየር ንብረት እና ተፈጥሮ እፅዋት</summary>
+<p><strong>Köppen Classification</strong>: Ethiopia spans ‘A’ (tropical, southern lowlands), ‘B’ (arid, Afar), and ‘C’ (temperate, highlands).</p>
+<p><strong>Seasons</strong>: Kiremt (June–September) brings heavy rains for Amhara’s teff; Bega (October–February) is dry, affecting Somali pastoralists.</p>
+<p><strong>Highland Climate</strong>: Altitude cools Addis Ababa (2,355m, 15–20°C); Debre Markos has milder rains.</p>
+<p><strong>Lowland Climate</strong>: Afar’s arid climate (40°C, &lt;200mm rain) limits farming but supports salt mining.</p>
+<p><strong>Forest Vegetation</strong>: Bale Mountains host afro-alpine forests, home to Ethiopian wolves.</p>
+<p><strong>Savanna</strong>: Somali’s grasslands support pastoralism; acacia trees dominate Oromia’s lowlands.</p>
+<p><strong>Climate Variability</strong>: El Niño causes droughts, impacting 10 million farmers in 2015–16.</p>
+<p><strong>Conservation</strong>: Ethiopia’s national parks (Simien, Bale) protect endemic flora like Hagenia abyssinica.</p>
+</details>
+<details class="notes-details">
+<summary>Unit 4: Natural Resources and Conflicts / የተፈጥሮ ሀብቶች እና ግጭቶች</summary>
+<p><strong>Hydropower</strong>: Blue Nile’s GERD generates 6,450 MW, but disputes with Sudan/Egypt highlight water conflicts.</p>
+<p><strong>Minerals</strong>: Tigray’s gold and Afar’s potash drive exports; overmining risks land degradation.</p>
+<p><strong>Land Use</strong>: Amhara’s teff farming contrasts with Somali’s pastoralism, causing land disputes.</p>
+<p><strong>Renewable Resources</strong>: Lake Tana’s solar and wind potential supports Ethiopia’s green energy goals.</p>
+<p><strong>Non-renewable Resources</strong>: Danakil’s salt and Ogaden’s gas are finite, needing sustainable extraction.</p>
+<p><strong>GERD Conflicts</strong>: Egypt fears reduced Nile flow; Ethiopia prioritizes energy and irrigation.</p>
+<p><strong>Conservation Policies</strong>: Ethiopia’s CRGE strategy promotes sustainable land use in Awash Valley.</p>
+<p><strong>Overgrazing</strong>: Somali’s pastoral overgrazing degrades 20% of arable land, threatening food security.</p>
+</details>
+<details class="notes-details">
+<summary>Unit 5: Population and Settlement / ህዝብ እና ሰፈራ</summary>
+<p><strong>Population Growth</strong>: Ethiopia’s 120 million (2022) grows at 2.6% annually, driven by a 4.5 birth rate.</p>
+<p><strong>Youth Bulge</strong>: 70% under 30, creating job demands in Addis Ababa and Hawassa.</p>
+<p><strong>Urbanization</strong>: Addis Ababa’s 5 million residents face housing shortages; slums house 80% of urbanites.</p>
+<p><strong>Migration</strong>: Rural-to-urban migration fuels Hawassa’s growth; 500,000 migrate to Gulf states yearly.</p>
+<p><strong>Settlement Patterns</strong>: Clustered rural villages in Amhara contrast with Addis’s linear urban sprawl.</p>
+<p><strong>Demographic Challenges</strong>: High fertility strains schools; Ethiopia needs 2 million jobs annually.</p>
+<p><strong>Urban Planning</strong>: Addis Ababa’s master plan aims for sustainable growth by 2030.</p>
+<p><strong>Rural Settlements</strong>: Oromia’s dispersed farms rely on subsistence agriculture.</p>
+</details>
+<details class="notes-details">
+<summary>Unit 6: Economic Geography / የኢኮኖሚ ጂኦግራፊ</summary>
+<p><strong>Agriculture</strong>: Employs 70% of Ethiopians; coffee from Sidama earns $1 billion annually.</p>
+<p><strong>Trade</strong>: Landlocked Ethiopia uses Djibouti’s ports, with Addis-Djibouti railway cutting costs.</p>
+<p><strong>Industry</strong>: Hawassa’s industrial park produces textiles, creating 60,000 jobs.</p>
+<p><strong>Irrigation</strong>: Awash River irrigates 150,000 hectares, boosting sugar and cotton.</p>
+<p><strong>Exports</strong>: Coffee, flowers, and leather dominate; Ethiopia joined BRICS in 2024 for trade.</p>
+<p><strong>Transport</strong>: Ethiopia’s 120,000 km road network links Addis to rural markets.</p>
+<p><strong>Sustainability</strong>: Organic farming in Bale ensures long-term soil fertility.</p>
+<p><strong>Economic Policies</strong>: Ethiopia’s 10-Year Plan (2021–30) targets 7% GDP growth.</p>
+</details>
+<details class="notes-details">
+<summary>Unit 7: Environmental Geography / የአካባቢ ጂኦግራፊ</summary>
+<p><strong>Climate Change</strong>: Amhara’s erratic rains cut crop yields by 20%; droughts affect 8 million.</p>
+<p><strong>Deforestation</strong>: Bale Mountains lose 5% of forests yearly, threatening Ethiopian wolves.</p>
+<p><strong>Desertification</strong>: Somali’s 30% land degradation harms pastoralists; terracing helps.</p>
+<p><strong>Green Legacy</strong>: Ethiopia planted 32 billion trees since 2019, reforesting 7% of land.</p>
+<p><strong>Biodiversity</strong>: Simien Mountains protect 20 endemic species, including gelada baboons.</p>
+<p><strong>Pollution</strong>: Addis Ababa’s rivers face industrial waste, impacting 2 million residents.</p>
+<p><strong>Conservation</strong>: Ethiopia’s 20 national parks cover 14% of land, safeguarding ecosystems.</p>
+<p><strong>Sustainable Practices</strong>: Agroforestry in Oromia boosts yields and soil health.</p>
+</details>
+<details class="notes-details">
+<summary>Unit 8: Geospatial Technologies / የጂኦስፓሻል ቴክኖሎጂዎች</summary>
+<p><strong>GIS Applications</strong>: Addis Ababa uses GIS for urban planning, mapping 500,000 plots.</p>
+<p><strong>Remote Sensing</strong>: Satellites monitor Bale’s deforestation, detecting 10,000 ha loss.</p>
+<p><strong>Data Analysis</strong>: Geospatial data informs Ethiopia’s irrigation policies in Awash.</p>
+<p><strong>Disaster Management</strong>: GIS maps Afar’s flood zones, aiding 200,000 residents.</p>
+<p><strong>Agriculture</strong>: GIS optimizes Amhara’s farmland, increasing yields by 15%.</p>
+<p><strong>Urban Growth</strong>: Hawassa’s GIS tracks industrial expansion for sustainable planning.</p>
+<p><strong>Satellite Technology</strong>: Ethiopia’s ETRSS-1 satellite supports climate and crop monitoring.</p>
+<p><strong>Education</strong>: Addis Ababa University trains 500 GIS experts annually for development.</p>
+</details>
+</div>
+</section>
+<section aria-labelledby="quizzes-heading" class="section" id="quizzes">
+<h2 id="quizzes-heading">Quizzes / ጥያቄዎች</h2>
+<button aria-label="Read quizzes aloud" class="tts-button" id="quizzes-tts" onclick="readSection('quizzes-content', this)">Read Aloud</button>
+<div id="quizzes-content">
+<article aria-labelledby="unit1-quiz" class="quiz">
+<h3 id="unit1-quiz">Unit 1: The Science of Geography</h3>
+<p aria-describedby="quiz1-instructions" id="quiz1-instructions">Select the correct answer and submit.</p>
+<div aria-label="Question 1" class="quiz-question" role="region">
+<fieldset>
+<legend id="q1a-label">1. What does geography primarily study?</legend>
+<label><input aria-labelledby="q1a-label" name="q1a" type="radio" value="a"/> a) Spatial patterns</label>
+<label><input aria-labelledby="q1a-label" name="q1a" type="radio" value="b"/> b) Chemical reactions</label>
+<label><input aria-labelledby="q1a-label" name="q1a" type="radio" value="c"/> c) Historical events</label>
+</fieldset>
+<button aria-label="Read question 1 aloud" class="tts-button" id="q1a-tts" onclick="readQuestion('q1a-label', 'q1a', this)">Read Question</button>
+<button aria-controls="feedback1a" onclick="checkAnswer('q1a', 'a', 'feedback1a', 'unit1-score')">Submit</button>
+<button aria-label="Reset question 1" onclick="resetQuestion('q1a', 'feedback1a')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback1a"></div>
+</div>
+<div aria-label="Question 2" class="quiz-question" role="region">
+<fieldset>
+<legend id="q1b-label">2. Which school of thought emphasizes human adaptation?</legend>
+<label><input aria-labelledby="q1b-label" name="q1b" type="radio" value="a"/> a) Determinism</label>
+<label><input aria-labelledby="q1b-label" name="q1b" type="radio" value="b"/> b) Possibilism</label>
+<label><input aria-labelledby="q1b-label" name="q1b" type="radio" value="c"/> c) Regionalism</label>
+</fieldset>
+<button aria-label="Read question 2 aloud" class="tts-button" id="q1b-tts" onclick="readQuestion('q1b-label', 'q1b', this)">Read Question</button>
+<button aria-controls="feedback1b" onclick="checkAnswer('q1b', 'b', 'feedback1b', 'unit1-score')">Submit</button>
+<button aria-label="Reset question 2" onclick="resetQuestion('q1b', 'feedback1b')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback1b"></div>
+</div>
+<div aria-label="Question 3" class="quiz-question" role="region">
+<fieldset>
+<legend id="q1c-label">3. What helps urban planning in Ethiopia?</legend>
+<label><input aria-labelledby="q1c-label" name="q1c" type="radio" value="a"/> a) Spatial analysis</label>
+<label><input aria-labelledby="q1c-label" name="q1c" type="radio" value="b"/> b) Genetic mapping</label>
+<label><input aria-labelledby="q1c-label" name="q1c" type="radio" value="c"/> c) Historical records</label>
+</fieldset>
+<button aria-label="Read question 3 aloud" class="tts-button" id="q1c-tts" onclick="readQuestion('q1c-label', 'q1c', this)">Read Question</button>
+<button aria-controls="feedback1c" onclick="checkAnswer('q1c', 'a', 'feedback1c', 'unit1-score')">Submit</button>
+<button aria-label="Reset question 3" onclick="resetQuestion('q1c', 'feedback1c')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback1c"></div>
+</div>
+<div aria-label="Question 4" class="quiz-question" role="region">
+<fieldset>
+<legend id="q1d-label">4. What studies Ethiopia’s Rift Valley landforms?</legend>
+<label><input aria-labelledby="q1d-label" name="q1d" type="radio" value="a"/> a) Physical geography</label>
+<label><input aria-labelledby="q1d-label" name="q1d" type="radio" value="b"/> b) Human geography</label>
+<label><input aria-labelledby="q1d-label" name="q1d" type="radio" value="c"/> c) Political geography</label>
+</fieldset>
+<button aria-label="Read question 4 aloud" class="tts-button" id="q1d-tts" onclick="readQuestion('q1d-label', 'q1d', this)">Read Question</button>
+<button aria-controls="feedback1d" onclick="checkAnswer('q1d', 'a', 'feedback1d', 'unit1-score')">Submit</button>
+<button aria-label="Reset question 4" onclick="resetQuestion('q1d', 'feedback1d')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback1d"></div>
+</div>
+<div aria-label="Question 5" class="quiz-question" role="region">
+<fieldset>
+<legend id="q1e-label">5. Which theory limits human activity by environment?</legend>
+<label><input aria-labelledby="q1e-label" name="q1e" type="radio" value="a"/> a) Possibilism</label>
+<label><input aria-labelledby="q1e-label" name="q1e" type="radio" value="b"/> b) Determinism</label>
+<label><input aria-labelledby="q1e-label" name="q1e" type="radio" value="c"/> c) Functionalism</label>
+</fieldset>
+<button aria-label="Read question 5 aloud" class="tts-button" id="q1e-tts" onclick="readQuestion('q1e-label', 'q1e', this)">Read Question</button>
+<button aria-controls="feedback1e" onclick="checkAnswer('q1e', 'b', 'feedback1e', 'unit1-score')">Submit</button>
+<button aria-label="Reset question 5" onclick="resetQuestion('q1e', 'feedback1e')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback1e"></div>
+</div>
+<div aria-live="polite" class="quiz-score" id="unit1-score">Score: 0/5</div>
+</article>
+<article aria-labelledby="unit2-quiz" class="quiz">
+<h3 id="unit2-quiz">Unit 2: Physical Geography</h3>
+<p aria-describedby="quiz2-instructions" id="quiz2-instructions">Select the correct answer and submit.</p>
+<div aria-label="Question 1" class="quiz-question" role="region">
+<fieldset>
+<legend id="q2a-label">1. What drives plate tectonics in Ethiopia?</legend>
+<label><input aria-labelledby="q2a-label" name="q2a" type="radio" value="a"/> a) Mantle convection</label>
+<label><input aria-labelledby="q2a-label" name="q2a" type="radio" value="b"/> b) Solar radiation</label>
+<label><input aria-labelledby="q2a-label" name="q2a" type="radio" value="c"/> c) Ocean currents</label>
+</fieldset>
+<button aria-label="Read question 1 aloud" class="tts-button" id="q2a-tts" onclick="readQuestion('q2a-label', 'q2a', this)">Read Question</button>
+<button aria-controls="feedback2a" onclick="checkAnswer('q2a', 'a', 'feedback2a', 'unit2-score')">Submit</button>
+<button aria-label="Reset question 1" onclick="resetQuestion('q2a', 'feedback2a')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback2a"></div>
+</div>
+<div aria-label="Question 2" class="quiz-question" role="region">
+<fieldset>
+<legend id="q2b-label">2. What formed Ethiopia’s Great Rift Valley?</legend>
+<label><input aria-labelledby="q2b-label" name="q2b" type="radio" value="a"/> a) Convergent boundary</label>
+<label><input aria-labelledby="q2b-label" name="q2b" type="radio" value="b"/> b) Divergent boundary</label>
+<label><input aria-labelledby="q2b-label" name="q2b" type="radio" value="c"/> c) Transform boundary</label>
+</fieldset>
+<button aria-label="Read question 2 aloud" class="tts-button" id="q2b-tts" onclick="readQuestion('q2b-label', 'q2b', this)">Read Question</button>
+<button aria-controls="feedback2b" onclick="checkAnswer('q2b', 'b', 'feedback2b', 'unit2-score')">Submit</button>
+<button aria-label="Reset question 2" onclick="resetQuestion('q2b', 'feedback2b')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback2b"></div>
+</div>
+<div aria-label="Question 3" class="quiz-question" role="region">
+<fieldset>
+<legend id="q2c-label">3. Where is active volcanism found?</legend>
+<label><input aria-labelledby="q2c-label" name="q2c" type="radio" value="a"/> a) Simien Mountains</label>
+<label><input aria-labelledby="q2c-label" name="q2c" type="radio" value="b"/> b) Danakil Depression</label>
+<label><input aria-labelledby="q2c-label" name="q2c" type="radio" value="c"/> c) Lake Tana</label>
+</fieldset>
+<button aria-label="Read question 3 aloud" class="tts-button" id="q2c-tts" onclick="readQuestion('q2c-label', 'q2c', this)">Read Question</button>
+<button aria-controls="feedback2c" onclick="checkAnswer('q2c', 'b', 'feedback2c', 'unit2-score')">Submit</button>
+<button aria-label="Reset question 3" onclick="resetQuestion('q2c', 'feedback2c')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback2c"></div>
+</div>
+<div aria-label="Question 4" class="quiz-question" role="region">
+<fieldset>
+<legend id="q2d-label">4. What causes Ethiopia’s earthquakes?</legend>
+<label><input aria-labelledby="q2d-label" name="q2d" type="radio" value="a"/> a) Plate movement</label>
+<label><input aria-labelledby="q2d-label" name="q2d" type="radio" value="b"/> b) Heavy rainfall</label>
+<label><input aria-labelledby="q2d-label" name="q2d" type="radio" value="c"/> c) Soil erosion</label>
+</fieldset>
+<button aria-label="Read question 4 aloud" class="tts-button" id="q2d-tts" onclick="readQuestion('q2d-label', 'q2d', this)">Read Question</button>
+<button aria-controls="feedback2d" onclick="checkAnswer('q2d', 'a', 'feedback2d', 'unit2-score')">Submit</button>
+<button aria-label="Reset question 4" onclick="resetQuestion('q2d', 'feedback2d')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback2d"></div>
+</div>
+<div aria-label="Question 5" class="quiz-question" role="region">
+<fieldset>
+<legend id="q2e-label">5. Which river supports GERD’s hydropower?</legend>
+<label><input aria-labelledby="q2e-label" name="q2e" type="radio" value="a"/> a) Awash River</label>
+<label><input aria-labelledby="q2e-label" name="q2e" type="radio" value="b"/> b) Blue Nile</label>
+<label><input aria-labelledby="q2e-label" name="q2e" type="radio" value="c"/> c) Omo River</label>
+</fieldset>
+<button aria-label="Read question 5 aloud" class="tts-button" id="q2e-tts" onclick="readQuestion('q2e-label', 'q2e', this)">Read Question</button>
+<button aria-controls="feedback2e" onclick="checkAnswer('q2e', 'b', 'feedback2e', 'unit2-score')">Submit</button>
+<button aria-label="Reset question 5" onclick="resetQuestion('q2e', 'feedback2e')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback2e"></div>
+</div>
+<div aria-live="polite" class="quiz-score" id="unit2-score">Score: 0/5</div>
+</article>
+<article aria-labelledby="unit3-quiz" class="quiz">
+<h3 id="unit3-quiz">Unit 3: Climate and Natural Vegetation</h3>
+<p aria-describedby="quiz3-instructions" id="quiz3-instructions">Select the correct answer and submit.</p>
+<div aria-label="Question 1" class="quiz-question" role="region">
+<fieldset>
+<legend id="q3a-label">1. Which Köppen classification is tropical?</legend>
+<label><input aria-labelledby="q3a-label" name="q3a" type="radio" value="a"/> a) A</label>
+<label><input aria-labelledby="q3a-label" name="q3a" type="radio" value="b"/> b) B</label>
+<label><input aria-labelledby="q3a-label" name="q3a" type="radio" value="c"/> c) C</label>
+</fieldset>
+<button aria-label="Read question 1 aloud" class="tts-button" id="q3a-tts" onclick="readQuestion('q3a-label', 'q3a', this)">Read Question</button>
+<button aria-controls="feedback3a" onclick="checkAnswer('q3a', 'a', 'feedback3a', 'unit3-score')">Submit</button>
+<button aria-label="Reset question 1" onclick="resetQuestion('q3a', 'feedback3a')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback3a"></div>
+</div>
+<div aria-label="Question 2" class="quiz-question" role="region">
+<fieldset>
+<legend id="q3b-label">2. What describes Afar’s climate?</legend>
+<label><input aria-labelledby="q3b-label" name="q3b" type="radio" value="a"/> a) Tropical</label>
+<label><input aria-labelledby="q3b-label" name="q3b" type="radio" value="b"/> b) Arid</label>
+<label><input aria-labelledby="q3b-label" name="q3b" type="radio" value="c"/> c) Temperate</label>
+</fieldset>
+<button aria-label="Read question 2 aloud" class="tts-button" id="q3b-tts" onclick="readQuestion('q3b-label', 'q3b', this)">Read Question</button>
+<button aria-controls="feedback3b" onclick="checkAnswer('q3b', 'b', 'feedback3b', 'unit3-score')">Submit</button>
+<button aria-label="Reset question 2" onclick="resetQuestion('q3b', 'feedback3b')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback3b"></div>
+</div>
+<div aria-label="Question 3" class="quiz-question" role="region">
+<fieldset>
+<legend id="q3c-label">3. When is Ethiopia’s main rainy season?</legend>
+<label><input aria-labelledby="q3c-label" name="q3c" type="radio" value="a"/> a) Bega</label>
+<label><input aria-labelledby="q3c-label" name="q3c" type="radio" value="b"/> b) Kiremt</label>
+<label><input aria-labelledby="q3c-label" name="q3c" type="radio" value="c"/> c) Belg</label>
+</fieldset>
+<button aria-label="Read question 3 aloud" class="tts-button" id="q3c-tts" onclick="readQuestion('q3c-label', 'q3c', this)">Read Question</button>
+<button aria-controls="feedback3c" onclick="checkAnswer('q3c', 'b', 'feedback3c', 'unit3-score')">Submit</button>
+<button aria-label="Reset question 3" onclick="resetQuestion('q3c', 'feedback3c')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback3c"></div>
+</div>
+<div aria-label="Question 4" class="quiz-question" role="region">
+<fieldset>
+<legend id="q3d-label">4. What vegetation is in Bale Mountains?</legend>
+<label><input aria-labelledby="q3d-label" name="q3d" type="radio" value="a"/> a) Savanna</label>
+<label><input aria-labelledby="q3d-label" name="q3d" type="radio" value="b"/> b) Forest</label>
+<label><input aria-labelledby="q3d-label" name="q3d" type="radio" value="c"/> c) Desert</label>
+</fieldset>
+<button aria-label="Read question 4 aloud" class="tts-button" id="q3d-tts" onclick="readQuestion('q3d-label', 'q3d', this)">Read Question</button>
+<button aria-controls="feedback3d" onclick="checkAnswer('q3d', 'b', 'feedback3d', 'unit3-score')">Submit</button>
+<button aria-label="Reset question 4" onclick="resetQuestion('q3d', 'feedback3d')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback3d"></div>
+</div>
+<div aria-label="Question 5" class="quiz-question" role="region">
+<fieldset>
+<legend id="q3e-label">5. What drives Ethiopia’s highland climate?</legend>
+<label><input aria-labelledby="q3e-label" name="q3e" type="radio" value="a"/> a) Altitude</label>
+<label><input aria-labelledby="q3e-label" name="q3e" type="radio" value="b"/> b) Latitude</label>
+<label><input aria-labelledby="q3e-label" name="q3e" type="radio" value="c"/> c) Ocean proximity</label>
+</fieldset>
+<button aria-label="Read question 5 aloud" class="tts-button" id="q3e-tts" onclick="readQuestion('q3e-label', 'q3e', this)">Read Question</button>
+<button aria-controls="feedback3e" onclick="checkAnswer('q3e', 'a', 'feedback3e', 'unit3-score')">Submit</button>
+<button aria-label="Reset question 5" onclick="resetQuestion('q3e', 'feedback3e')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback3e"></div>
+</div>
+<div aria-live="polite" class="quiz-score" id="unit3-score">Score: 0/5</div>
+</article>
+<article aria-labelledby="unit4-quiz" class="quiz">
+<h3 id="unit4-quiz">Unit 4: Natural Resources and Conflicts</h3>
+<p aria-describedby="quiz4-instructions" id="quiz4-instructions">Select the correct answer and submit.</p>
+<div aria-label="Question 1" class="quiz-question" role="region">
+<fieldset>
+<legend id="q4a-label">1. What powers Ethiopia’s GERD?</legend>
+<label><input aria-labelledby="q4a-label" name="q4a" type="radio" value="a"/> a) Hydropower</label>
+<label><input aria-labelledby="q4a-label" name="q4a" type="radio" value="b"/> b) Solar power</label>
+<label><input aria-labelledby="q4a-label" name="q4a" type="radio" value="c"/> c) Wind power</label>
+</fieldset>
+<button aria-label="Read question 1 aloud" class="tts-button" id="q4a-tts" onclick="readQuestion('q4a-label', 'q4a', this)">Read Question</button>
+<button aria-controls="feedback4a" onclick="checkAnswer('q4a', 'a', 'feedback4a', 'unit4-score')">Submit</button>
+<button aria-label="Reset question 1" onclick="resetQuestion('q4a', 'feedback4a')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback4a"></div>
+</div>
+<div aria-label="Question 2" class="quiz-question" role="region">
+<fieldset>
+<legend id="q4b-label">2. What mineral is mined in Tigray?</legend>
+<label><input aria-labelledby="q4b-label" name="q4b" type="radio" value="a"/> a) Gold</label>
+<label><input aria-labelledby="q4b-label" name="q4b" type="radio" value="b"/> b) Iron</label>
+<label><input aria-labelledby="q4b-label" name="q4b" type="radio" value="c"/> c) Coal</label>
+</fieldset>
+<button aria-label="Read question 2 aloud" class="tts-button" id="q4b-tts" onclick="readQuestion('q4b-label', 'q4b', this)">Read Question</button>
+<button aria-controls="feedback4b" onclick="checkAnswer('q4b', 'a', 'feedback4b', 'unit4-score')">Submit</button>
+<button aria-label="Reset question 2" onclick="resetQuestion('q4b', 'feedback4b')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback4b"></div>
+</div>
+<div aria-label="Question 3" class="quiz-question" role="region">
+<fieldset>
+<legend id="q4c-label">3. What causes Blue Nile disputes?</legend>
+<label><input aria-labelledby="q4c-label" name="q4c" type="radio" value="a"/> a) Fishing rights</label>
+<label><input aria-labelledby="q4c-label" name="q4c" type="radio" value="b"/> b) GERD construction</label>
+<label><input aria-labelledby="q4c-label" name="q4c" type="radio" value="c"/> c) Oil exploration</label>
+</fieldset>
+<button aria-label="Read question 3 aloud" class="tts-button" id="q4c-tts" onclick="readQuestion('q4c-label', 'q4c', this)">Read Question</button>
+<button aria-controls="feedback4c" onclick="checkAnswer('q4c', 'b', 'feedback4c', 'unit4-score')">Submit</button>
+<button aria-label="Reset question 3" onclick="resetQuestion('q4c', 'feedback4c')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback4c"></div>
+</div>
+<div aria-label="Question 4" class="quiz-question" role="region">
+<fieldset>
+<legend id="q4d-label">4. What is Amhara’s main land use?</legend>
+<label><input aria-labelledby="q4d-label" name="q4d" type="radio" value="a"/> a) Mining</label>
+<label><input aria-labelledby="q4d-label" name="q4d" type="radio" value="b"/> b) Agriculture</label>
+<label><input aria-labelledby="q4d-label" name="q4d" type="radio" value="c"/> c) Urbanization</label>
+</fieldset>
+<button aria-label="Read question 4 aloud" class="tts-button" id="q4d-tts" onclick="readQuestion('q4d-label', 'q4d', this)">Read Question</button>
+<button aria-controls="feedback4d" onclick="checkAnswer('q4d', 'b', 'feedback4d', 'unit4-score')">Submit</button>
+<button aria-label="Reset question 4" onclick="resetQuestion('q4d', 'feedback4d')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback4d"></div>
+</div>
+<div aria-label="Question 5" class="quiz-question" role="region">
+<fieldset>
+<legend id="q4e-label">5. What degrades Somali’s land?</legend>
+<label><input aria-labelledby="q4e-label" name="q4e" type="radio" value="a"/> a) Urbanization</label>
+<label><input aria-labelledby="q4e-label" name="q4e" type="radio" value="b"/> b) Overgrazing</label>
+<label><input aria-labelledby="q4e-label" name="q4e" type="radio" value="c"/> c) Reforestation</label>
+</fieldset>
+<button aria-label="Read question 5 aloud" class="tts-button" id="q4e-tts" onclick="readQuestion('q4e-label', 'q4e', this)">Read Question</button>
+<button aria-controls="feedback4e" onclick="checkAnswer('q4e', 'b', 'feedback4e', 'unit4-score')">Submit</button>
+<button aria-label="Reset question 5" onclick="resetQuestion('q4e', 'feedback4e')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback4e"></div>
+</div>
+<div aria-live="polite" class="quiz-score" id="unit4-score">Score: 0/5</div>
+</article>
+<article aria-labelledby="unit5-quiz" class="quiz">
+<h3 id="unit5-quiz">Unit 5: Population and Settlement</h3>
+<p aria-describedby="quiz5-instructions" id="quiz5-instructions">Select the correct answer and submit.</p>
+<div aria-label="Question 1" class="quiz-question" role="region">
+<fieldset>
+<legend id="q5a-label">1. What drives Ethiopia’s population growth?</legend>
+<label><input aria-labelledby="q5a-label" name="q5a" type="radio" value="a"/> a) High birth rate</label>
+<label><input aria-labelledby="q5a-label" name="q5a" type="radio" value="b"/> b) Low mortality</label>
+<label><input aria-labelledby="q5a-label" name="q5a" type="radio" value="c"/> c) Immigration</label>
+</fieldset>
+<button aria-label="Read question 1 aloud" class="tts-button" id="q5a-tts" onclick="readQuestion('q5a-label', 'q5a', this)">Read Question</button>
+<button aria-controls="feedback5a" onclick="checkAnswer('q5a', 'a', 'feedback5a', 'unit5-score')">Submit</button>
+<button aria-label="Reset question 1" onclick="resetQuestion('q5a', 'feedback5a')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback5a"></div>
+</div>
+<div aria-label="Question 2" class="quiz-question" role="region">
+<fieldset>
+<legend id="q5b-label">2. What challenges Addis Ababa’s urbanization?</legend>
+<label><input aria-labelledby="q5b-label" name="q5b" type="radio" value="a"/> a) Housing shortages</label>
+<label><input aria-labelledby="q5b-label" name="q5b" type="radio" value="b"/> b) Overpopulation</label>
+<label><input aria-labelledby="q5b-label" name="q5b" type="radio" value="c"/> c) Desertification</label>
+</fieldset>
+<button aria-label="Read question 2 aloud" class="tts-button" id="q5b-tts" onclick="readQuestion('q5b-label', 'q5b', this)">Read Question</button>
+<button aria-controls="feedback5b" onclick="checkAnswer('q5b', 'a', 'feedback5b', 'unit5-score')">Submit</button>
+<button aria-label="Reset question 2" onclick="resetQuestion('q5b', 'feedback5b')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback5b"></div>
+</div>
+<div aria-label="Question 3" class="quiz-question" role="region">
+<fieldset>
+<legend id="q5c-label">3. What fuels Hawassa’s population growth?</legend>
+<label><input aria-labelledby="q5c-label" name="q5c" type="radio" value="a"/> a) International migration</label>
+<label><input aria-labelledby="q5c-label" name="q5c" type="radio" value="b"/> b) Rural-to-urban migration</label>
+<label><input aria-labelledby="q5c-label" name="q5c" type="radio" value="c"/> c) Natural disasters</label>
+</fieldset>
+<button aria-label="Read question 3 aloud" class="tts-button" id="q5c-tts" onclick="readQuestion('q5c-label', 'q5c', this)">Read Question</button>
+<button aria-controls="feedback5c" onclick="checkAnswer('q5c', 'b', 'feedback5c', 'unit5-score')">Submit</button>
+<button aria-label="Reset question 3" onclick="resetQuestion('q5c', 'feedback5c')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback5c"></div>
+</div>
+<div aria-label="Question 4" class="quiz-question" role="region">
+<fieldset>
+<legend id="q5d-label">4. What is a common rural settlement pattern?</legend>
+<label><input aria-labelledby="q5d-label" name="q5d" type="radio" value="a"/> a) Linear</label>
+<label><input aria-labelledby="q5d-label" name="q5d" type="radio" value="b"/> b) Clustered</label>
+<label><input aria-labelledby="q5d-label" name="q5d" type="radio" value="c"/> c) Dispersed</label>
+</fieldset>
+<button aria-label="Read question 4 aloud" class="tts-button" id="q5d-tts" onclick="readQuestion('q5d-label', 'q5d', this)">Read Question</button>
+<button aria-controls="feedback5d" onclick="checkAnswer('q5d', 'b', 'feedback5d', 'unit5-score')">Submit</button>
+<button aria-label="Reset question 4" onclick="resetQuestion('q5d', 'feedback5d')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback5d"></div>
+</div>
+<div aria-label="Question 5" class="quiz-question" role="region">
+<fieldset>
+<legend id="q5e-label">5. What demographic feature defines Ethiopia’s population?</legend>
+<label><input aria-labelledby="q5e-label" name="q5e" type="radio" value="a"/> a) Aging population</label>
+<label><input aria-labelledby="q5e-label" name="q5e" type="radio" value="b"/> b) Youth bulge</label>
+<label><input aria-labelledby="q5e-label" name="q5e" type="radio" value="c"/> c) Balanced age groups</label>
+</fieldset>
+<button aria-label="Read question 5 aloud" class="tts-button" id="q5e-tts" onclick="readQuestion('q5e-label', 'q5e', this)">Read Question</button>
+<button aria-controls="feedback5e" onclick="checkAnswer('q5e', 'b', 'feedback5e', 'unit5-score')">Submit</button>
+<button aria-label="Reset question 5" onclick="resetQuestion('q5e', 'feedback5e')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback5e"></div>
+</div>
+<div aria-live="polite" class="quiz-score" id="unit5-score">Score: 0/5</div>
+</article>
+<article aria-labelledby="unit6-quiz" class="quiz">
+<h3 id="unit6-quiz">Unit 6: Economic Geography</h3>
+<p aria-describedby="quiz6-instructions" id="quiz6-instructions">Select the correct answer and submit.</p>
+<div aria-label="Question 1" class="quiz-question" role="region">
+<fieldset>
+<legend id="q6a-label">1. What is Ethiopia’s main economic activity?</legend>
+<label><input aria-labelledby="q6a-label" name="q6a" type="radio" value="a"/> a) Agriculture</label>
+<label><input aria-labelledby="q6a-label" name="q6a" type="radio" value="b"/> b) Manufacturing</label>
+<label><input aria-labelledby="q6a-label" name="q6a" type="radio" value="c"/> c) Tourism</label>
+</fieldset>
+<button aria-label="Read question 1 aloud" class="tts-button" id="q6a-tts" onclick="readQuestion('q6a-label', 'q6a', this)">Read Question</button>
+<button aria-controls="feedback6a" onclick="checkAnswer('q6a', 'a', 'feedback6a', 'unit6-score')">Submit</button>
+<button aria-label="Reset question 1" onclick="resetQuestion('q6a', 'feedback6a')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback6a"></div>
+</div>
+<div aria-label="Question 2" class="quiz-question" role="region">
+<fieldset>
+<legend id="q6b-label">2. What is Ethiopia’s top export?</legend>
+<label><input aria-labelledby="q6b-label" name="q6b" type="radio" value="a"/> a) Gold</label>
+<label><input aria-labelledby="q6b-label" name="q6b" type="radio" value="b"/> b) Coffee</label>
+<label><input aria-labelledby="q6b-label" name="q6b" type="radio" value="c"/> c) Textiles</label>
+</fieldset>
+<button aria-label="Read question 2 aloud" class="tts-button" id="q6b-tts" onclick="readQuestion('q6b-label', 'q6b', this)">Read Question</button>
+<button aria-controls="feedback6b" onclick="checkAnswer('q6b', 'b', 'feedback6b', 'unit6-score')">Submit</button>
+<button aria-label="Reset question 2" onclick="resetQuestion('q6b', 'feedback6b')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback6b"></div>
+</div>
+<div aria-label="Question 3" class="quiz-question" role="region">
+<fieldset>
+<legend id="q6c-label">3. Which city has a major industrial park?</legend>
+<label><input aria-labelledby="q6c-label" name="q6c" type="radio" value="a"/> a) Addis Ababa</label>
+<label><input aria-labelledby="q6c-label" name="q6c" type="radio" value="b"/> b) Hawassa</label>
+<label><input aria-labelledby="q6c-label" name="q6c" type="radio" value="c"/> c) Gondar</label>
+</fieldset>
+<button aria-label="Read question 3 aloud" class="tts-button" id="q6c-tts" onclick="readQuestion('q6c-label', 'q6c', this)">Read Question</button>
+<button aria-controls="feedback6c" onclick="checkAnswer('q6c', 'b', 'feedback6c', 'unit6-score')">Submit</button>
+<button aria-label="Reset question 3" onclick="resetQuestion('q6c', 'feedback6c')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback6c"></div>
+</div>
+<div aria-label="Question 4" class="quiz-question" role="region">
+<fieldset>
+<legend id="q6d-label">4. What supports Awash Valley’s agriculture?</legend>
+<label><input aria-labelledby="q6d-label" name="q6d" type="radio" value="a"/> a) Irrigation</label>
+<label><input aria-labelledby="q6d-label" name="q6d" type="radio" value="b"/> b) Rainfall</label>
+<label><input aria-labelledby="q6d-label" name="q6d" type="radio" value="c"/> c) Fertilizers</label>
+</fieldset>
+<button aria-label="Read question 4 aloud" class="tts-button" id="q6d-tts" onclick="readQuestion('q6d-label', 'q6d', this)">Read Question</button>
+<button aria-controls="feedback6d" onclick="checkAnswer('q6d', 'a', 'feedback6d', 'unit6-score')">Submit</button>
+<button aria-label="Reset question 4" onclick="resetQuestion('q6d', 'feedback6d')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback6d"></div>
+</div>
+<div aria-label="Question 5" class="quiz-question" role="region">
+<fieldset>
+<legend id="q6e-label">5. Which port does Ethiopia use for trade?</legend>
+<label><input aria-labelledby="q6e-label" name="q6e" type="radio" value="a"/> a) Mombasa</label>
+<label><input aria-labelledby="q6e-label" name="q6e" type="radio" value="b"/> b) Djibouti</label>
+<label><input aria-labelledby="q6e-label" name="q6e" type="radio" value="c"/> c) Port Sudan</label>
+</fieldset>
+<button aria-label="Read question 5 aloud" class="tts-button" id="q6e-tts" onclick="readQuestion('q6e-label', 'q6e', this)">Read Question</button>
+<button aria-controls="feedback6e" onclick="checkAnswer('q6e', 'b', 'feedback6e', 'unit6-score')">Submit</button>
+<button aria-label="Reset question 5" onclick="resetQuestion('q6e', 'feedback6e')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback6e"></div>
+</div>
+<div aria-live="polite" class="quiz-score" id="unit6-score">Score: 0/5</div>
+</article>
+<article aria-labelledby="unit7-quiz" class="quiz">
+<h3 id="unit7-quiz">Unit 7: Environmental Geography</h3>
+<p aria-describedby="quiz7-instructions" id="quiz7-instructions">Select the correct answer and submit.</p>
+<div aria-label="Question 1" class="quiz-question" role="region">
+<fieldset>
+<legend id="q7a-label">1. What impacts Amhara’s crop yields?</legend>
+<label><input aria-labelledby="q7a-label" name="q7a" type="radio" value="a"/> a) Climate change</label>
+<label><input aria-labelledby="q7a-label" name="q7a" type="radio" value="b"/> b) Urbanization</label>
+<label><input aria-labelledby="q7a-label" name="q7a" type="radio" value="c"/> c) Overgrazing</label>
+</fieldset>
+<button aria-label="Read question 1 aloud" class="tts-button" id="q7a-tts" onclick="readQuestion('q7a-label', 'q7a', this)">Read Question</button>
+<button aria-controls="feedback7a" onclick="checkAnswer('q7a', 'a', 'feedback7a', 'unit7-score')">Submit</button>
+<button aria-label="Reset question 1" onclick="resetQuestion('q7a', 'feedback7a')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback7a"></div>
+</div>
+<div aria-label="Question 2" class="quiz-question" role="region">
+<fieldset>
+<legend id="q7b-label">2. What threatens Bale’s Ethiopian wolves?</legend>
+<label><input aria-labelledby="q7b-label" name="q7b" type="radio" value="a"/> a) Pollution</label>
+<label><input aria-labelledby="q7b-label" name="q7b" type="radio" value="b"/> b) Deforestation</label>
+<label><input aria-labelledby="q7b-label" name="q7b" type="radio" value="c"/> c) Mining</label>
+</fieldset>
+<button aria-label="Read question 2 aloud" class="tts-button" id="q7b-tts" onclick="readQuestion('q7b-label', 'q7b', this)">Read Question</button>
+<button aria-controls="feedback7b" onclick="checkAnswer('q7b', 'b', 'feedback7b', 'unit7-score')">Submit</button>
+<button aria-label="Reset question 2" onclick="resetQuestion('q7b', 'feedback7b')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback7b"></div>
+</div>
+<div aria-label="Question 3" class="quiz-question" role="region">
+<fieldset>
+<legend id="q7c-label">3. What is Ethiopia’s reforestation initiative?</legend>
+<label><input aria-labelledby="q7c-label" name="q7c" type="radio" value="a"/> a) Green Legacy</label>
+<label><input aria-labelledby="q7c-label" name="q7c" type="radio" value="b"/> b) Blue Nile Project</label>
+<label><input aria-labelledby="q7c-label" name="q7c" type="radio" value="c"/> c) Desert Control</label>
+</fieldset>
+<button aria-label="Read question 3 aloud" class="tts-button" id="q7c-tts" onclick="readQuestion('q7c-label', 'q7c', this)">Read Question</button>
+<button aria-controls="feedback7c" onclick="checkAnswer('q7c', 'a', 'feedback7c', 'unit7-score')">Submit</button>
+<button aria-label="Reset question 3" onclick="resetQuestion('q7c', 'feedback7c')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback7c"></div>
+</div>
+<div aria-label="Question 4" class="quiz-question" role="region">
+<fieldset>
+<legend id="q7d-label">4. What degrades Somali’s pastoral land?</legend>
+<label><input aria-labelledby="q7d-label" name="q7d" type="radio" value="a"/> a) Desertification</label>
+<label><input aria-labelledby="q7d-label" name="q7d" type="radio" value="b"/> b) Urbanization</label>
+<label><input aria-labelledby="q7d-label" name="q7d" type="radio" value="c"/> c) Reforestation</label>
+</fieldset>
+<button aria-label="Read question 4 aloud" class="tts-button" id="q7d-tts" onclick="readQuestion('q7d-label', 'q7d', this)">Read Question</button>
+<button aria-controls="feedback7d" onclick="checkAnswer('q7d', 'a', 'feedback7d', 'unit7-score')">Submit</button>
+<button aria-label="Reset question 4" onclick="resetQuestion('q7d', 'feedback7d')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback7d"></div>
+</div>
+<div aria-label="Question 5" class="quiz-question" role="region">
+<fieldset>
+<legend id="q7e-label">5. What protects Simien’s biodiversity?</legend>
+<label><input aria-labelledby="q7e-label" name="q7e" type="radio" value="a"/> a) Urban planning</label>
+<label><input aria-labelledby="q7e-label" name="q7e" type="radio" value="b"/> b) National parks</label>
+<label><input aria-labelledby="q7e-label" name="q7e" type="radio" value="c"/> c) Industrial zones</label>
+</fieldset>
+<button aria-label="Read question 5 aloud" class="tts-button" id="q7e-tts" onclick="readQuestion('q7e-label', 'q7e', this)">Read Question</button>
+<button aria-controls="feedback7e" onclick="checkAnswer('q7e', 'b', 'feedback7e', 'unit7-score')">Submit</button>
+<button aria-label="Reset question 5" onclick="resetQuestion('q7e', 'feedback7e')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback7e"></div>
+</div>
+<div aria-live="polite" class="quiz-score" id="unit7-score">Score: 0/5</div>
+</article>
+<article aria-labelledby="unit8-quiz" class="quiz">
+<h3 id="unit8-quiz">Unit 8: Geospatial Technologies</h3>
+<p aria-describedby="quiz8-instructions" id="quiz8-instructions">Select the correct answer and submit.</p>
+<div aria-label="Question 1" class="quiz-question" role="region">
+<fieldset>
+<legend id="q8a-label">1. What does GIS primarily support in Addis Ababa?</legend>
+<label><input aria-labelledby="q8a-label" name="q8a" type="radio" value="a"/> a) Urban planning</label>
+<label><input aria-labelledby="q8a-label" name="q8a" type="radio" value="b"/> b) Mineral exploration</label>
+<label><input aria-labelledby="q8a-label" name="q8a" type="radio" value="c"/> c) Historical research</label>
+</fieldset>
+<button aria-label="Read question 1 aloud" class="tts-button" id="q8a-tts" onclick="readQuestion('q8a-label', 'q8a', this)">Read Question</button>
+<button aria-controls="feedback8a" onclick="checkAnswer('q8a', 'a', 'feedback8a', 'unit8-score')">Submit</button>
+<button aria-label="Reset question 1" onclick="resetQuestion('q8a', 'feedback8a')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback8a"></div>
+</div>
+<div aria-label="Question 2" class="quiz-question" role="region">
+<fieldset>
+<legend id="q8b-label">2. What monitors Bale’s deforestation?</legend>
+<label><input aria-labelledby="q8b-label" name="q8b" type="radio" value="a"/> a) GPS tracking</label>
+<label><input aria-labelledby="q8b-label" name="q8b" type="radio" value="b"/> b) Remote sensing</label>
+<label><input aria-labelledby="q8b-label" name="q8b" type="radio" value="c"/> c) Manual surveys</label>
+</fieldset>
+<button aria-label="Read question 2 aloud" class="tts-button" id="q8b-tts" onclick="readQuestion('q8b-label', 'q8b', this)">Read Question</button>
+<button aria-controls="feedback8b" onclick="checkAnswer('q8b', 'b', 'feedback8b', 'unit8-score')">Submit</button>
+<button aria-label="Reset question 2" onclick="resetQuestion('q8b', 'feedback8b')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback8b"></div>
+</div>
+<div aria-label="Question 3" class="quiz-question" role="region">
+<fieldset>
+<legend id="q8c-label">3. What aids Afar’s flood management?</legend>
+<label><input aria-labelledby="q8c-label" name="q8c" type="radio" value="a"/> a) GIS mapping</label>
+<label><input aria-labelledby="q8c-label" name="q8c" type="radio" value="b"/> b) Soil testing</label>
+<label><input aria-labelledby="q8c-label" name="q8c" type="radio" value="c"/> c) Weather forecasting</label>
+</fieldset>
+<button aria-label="Read question 3 aloud" class="tts-button" id="q8c-tts" onclick="readQuestion('q8c-label', 'q8c', this)">Read Question</button>
+<button aria-controls="feedback8c" onclick="checkAnswer('q8c', 'a', 'feedback8c', 'unit8-score')">Submit</button>
+<button aria-label="Reset question 3" onclick="resetQuestion('q8c', 'feedback8c')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback8c"></div>
+</div>
+<div aria-label="Question 4" class="quiz-question" role="region">
+<fieldset>
+<legend id="q8d-label">4. What improves Amhara’s farm yields?</legend>
+<label><input aria-labelledby="q8d-label" name="q8d" type="radio" value="a"/> a) Remote sensing</label>
+<label><input aria-labelledby="q8d-label" name="q8d" type="radio" value="b"/> b) GIS optimization</label>
+<label><input aria-labelledby="q8d-label" name="q8d" type="radio" value="c"/> c) Manual plowing</label>
+</fieldset>
+<button aria-label="Read question 4 aloud" class="tts-button" id="q8d-tts" onclick="readQuestion('q8d-label', 'q8d', this)">Read Question</button>
+<button aria-controls="feedback8d" onclick="checkAnswer('q8d', 'b', 'feedback8d', 'unit8-score')">Submit</button>
+<button aria-label="Reset question 4" onclick="resetQuestion('q8d', 'feedback8d')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback8d"></div>
+</div>
+<div aria-label="Question 5" class="quiz-question" role="region">
+<fieldset>
+<legend id="q8e-label">5. What is Ethiopia’s satellite called?</legend>
+<label><input aria-labelledby="q8e-label" name="q8e" type="radio" value="a"/> a) ETRSS-1</label>
+<label><input aria-labelledby="q8e-label" name="q8e" type="radio" value="b"/> b) EthioSat-2</label>
+<label><input aria-labelledby="q8e-label" name="q8e" type="radio" value="c"/> c) NileSat-1</label>
+</fieldset>
+<button aria-label="Read question 5 aloud" class="tts-button" id="q8e-tts" onclick="readQuestion('q8e-label', 'q8e', this)">Read Question</button>
+<button aria-controls="feedback8e" onclick="checkAnswer('q8e', 'a', 'feedback8e', 'unit8-score')">Submit</button>
+<button aria-label="Reset question 5" onclick="resetQuestion('q8e', 'feedback8e')">Reset</button>
+<div aria-live="polite" class="quiz-feedback" id="feedback8e"></div>
+</div>
+<div aria-live="polite" class="quiz-score" id="unit8-score">Score: 0/5</div>
+</article>
+</div>
+</section>
+<section aria-labelledby="resources-heading" class="section" id="resources">
+<h2 id="resources-heading">Resources / መርጃዎች</h2>
+<button aria-label="Read resources aloud" class="tts-button" id="resources-tts" onclick="readSection('resources-content', this)">Read Aloud</button>
+<div id="resources-content">
+<ul>
+<li><a aria-label="Download Ethiopian Grade 11 Geography Textbook (PDF, approximately 10.8 MB)" class="btn" href="https://drive.google.com/file/d/1Mmv1aldMUUqrfLxcl7jXhVfUS8ANmMfR/view?usp=sharing" target="_blank">Ethiopian Grade 11 Geography Textbook (PDF, ~10.8 MB)</a></li>
+<li><a aria-label="Download Geography for Ethiopian Grade 11: Supplementary Guide (PDF, approximately 5 MB)" href="https://example.com/supplementary-guide" target="_blank">Geography for Ethiopian Grade 11: Supplementary Guide (PDF, ~5 MB)</a></li>
+</ul>
+</div>
+</section>
+<section aria-labelledby="about-heading" class="section" id="about">
+<h2 id="about-heading">About / ስለ</h2>
+<button aria-label="Read about section aloud" class="tts-button" id="about-tts" onclick="readSection('about-content', this)">Read Aloud</button>
+<div id="about-content">
+<p>This website is designed to help Ethiopian Grade 11 students master their geography curriculum. It offers detailed notes, interactive quizzes, and curated resources. Contact us at <a href="mailto:futurefocus527@gmail.com">futurefocus527@gmail.com</a>.</p>
+</div>
+</section>
+</main>
+<a aria-label="Back to top" class="back-to-top" href="#main-content">↑</a>
+<footer role="contentinfo">
+<p>© 2025 FutureFocus. All rights reserved. <a href="https://smekonnen1.github.io/FutureFocus/geography/" target="_blank">Visit our site</a>.</p>
+</footer>
+<script>
+        // Text-to-Speech Functionality
+        let currentSpeech = null;
+
+        function readSection(sectionId, button) {
+            const content = document.getElementById(sectionId).innerText;
+            if (currentSpeech && !currentSpeech.ended) {
+                window.speechSynthesis.cancel();
+                button.classList.remove('stop');
+                button.textContent = 'Read Aloud';
+                currentSpeech = null;
+                return;
+            }
+            const utterance = new SpeechSynthesisUtterance(content);
+            utterance.lang = 'en-US';
+            utterance.rate = 1;
+            utterance.onend = () => {
+                button.classList.remove('stop');
+                button.textContent = 'Read Aloud';
+                currentSpeech = null;
+            };
+            window.speechSynthesis.speak(utterance);
+            button.classList.add('stop');
+            button.textContent = 'Stop Reading';
+            currentSpeech = utterance;
+        }
+
+        function readQuestion(legendId, questionName, button) {
+            const legend = document.getElementById(legendId).innerText;
+            const options = Array.from(document.getElementsByName(questionName))
+                .map(input => input.parentElement.innerText.trim())
+                .join(', ');
+            const text = `${legend} Options: ${options}`;
+            if (currentSpeech && !currentSpeech.ended) {
+                window.speechSynthesis.cancel();
+                button.classList.remove('stop');
+                button.textContent = 'Read Question';
+                currentSpeech = null;
+                return;
+            }
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 1;
+            utterance.onend = () => {
+                button.classList.remove('stop');
+                button.textContent = 'Read Question';
+                currentSpeech = null;
+            };
+            window.speechSynthesis.speak(utterance);
+            button.classList.add('stop');
+            button.textContent = 'Stop Reading';
+            currentSpeech = utterance;
+        }
+
+        // Quiz Functionality
+        const scores = {
+            'unit1-score': 0,
+            'unit2-score': 0,
+            'unit3-score': 0,
+            'unit4-score': 0,
+            'unit5-score': 0,
+            'unit6-score': 0,
+            'unit7-score': 0,
+            'unit8-score': 0
+        };
+
+        function getExplanation(questionName, selectedAnswer) {
+            const explanations = {
+                'q1a': {
+                    correct: 'Correct! Geography studies spatial patterns, like Ethiopia’s Rift Valley and urban growth in Addis Ababa.',
+                    incorrect: 'Incorrect. Geography focuses on spatial patterns, not chemical reactions or historical events.'
+                },
+                'q1b': {
+                    correct: 'Correct! Possibilism emphasizes human adaptation, like terracing in Tigray.',
+                    incorrect: 'Incorrect. Possibilism, not determinism or regionalism, focuses on human adaptation.'
+                },
+                'q1c': {
+                    correct: 'Correct! Spatial analysis, using GIS, aids urban planning in Ethiopia.',
+                    incorrect: 'Incorrect. Spatial analysis, not genetic mapping or historical records, supports urban planning.'
+                },
+                'q1d': {
+                    correct: 'Correct! Physical geography studies landforms like the Rift Valley.',
+                    incorrect: 'Incorrect. Physical geography, not human or political geography, studies landforms.'
+                },
+                'q1e': {
+                    correct: 'Correct! Determinism suggests the environment limits human activity, like Afar’s aridity.',
+                    incorrect: 'Incorrect. Determinism, not possibilism or functionalism, limits human activity by environment.'
+                },
+                'q2a': {
+                    correct: 'Correct! Mantle convection drives plate tectonics, forming Ethiopia’s Rift Valley.',
+                    incorrect: 'Incorrect. Mantle convection, not solar radiation or ocean currents, drives plate tectonics.'
+                },
+                'q2b': {
+                    correct: 'Correct! The Great Rift Valley formed due to a divergent boundary.',
+                    incorrect: 'Incorrect. A divergent boundary, not convergent or transform, formed the Rift Valley.'
+                },
+                'q2c': {
+                    correct: 'Correct! Danakil Depression hosts active volcanism, like Erta Ale.',
+                    incorrect: 'Incorrect. Danakil Depression, not Simien Mountains or Lake Tana, has active volcanism.'
+                },
+                'q2d': {
+                    correct: 'Correct! Plate movement causes Ethiopia’s earthquakes in the Rift Valley.',
+                    incorrect: 'Incorrect. Plate movement, not rainfall or erosion, causes earthquakes.'
+                },
+                'q2e': {
+                    correct: 'Correct! The Blue Nile supports GERD’s 6,450 MW hydropower.',
+                    incorrect: 'Incorrect. The Blue Nile, not Awash or Omo, supports GERD.'
+                },
+                'q3a': {
+                    correct: 'Correct! Köppen ‘A’ represents tropical climates, like Ethiopia’s southern lowlands.',
+                    incorrect: 'Incorrect. ‘A’ is tropical, not arid (B) or temperate (C).'
+                },
+                'q3b': {
+                    correct: 'Correct! Afar’s climate is arid, with less than 200mm annual rainfall.',
+                    incorrect: 'Incorrect. Afar is arid, not tropical or temperate.'
+                },
+                'q3c': {
+                    correct: 'Correct! Kiremt (June–September) is Ethiopia’s main rainy season.',
+                    incorrect: 'Incorrect. Kiremt, not Bega or Belg, is the main rainy season.'
+                },
+                'q3d': {
+                    correct: 'Correct! Bale Mountains have afro-alpine forests.',
+                    incorrect: 'Incorrect. Bale has forests, not savanna or desert.'
+                },
+                'q3e': {
+                    correct: 'Correct! Altitude cools Ethiopia’s highlands, like Addis Ababa.',
+                    incorrect: 'Incorrect. Altitude, not latitude or ocean proximity, drives highland climate.'
+                },
+                'q4a': {
+                    correct: 'Correct! GERD is powered by hydropower from the Blue Nile.',
+                    incorrect: 'Incorrect. GERD uses hydropower, not solar or wind power.'
+                },
+                'q4b': {
+                    correct: 'Correct! Gold is a key mineral mined in Tigray.',
+                    incorrect: 'Incorrect. Gold, not iron or coal, is mined in Tigray.'
+                },
+                'q4c': {
+                    correct: 'Correct! GERD construction causes Blue Nile disputes with Egypt and Sudan.',
+                    incorrect: 'Incorrect. GERD construction, not fishing or oil, causes disputes.'
+                },
+                'q4d': {
+                    correct: 'Correct! Agriculture, like teff farming, dominates Amhara’s land use.',
+                    incorrect: 'Incorrect. Agriculture, not mining or urbanization, is Amhara’s main land use.'
+                },
+                'q4e': {
+                    correct: 'Correct! Overgrazing degrades Somali’s pastoral land.',
+                    incorrect: 'Incorrect. Overgrazing, not urbanization or reforestation, degrades Somali’s land.'
+                },
+                'q5a': {
+                    correct: 'Correct! A high birth rate (4.5) drives Ethiopia’s population growth.',
+                    incorrect: 'Incorrect. High birth rate, not low mortality or immigration, drives growth.'
+                },
+                'q5b': {
+                    correct: 'Correct! Housing shortages challenge Addis Ababa’s urbanization.',
+                    incorrect: 'Incorrect. Housing shortages, not overpopulation or desertification, are the main challenge.'
+                },
+                'q5c': {
+                    correct: 'Correct! Rural-to-urban migration fuels Hawassa’s growth.',
+                    incorrect: 'Incorrect. Rural-to-urban migration, not international migration or disasters, drives Hawassa’s growth.'
+                },
+                'q5d': {
+                    correct: 'Correct! Clustered villages are common in rural Ethiopia, like Amhara.',
+                    incorrect: 'Incorrect. Clustered, not linear or dispersed, is the common rural pattern.'
+                },
+                'q5e': {
+                    correct: 'Correct! Ethiopia has a youth bulge, with 70% under 30.',
+                    incorrect: 'Incorrect. A youth bulge, not aging or balanced ages, defines Ethiopia’s population.'
+                },
+                'q6a': {
+                    correct: 'Correct! Agriculture employs 70% of Ethiopians.',
+                    incorrect: 'Incorrect. Agriculture, not manufacturing or tourism, is the main activity.'
+                },
+                'q6b': {
+                    correct: 'Correct! Coffee, from Sidama, is Ethiopia’s top export.',
+                    incorrect: 'Incorrect. Coffee, not gold or textiles, is the top export.'
+                },
+                'q6c': {
+                    correct: 'Correct! Hawassa’s industrial park produces textiles.',
+                    incorrect: 'Incorrect. Hawassa, not Addis Ababa or Gondar, has the major industrial park.'
+                },
+                'q6d': {
+                    correct: 'Correct! Irrigation from the Awash River supports agriculture.',
+                    incorrect: 'Incorrect. Irrigation, not rainfall or fertilizers, is key in Awash Valley.'
+                },
+                'q6e': {
+                    correct: 'Correct! Ethiopia uses Djibouti’s ports for trade.',
+                    incorrect: 'Incorrect. Djibouti, not Mombasa or Port Sudan, is Ethiopia’s trade port.'
+                },
+                'q7a': {
+                    correct: 'Correct! Climate change reduces Amhara’s crop yields by 20%.',
+                    incorrect: 'Incorrect. Climate change, not urbanization or overgrazing, impacts Amhara’s crops.'
+                },
+                'q7b': {
+                    correct: 'Correct! Deforestation in Bale threatens Ethiopian wolves.',
+                    incorrect: 'Incorrect. Deforestation, not pollution or mining, threatens wolves.'
+                },
+                'q7c': {
+                    correct: 'Correct! Green Legacy is Ethiopia’s reforestation initiative, planting 32 billion trees.',
+                    incorrect: 'Incorrect. Green Legacy, not Blue Nile Project or Desert Control, is the initiative.'
+                },
+                'q7d': {
+                    correct: 'Correct! Desertification degrades 30% of Somali’s pastoral land.',
+                    incorrect: 'Incorrect. Desertification, not urbanization or reforestation, degrades Somali’s land.'
+                },
+                'q7e': {
+                    correct: 'Correct! National parks, like Simien, protect biodiversity.',
+                    incorrect: 'Incorrect. National parks, not urban planning or industrial zones, protect biodiversity.'
+                },
+                'q8a': {
+                    correct: 'Correct! GIS supports urban planning in Addis Ababa, mapping 500,000 plots.',
+                    incorrect: 'Incorrect. GIS aids urban planning, not mineral exploration or historical research.'
+                },
+                'q8b': {
+                    correct: 'Correct! Remote sensing monitors Bale’s deforestation.',
+                    incorrect: 'Incorrect. Remote sensing, not GPS or manual surveys, monitors deforestation.'
+                },
+                'q8c': {
+                    correct: 'Correct! GIS mapping aids Afar’s flood management.',
+                    incorrect: 'Incorrect. GIS mapping, not soil testing or weather forecasting, aids flood management.'
+                },
+                'q8d': {
+                    correct: 'Correct! GIS optimization improves Amhara’s farm yields by 15%.',
+                    incorrect: 'Incorrect. GIS optimization, not remote sensing or manual plowing, improves yields.'
+                },
+                'q8e': {
+                    correct: 'Correct! ETRSS-1 is Ethiopia’s satellite for climate and crop monitoring.',
+                    incorrect: 'Incorrect. ETRSS-1, not EthioSat-2 or NileSat-1, is Ethiopia’s satellite.'
+                }
+            };
+            return explanations[questionName][selectedAnswer === document.querySelector(`input[name="${questionName}"]:checked`).value ? 'correct' : 'incorrect'];
+        }
+
+        function checkAnswer(questionName, correctAnswer, feedbackId, scoreId) {
+            const selected = document.querySelector(`input[name="${questionName}"]:checked`);
+            const feedback = document.getElementById(feedbackId);
+            if (!selected) {
+                feedback.textContent = 'Please select an answer.';
+                feedback.classList.add('incorrect', 'show');
+                return;
+            }
+            const isCorrect = selected.value === correctAnswer;
+            feedback.textContent = getExplanation(questionName, selected.value);
+            feedback.classList.remove('correct', 'incorrect');
+            feedback.classList.add(isCorrect ? 'correct' : 'incorrect', 'show');
+            if (isCorrect && !selected.dataset.answered) {
+                scores[scoreId]++;
+                document.getElementById(scoreId).textContent = `Score: ${scores[scoreId]}/5`;
+                selected.dataset.answered = 'true';
+            }
+        }
+
+        function resetQuestion(questionName, feedbackId) {
+            const inputs = document.getElementsByName(questionName);
+            inputs.forEach(input => {
+                input.checked = false;
+                input.dataset.answered = '';
+            });
+            const feedback = document.getElementById(feedbackId);
+            feedback.classList.remove('correct', 'incorrect', 'show');
+            feedback.textContent = '';
+        }
+
+        // Accessibility Features
+        function toggleContrast() {
+            document.documentElement.dataset.contrast = document.documentElement.dataset.contrast === 'high' ? '' : 'high';
+        }
+
+        function adjustFontSize(change) {
+            const root = document.documentElement;
+            const currentBase = parseFloat(getComputedStyle(root).getPropertyValue('--font-size-base'));
+            const currentHeading = parseFloat(getComputedStyle(root).getPropertyValue('--font-size-heading'));
+            const newBase = Math.max(1.5, Math.min(2, currentBase + change));
+            const newHeading = newBase + 0.5;
+            root.style.setProperty('--font-size-base', `${newBase}rem`);
+            root.style.setProperty('--font-size-heading', `${newHeading}rem`);
+        }
+    </script>
+</body>
+</html>

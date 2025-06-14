@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Future Focus | STEM Learning Platform</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2ecc71;
+      --dark-color: #2c3e50;
+      --light-color: #f5f7fa;
+      --danger-color: #e74c3c;
+      --text-color: #333;
+      --text-light: #666;
+      --white: #fff;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--light-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--white);
+      box-shadow: var(--shadow);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      padding: 1rem 0;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--dark-color);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo span {
+      color: var(--primary-color);
+    }
+
+    .logo-icon {
+      margin-right: 0.5rem;
+      font-size: 2rem;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .user-auth-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      padding: 0.6rem 1.2rem;
+      border-radius: 5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: var(--white);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #2980b9;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+
+    .btn-outline:hover {
+      background-color: rgba(52, 152, 219, 0.1);
+    }
+
+    .btn-lime {
+      background-color: var(--secondary-color); /* Lime color */
+      color: var(--white);
+      border: none;
+    }
+
+    .btn-lime:hover {
+      background-color: #27ae60; /* Darker lime on hover */
+    }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: var(--white);
+      box-shadow: var(--shadow);
+      border-radius: 5px;
+      padding: 0.5rem 0;
+      min-width: 120px;
+      display: none;
+      z-index: 100;
+    }
+
+    .dropdown.show {
+      display: block;
+    }
+
+    .dropdown-item {
+      padding: 0.5rem 1rem;
+      color: var(--text-color);
+      text-decoration: none;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .dropdown-item:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    /* Auth Modal */
+    .auth-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .auth-modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background-color: var(--white);
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transform: translateY(-20px);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .auth-modal.show .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      color: var(--dark-color);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-input:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    }
+
+    .form-footer {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .form-footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .form-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Main Content */
+    main {
+      margin-top: 80px;
+      min-height: calc(100vh - 160px);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark-color);
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .subject-card {
+      background-color: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      display: flex;
+      height: 180px;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .subject-image {
+      width: 40%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .subject-content {
+      padding: 1.5rem;
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .subject-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark-color);
+    }
+
+    .subject-description {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .subject-link {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .subject-link:hover {
+      color: #2980b9;
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-color);
+      color: var(--white);
+      padding: 3rem 0;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-logo span {
+      color: var(--secondary-color);
+    }
+
+    .footer-logo-icon {
+      margin-right: 0.5rem;
+    }
+
+    .footer-about {
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+    }
+
+    .footer-links h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+    .footer-contact {
+      margin-top: 1rem;
+    }
+
+    .footer-contact h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+
+    .footer-contact div {
+      line-height: 1.0;
+    }
+
+    .footer-contact a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5em;
+    }
+
+    .footer-contact a:hover {
+      color: var(--white);
+    }
+
+    .footer-contact a span.material-icons {
+      font-size: 1.2em;
+      margin-right: 0.7em;
+      vertical-align: middle;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 0 1rem;
+      }
+
+      .subject-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .subject-card {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .subject-image {
+        width: 100%;
+        height: 180px;
+      }
+
+      .subject-content {
+        width: 100%;
+        padding: 1.5rem;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .auth-buttons .btn-text {
+        display: none;
+      }
+
+      .auth-buttons .btn-icon {
+        margin-right: 0;
+      }
+
+      .user-auth-container .btn-text {
+        display: none;
+      }
+
+      .user-info .username {
+        display: none;
+      }
+
+      .modal-content {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="mainHeader">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <span class="material-icons logo-icon">school</span>
+        Future<span>Focus</span>
+      </a>
+      
+      <div id="authButtons" class="auth-buttons">
+        <button class="btn btn-outline" id="loginBtn">
+          <span class="material-icons btn-icon">login</span>
+          <span class="btn-text">Login</span>
+        </button>
+        <button class="btn btn-primary" id="signupBtn">
+          <span class="material-icons btn-icon">person_add</span>
+          <span class="btn-text">Sign Up</span>
+        </button>
+      </div>
+      
+      <div id="userAuthContainer" class="user-auth-container hidden">
+        <div class="user-info">
+          <div class="user-avatar" id="userAvatar">U</div>
+          <span class="username" id="username">Username</span>
+        </div>
+        <div class="dropdown" id="dropdownMenu">
+          <a href="#" class="dropdown-item" id="logoutBtn">
+            <span class="material-icons">logout</span> Logout
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Login Modal -->
+  <div class="auth-modal" id="loginModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeLoginModal">×</button>
+      <div class="modal-header">
+        <h2 class="modal-title">Login</h2>
+      </div>
+      
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+          <span class="material-icons">login</span> Login
+        </button>
+        <div class="form-footer">
+          Don't have an account? <a href="#" id="showSignupModal">Sign up</a><br>
+<a href="#" id="resetPasswordLink">Forgot Password?</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Signup Modal -->
+  <div class="auth-modal" id="signupModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeSignupModal">×</button>
+      <div class="modal-header">
+        <h2 class="modal-title">Sign Up</h2>
+      </div>
+      
+      <form id="signupForm">
+        <div class="form-group">
+          <label for="signupName" class="form-label">Full Name</label>
+          <input type="text" id="signupName" class="form-input" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="signupEmail" class="form-label">Email</label>
+          <input type="email" id="signupEmail" class="form-input" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="signupPassword" class="form-label">Password</label>
+          <input type="password" id="signupPassword" class="form-input" placeholder="Create a password" required>
+        </div>
+        <div class="form-group">
+          <label for="department" class="form-label">Department</label>
+          <select id="department" class="form-input" required>
+            <option value="">Select Department</option>
+            <option value="Natural">Natural Science</option>
+            <option value="Social">Social Science</option>
+          </select>
+        </div>
+
+<div class="form-group">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" id="confirmPassword" class="form-input" placeholder="Confirm your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+          <span class="material-icons">person_add</span> Sign Up
+        </button>
+        <div class="form-footer">
+          Already have an account? <a href="#" id="showLoginModal">Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <div id="home" class="container">
+      <section class="hero">
+        <h1 class="hero-title">Welcome to Future Focus</h1>
+        <p class="hero-subtitle">Your comprehensive STEM learning platform for high school students</p>
+        
+      </section>
+      
+      <div class="subject-grid">
+        <!-- Chemistry -->
+        <div class="subject-card">
+          <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Chemistry" class="subject-image">
+          <div class="subject-content">
+            <h3 class="subject-title">Chemistry</h3>
+            <p class="subject-description">Explore the composition, structure, and properties of matter and the changes it undergoes during reactions.</p>
+            <a href="chemistry.html" class="subject-link">
+              Learn Chemistry
+              <span class="material-icons" style="font-size: 1rem;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Biology -->
+        <div class="subject-card">
+          <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Biology" class="subject-image">
+          <div class="subject-content">
+            <h3 class="subject-title">Biology</h3>
+            <p class="subject-description">Study living organisms and their vital processes, from cellular structure to ecosystems.</p>
+            <a href="biology.html" class="subject-link">
+              Learn Biology
+              <span class="material-icons" style="font-size: 1rem;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Mathematics -->
+        <div class="subject-card">
+          <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Mathematics" class="subject-image">
+          <div class="subject-content">
+            <h3 class="subject-title">Mathematics</h3>
+            <p class="subject-description">Master numbers, quantities, shapes, and patterns through logical reasoning and problem-solving.</p>
+            <a href="math.html" class="subject-link">
+              Learn Math
+              <span class="material-icons" style="font-size: 1rem;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- English -->
+        <div class="subject-card">
+          <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="English" class="subject-image">
+          <div class="subject-content">
+            <h3 class="subject-title">English</h3>
+            <p class="subject-description">Develop language skills through literature, composition, and critical analysis of texts.</p>
+            <a href="english.html" class="subject-link">
+              Learn English
+              <span class="material-icons" style="font-size: 1rem;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Physics -->
+        <div class="subject-card">
+          <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Physics" class="subject-image">
+          <div class="subject-content">
+            <h3 class="subject-title">Physics</h3>
+            <p class="subject-description">Understand the fundamental principles governing matter, energy, and the universe.</p>
+            <a href="physics.html" class="subject-link">
+              Learn Physics
+              <span class="material-icons" style="font-size: 1rem;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Economics -->
+        <div class="subject-card">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Economics" class="subject-image">
+          <div class="subject-content">
+            <h3 class="subject-title">Economics</h3>
+            <p class="subject-description">Study the production, distribution, and consumption of goods and services in society.</p>
+            <a href="economics.html" class="subject-link">
+              Learn Economics
+              <span class="material-icons" style="font-size: 1rem;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- History -->
+        <div class="subject-card">
+          <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="History" class="subject-image">
+          <div class="subject-content">
+            <h3 class="subject-title">History</h3>
+            <p class="subject-description">Explore past events, societies, and civilizations to understand how they shaped the modern world.</p>
+            <a href="history.html" class="subject-link">
+              Learn History
+              <span class="material-icons" style="font-size: 1rem;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Geography -->
+        <div class="subject-card">
+          <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Geography" class="subject-image">
+          <div class="subject-content">
+            <h3 class="subject-title">Geography</h3>
+            <p class="subject-description">Study Earth's landscapes, environments, and the relationships between people and their environments.</p>
+            <a href="geography.html" class="subject-link">
+              Learn Geography
+              <span class="material-icons" style="font-size: 1rem;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- ICT -->
+        <div class="subject-card">
+          <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ICT" class="subject-image">
+          <div class="subject-content">
+            <h3 class="subject-title">ICT</h3>
+            <p class="subject-description">Learn about information and communication technologies, including computing, digital literacy, and programming.</p>
+            <a href="ict.html" class="subject-link">
+              Learn ICT
+              <span class="material-icons" style="font-size: 1rem;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Agriculture -->
+        <div class="subject-card">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Agriculture" class="subject-image">
+          <div class="subject-content">
+            <h3 class="subject-title">Agriculture</h3>
+            <p class="subject-description">Study the science and practice of farming, including soil cultivation, crop production, and livestock management.</p>
+            <a href="agriculture.html" class="subject-link">
+              Learn Agriculture
+              <span class="material-icons" style="font-size: 1rem;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Quiz Bot -->
+        <div class="subject-card">
+          <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" alt="Quiz Bot" class="subject-image">
+          <div class="subject-content">
+            <h3 class="subject-title">Quiz Bot</h3>
+            <p class="subject-description">Test your knowledge with interactive quizzes covering all subjects in our curriculum.</p>
+            <a href="quiz.html" class="subject-link">
+              Try Quiz Bot
+              <span class="material-icons" style="font-size: 1rem;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+   <div style="text-align: center; padding: 20px 0;">
+  <a href="ai.html" class="btn btn-lime">Talk to AI</a>
+</div>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <div class="footer-logo">
+          <span class="material-icons footer-logo-icon">school</span>
+          Future<span>Focus</span>
+        </div>
+        <p class="footer-about">A comprehensive learning platform for high school students, providing quality educational resources and interactive content across all major subjects.</p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Subjects</h3>
+        <ul>
+          <li><a href="chemistry.html">Chemistry</a></li>
+          <li><a href="biology.html">Biology</a></li>
+          <li><a href="math.html">Mathematics</a></li>
+          <li><a href="english.html">English</a></li>
+          <li><a href="physics.html">Physics</a></li>
+          <li><a href="economics.html">Economics</a></li>
+          <li><a href="history.html">History</a></li>
+          <li><a href="geography.html">Geography</a></li>
+          <li><a href="ict.html">ICT</a></li>
+          <li><a href="agriculture.html">Agriculture</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="quiz.html">Quiz Bot</a></li>
+        </ul>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <div>
+            <a href="mailto:futurefocus527@gmail.com" title="Email">
+              <span class="material-icons">email</span> futurefocus527@gmail.com
+            </a><br>
+            <a href="https://t.me/futurefocus527" target="_blank" title="Telegram">
+              <span class="material-icons">send</span> t.me/futurefocus527
+            </a><br>
+            <a href="https://instagram.com/futurefocus527" target="_blank" title="Instagram">
+              <span class="material-icons">camera_alt</span> futurefocus527
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>2025 FutureFocus | STEM Learning Platform</p>
+    </div>
+  </footer>
+
+  <script>
+    // User accounts storage
+    const users = JSON.parse(localStorage.getItem('futureFocusUsers')) || [];
+    let currentUser = null;
+
+    // DOM Elements
+    const authButtons = document.getElementById('authButtons');
+    const userAuthContainer = document.getElementById('userAuthContainer');
+    const userAvatar = document.getElementById('userAvatar');
+    const username = document.getElementById('username');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const loginModal = document.getElementById('loginModal');
+    const signupModal = document.getElementById('signupModal');
+    const closeLoginModal = document.getElementById('closeLoginModal');
+    const closeSignupModal = document.getElementById('closeSignupModal');
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const showLoginModal = document.getElementById('showLoginModal');
+    const showSignupModal = document.getElementById('showSignupModal');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+
+    // Initialize the app
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if user is logged in
+      const loggedInUser = JSON.parse(localStorage.getItem('futureFocusCurrentUser'));
+      if (loggedInUser) {
+        currentUser = loggedInUser;
+        updateUserUI();
+      }
+
+      // Setup event listeners
+      setupEventListeners();
+    });
+
+    // Setup all event listeners
+    function setupEventListeners() {
+      // Auth buttons
+      loginBtn.addEventListener('click', () => loginModal.classList.add('show'));
+      signupBtn.addEventListener('click', () => signupModal.classList.add('show'));
+      
+      // Close buttons
+      closeLoginModal.addEventListener('click', () => loginModal.classList.remove('show'));
+      closeSignupModal.addEventListener('click', () => signupModal.classList.remove('show'));
+      
+      // Close modals when clicking outside
+      loginModal.addEventListener('click', (e) => {
+        if (e.target === loginModal) {
+          loginModal.classList.remove('show');
+        }
+      });
+      
+      signupModal.addEventListener('click', (e) => {
+        if (e.target === signupModal) {
+          signupModal.classList.remove('show');
+        }
+      });
+      
+      // Modal switching
+      showSignupModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginModal.classList.remove('show');
+        signupModal.classList.add('show');
+      });
+      
+      showLoginModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        signupModal.classList.remove('show');
+        loginModal.classList.add('show');
+      });
+      
+      // User menu
+      userAuthContainer.addEventListener('click', function(e) {
+        if (e.target.closest('.user-info') || e.target === dropdownMenu) {
+          toggleDropdown(e);
+        }
+      });
+      logoutBtn.addEventListener('click', handleLogout);
+      
+      // Form submission
+      loginForm.addEventListener('submit', handleLogin);
+      signupForm.addEventListener('submit', handleSignup);
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!userAuthContainer.contains(e.target)) {
+          dropdownMenu.classList.remove('show');
+        }
+      });
+    }
+
+    // Toggle dropdown menu
+    function toggleDropdown(e) {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('show');
+    }
+
+    // Handle login form submission
+    function handleLogin(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      
+      // Validate inputs
+      if (!email || !password) {
+        alert('Please enter both email and password.');
+        return;
+      }
+      
+      // Find user
+      const user = users.find(u => u.email === email && u.password === password);
+      if (user) {
+        currentUser = user;
+        localStorage.setItem('futureFocusCurrentUser', JSON.stringify(user));
+        updateUserUI();
+        loginModal.classList.remove('show');
+        alert(`Welcome back, ${user.name}!`);
+      } else {
+        alert('Invalid email or password. Please try again.');
+      }
+    }
+
+    // Handle signup form submission
+    function handleSignup(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('signupName').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const password = document.getElementById('signupPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      
+      // Validate inputs
+      if (!name || !email || !password || !confirmPassword) {
+        alert('Please fill in all fields.');
+        return;
+      }
+      
+      if (password !== confirmPassword) {
+        alert('Passwords do not match.');
+        return;
+      }
+      
+      if (password.length < 6) {
+        alert('Password must be at least 6 characters long.');
+        return;
+      }
+      
+      // Check if user already exists
+      if (users.some(u => u.email === email)) {
+        alert('An account with this email already exists.');
+        return;
+      }
+      
+      // Create new user
+      const newUser = {
+        id: Date.now().toString(),
+        name,
+        email,
+        password,
+        avatar: name.charAt(0).toUpperCase()
+      };
+      
+      users.push(newUser);
+      localStorage.setItem('futureFocusUsers', JSON.stringify(users));
+      
+      currentUser = newUser;
+      localStorage.setItem('futureFocusCurrentUser', JSON.stringify(newUser));
+      
+      updateUserUI();
+      signupModal.classList.remove('show');
+      alert(`Welcome to Future Focus, ${name}!`);
+    }
+
+    // Handle logout
+    function handleLogout(e) {
+      e.preventDefault();
+      currentUser = null;
+      localStorage.removeItem('futureFocusCurrentUser');
+      updateUserUI();
+      alert('You have been logged out successfully.');
+    }
+
+    // Update UI based on user state
+    function updateUserUI() {
+      if (currentUser) {
+        authButtons.classList.add('hidden');
+        userAuthContainer.classList.remove('hidden');
+        userAvatar.textContent = currentUser.avatar;
+        username.textContent = currentUser.name;
+      } else {
+        authButtons.classList.remove('hidden');
+        userAuthContainer.classList.add('hidden');
+      }
+    }
+  </script>
+
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
+
+<script>
+  // Replace with your actual Firebase config
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "your-app.firebaseapp.com",
+    projectId: "your-app",
+    storageBucket: "your-app.appspot.com",
+    messagingSenderId: "XXXXXX",
+    appId: "XXXXXXXXXX"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  // Signup
+  document.getElementById("signupForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("signupName").value.trim();
+    const email = document.getElementById("signupEmail").value.trim();
+    const password = document.getElementById("signupPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (!name || !email || !password || password !== confirmPassword) {
+      alert("Check all fields. Passwords must match.");
+      return;
+    }
+
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(cred => {
+        return db.collection("users").doc(cred.user.uid).set({
+          name: name,
+          email: email,
+          createdAt: new Date()
+        });
+      })
+      .then(() => {
+        alert("Signed up successfully!");
+        document.getElementById("signupModal").classList.remove("show");
+      })
+      .catch(error => alert(error.message));
+  });
+
+  // Login
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    auth.signInWithEmailAndPassword(email, password)
+      .then(cred => {
+        alert("Logged in successfully!");
+        document.getElementById("loginModal").classList.remove("show");
+      })
+      .catch(error => alert(error.message));
+  });
+
+  // Logout
+  document.getElementById("logoutBtn").addEventListener("click", function(e) {
+    e.preventDefault();
+    auth.signOut()
+      .then(() => alert("Logged out."));
+  });
+
+  // Update UI based on user state
+  auth.onAuthStateChanged(user => {
+    const authButtons = document.getElementById("authButtons");
+    const userAuthContainer = document.getElementById("userAuthContainer");
+    const userAvatar = document.getElementById("userAvatar");
+    const username = document.getElementById("username");
+
+    if (user) {
+      authButtons.classList.add("hidden");
+      userAuthContainer.classList.remove("hidden");
+
+      db.collection("users").doc(user.uid).get().then(doc => {
+        const userData = doc.data();
+        userAvatar.textContent = userData.name.charAt(0).toUpperCase();
+        username.textContent = userData.name;
+      });
+    } else {
+      authButtons.classList.remove("hidden");
+      userAuthContainer.classList.add("hidden");
+    }
+  });
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "your-app.firebaseapp.com",
+    projectId: "your-app",
+    storageBucket: "your-app.appspot.com",
+    messagingSenderId: "XXXXXX",
+    appId: "XXXXXXXXXX"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+</script>
+
+
+<!-- Reset Password Modal -->
+<div class="auth-modal" id="resetModal">
+  <div class="modal-content">
+    <button class="close-btn" id="closeResetModal">×</button>
+    <div class="modal-header">
+      <h2 class="modal-title">Reset Password</h2>
+    </div>
+    <form id="resetForm">
+      <div class="form-group">
+        <label for="resetEmail" class="form-label">Email</label>
+        <input type="email" id="resetEmail" class="form-input" placeholder="Enter your email" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width: 100%;">
+        <span class="material-icons">mail</span> Send Reset Link
+      </button>
+    </form>
+  </div>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    auth.onAuthStateChanged(user => {
+      if (!user) {
+        document.getElementById("loginModal").classList.add("show");
+      } else {
+        updateUserUI();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

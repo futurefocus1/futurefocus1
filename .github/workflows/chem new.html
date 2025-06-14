@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 11 Chemistry - Ethiopia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #e6f7ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a5276, #3498db);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            background-color: #2874a6;
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #1a5276;
+            transform: translateY(-2px);
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+
+        .home-link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        .home-link:hover {
+            color: #f7b733;
+        }
+        
+        .hero {
+            background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            border-radius: 8px;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .topics, .resources, .notes, .quizzes, .periodic-table-section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #1a5276;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #d4e6f1;
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            color: #2874a6;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .home-link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        .home-link:hover {
+            color: #f7b733;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #1a5276, #2874a6);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .topic-card {
+            background-color: #f0f8ff;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            border-left: 5px solid #2874a6;
+            transition: transform 0.3s;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .resource-card {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .resource-card:hover {
+            background-color: #e6f7ff;
+            transform: translateX(5px);
+        }
+        
+        .resource-icon {
+            font-size: 2.5rem;
+            margin-right: 1.5rem;
+            color: #2874a6;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .quiz-container {
+            background-color: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .quiz-question {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quiz-options {
+            margin-left: 1.5rem;
+        }
+        
+        .quiz-option {
+            display: block;
+            padding: 8px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .quiz-option:hover {
+            background-color: #e6f7ff;
+        }
+        
+        .quiz-option input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .quiz-result {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #2874a6;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #1a5276;
+        }
+        
+        .note-card {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .chem-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Periodic Table Styles */
+        .periodic-table-container {
+            background: #0a192f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+        
+        .periodic-table-wrapper {
+            width: 100%;
+            min-width: 300px;
+            overflow-x: auto;
+        }
+        
+        .periodic-table-grid {
+            display: grid;
+            grid-template-columns: repeat(18, minmax(40px, 1fr));
+            gap: 3px;
+            position: relative;
+            width: 100%;
+            min-width: 800px;
+        }
+        
+        .element {
+            background: #1a3650;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+        
+        .element:hover {
+            transform: scale(1.1);
+            z-index: 2;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+        }
+        
+        .element .number {
+            font-size: 0.7em;
+            opacity: 0.8;
+        }
+        
+        .element .symbol {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 2px 0;
+        }
+        
+        .element .name {
+            font-size: 0.6em;
+            opacity: 0.8;
+        }
+        
+        /* Element Category Colors */
+        .category-alkali { background: #FF6B6B; }
+        .category-alkaline { background: #FFD93D; color: #333; }
+        .category-transition { background: #6BCB77; }
+        .category-post-transition { background: #4D96FF; }
+        .category-metalloid { background: #FFD700; color: #000; }
+        .category-nonmetal { background: #FF99C8; }
+        .category-halogen { background: #A3E4D7; color: #333; }
+        .category-noble { background: #D4ADFC; }
+        .category-lanthanide { background: #FFB562; color: #333; }
+        .category-actinide { background: #C996CC; }
+        .category-unknown { background: #999; }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1a3650;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 320px;
+            z-index: 1000;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            color: white;
+        }
+        
+        .modal-content {
+            line-height: 1.6;
+        }
+        
+        .modal-content h2 {
+            color: white;
+            border-bottom: 2px solid #4D96FF;
+        }
+        
+        .close {
+            float: right;
+            cursor: pointer;
+            font-size: 1.5em;
+            color: white;
+        }
+        
+        .voice-controls {
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .voice-btn {
+            background: #4D96FF;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .voice-btn:hover {
+            background: #357abd;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .resource-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .resource-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .element {
+                min-height: 60px;
+                padding: 3px;
+            }
+            
+            .element .symbol {
+                font-size: 1em;
+            }
+            
+            .element .name {
+                font-size: 0.5em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .periodic-table-grid {
+                grid-template-columns: repeat(18, minmax(30px, 1fr));
+                min-width: 600px;
+            }
+            
+            .element {
+                min-height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="homepage_html.html" class="home-link">← Back to FutureLearn</a>
+            <h1>Grade 11 Chemistry - Ethiopian Curriculum</h1>
+            <p>Comprehensive resources for Ethiopian high school students</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#topics">Topics</a></li>
+                <li><a href="#notes">Detailed Notes</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#quizzes">Quizzes</a></li>
+                <li><a href="#periodic-table-section">Periodic Table</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2>Welcome to Grade 11 Chemistry</h2>
+                <p>Master the Ethiopian Grade 11 Chemistry curriculum with our comprehensive learning materials, detailed notes, video lessons, and interactive quizzes.</p>
+                <a href="#topics" class="btn">Start Learning</a>
+            </div>
+        </section>
+        
+        <section id="topics" class="topics">
+            <h2>Course Topics</h2>
+            
+            <div class="topic-card">
+                <h3>Unit 1: Fundamentals of Chemistry</h3>
+                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Chemistry Fundamentals" class="chem-img">
+                <ul>
+                    <li>Chemistry as a central science</li>
+                    <li>Scientific method and measurement</li>
+                    <li>Classification of matter (elements, compounds, mixtures)</li>
+                    <li>Atomic structure and periodic table trends</li>
+                    <li>Significant figures and scientific notation</li>
+                </ul>
+            </div>
+            
+            <div class="topic-card">
+                <h3>Unit 2: Chemical Bonding</h3>
+                <img src="https://media.istockphoto.com/id/165907629/vector/molecules.webp?a=1&b=1&s=612x612&w=0&k=20&c=fVdqOqLXHxpLow5j0iF7U7e08HGRWq-hvyVzf3IQFok=" alt="Chemical Bonding" class="chem-img">
+                <ul>
+                    <li>Ionic and covalent bonding</li>
+                    <li>Lewis structures and VSEPR theory</li>
+                    <li>Molecular geometry and polarity</li>
+                    <li>Intermolecular forces (hydrogen bonding, dipole-dipole, London dispersion)</li>
+                    <li>Metallic bonding and properties</li>
+                </ul>
+            </div>
+            
+            <div class="topic-card">
+                <h3>Unit 3: Chemical Reactions and Stoichiometry</h3>
+                <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Chemical Reactions" class="chem-img">
+                <ul>
+                    <li>Types of chemical reactions (synthesis, decomposition, etc.)</li>
+                    <li>Balancing chemical equations</li>
+                    <li>The mole concept and Avogadro's number</li>
+                    <li>Stoichiometric calculations (mass-mass, mass-volume)</li>
+                    <li>Limiting reactants and percent yield</li>
+                </ul>
+            </div>
+            
+            <div class="topic-card">
+                <h3>Unit 4: States of Matter</h3>
+                <img src="https://images.unsplash.com/photo-1503945438517-f65904a52ce6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="States of Matter" class="chem-img">
+                <ul>
+                    <li>Gas laws (Boyle's, Charles', Avogadro's, Ideal Gas Law)</li>
+                    <li>Properties of liquids and solids</li>
+                    <li>Phase changes and heating curves</li>
+                    <li>Kinetic molecular theory</li>
+                    <li>Real vs. ideal gases</li>
+                </ul>
+            </div>
+            
+            <div class="topic-card">
+                <h3>Unit 5: Solutions</h3>
+                <img src="https://images.unsplash.com/photo-1676118036556-a6e23ddab63d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNoZW1pc3RyeSUyMHNvbHV0aW9uc3xlbnwwfHwwfHx8MA%3D%3D" alt="Solutions" class="chem-img">
+                <ul>
+                    <li>Types of solutions and solubility</li>
+                    <li>Concentration units (molarity, molality, percent composition)</li>
+                    <li>Colligative properties (boiling point elevation, freezing point depression)</li>
+                    <li>Electrolytes vs. nonelectrolytes</li>
+                    <li>Factors affecting solubility</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="notes" class="notes">
+            <h2>Detailed Chemistry Notes</h2>
+            
+            <div class="note-card">
+                <h3>Atomic Structure</h3>
+                <img src="https://plus.unsplash.com/premium_photo-1673892648237-900d0fb73a54?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXRvbWljJTIwc3RydWN0dXJlfGVufDB8fDB8fHww" alt="Atomic Structure" class="chem-img">
+                <p>The atom consists of a nucleus containing protons and neutrons, surrounded by electrons in orbitals. The number of protons determines the atomic number and identifies the element.</p>
+                <p><strong>Key points:</strong></p>
+                <ul>
+                    <li>Protons: positive charge, mass ~1 amu</li>
+                    <li>Neutrons: neutral charge, mass ~1 amu</li>
+                    <li>Electrons: negative charge, negligible mass</li>
+                    <li>Isotopes: atoms of same element with different neutron numbers</li>
+                </ul>
+            </div>
+            
+            <div class="note-card">
+                <h3>Periodic Table Trends</h3>
+                <img src="https://images.unsplash.com/flagged/photo-1560130346-48963a3bca33?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyaW9kaWMlMjB0YWJsZSUyMHRyZW5kc3xlbnwwfHwwfHx8MA%3D%3D" alt="Periodic Table" class="chem-img">
+                <p>The periodic table organizes elements by increasing atomic number and reveals periodic trends in properties:</p>
+                <ul>
+                    <li><strong>Atomic radius:</strong> decreases across a period, increases down a group</li>
+                    <li><strong>Ionization energy:</strong> increases across a period, decreases down a group</li>
+                    <li><strong>Electronegativity:</strong> increases across a period, decreases down a group</li>
+                    <li><strong>Metallic character:</strong> decreases across a period, increases down a group</li>
+                </ul>
+            </div>
+            
+            <div class="note-card">
+                <h3>Chemical Bonding</h3>
+                <img src="https://images.unsplash.com/photo-1693237396552-91b5d6a9cd2a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW9uaWMlMjBib25kc3xlbnwwfHwwfHx8MA%3D%3D" alt="Chemical Bonding" class="chem-img">
+                <p>Chemical bonds form when atoms share or transfer electrons to achieve stable electron configurations:</p>
+                <ul>
+                    <li><strong>Ionic bonds:</strong> electron transfer between metals and nonmetals</li>
+                    <li><strong>Covalent bonds:</strong> electron sharing between nonmetals</li>
+                    <li><strong>Metallic bonds:</strong> delocalized electrons in metal lattices</li>
+                </ul>
+                <p>VSEPR theory predicts molecular shapes based on electron pair repulsion.</p>
+            </div>
+        </section>
+        
+        <section id="resources" class="resources">
+            <h2>Learning Resources</h2>
+            
+            <div class="resource-card">
+                <div class="resource-icon">📚</div>
+                <div>
+                    <h3>Textbook PDF</h3>
+                    <p>Read through the complete Grade 11 Chemistry textbook approved by the Ethiopian Ministry of Education. Includes all units with examples and exercises.</p>
+                    <a href="https://drive.google.com/file/d/1T21LrNKNoqbjGzhdm6EAejqOcbSI0wyv/view?usp=sharing" target="_blank" class="btn">Open Textbook</a>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="resource-icon">🎬</div>
+                <div>
+                    <h3>Video Lessons</h3>
+                    <p>Watch explanations of key chemistry concepts in this playlist by Crash Course on Youtube!</p>
+                    <a href="https://www.youtube.com/watch?v=uVFCOfSuPTo&list=PL8dPuuaLjXtPHzzYuWy6fYEaX9mQQ8oGr" target = "_blank" class="btn">Watch Videos</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="quizzes" class="quizzes">
+            <h2>Interactive Quizzes</h2>
+            <p>Test your understanding with these interactive exercises. Select your answers and check your score.</p>
+            
+            <div class="quiz-container" id="atomicQuiz">
+                <h3>Atomic Structure Quiz</h3>
+                <div class="quiz-question">1. What determines the identity of an element?</div>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="A"> A) Number of neutrons
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="B"> B) Number of protons
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="C"> C) Number of electrons
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="D"> D) Atomic mass
+                    </label>
+                </div>
+                
+                <div class="quiz-question">2. Isotopes of an element have different numbers of:</div>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="A"> A) Protons
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="B"> B) Electrons
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="C"> C) Neutrons
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="D"> D) All of the above
+                    </label>
+                </div>
+                
+                <button class="btn" onclick="checkQuiz('atomicQuiz', ['B', 'C'])">Submit Answers</button>
+                <div id="atomicQuizResult" class="quiz-result"></div>
+            </div>
+            
+            <div class="quiz-container" id="bondingQuiz">
+                <h3>Chemical Bonding Quiz</h3>
+                <div class="quiz-question">1. Which type of bond forms between a metal and nonmetal?</div>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="A"> A) Covalent
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="B"> B) Ionic
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="C"> C) Metallic
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="D"> D) Hydrogen
+                    </label>
+                </div>
+                
+                <div class="quiz-question">2. According to VSEPR theory, a molecule with 2 bonding pairs and no lone pairs will have what shape?</div>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="A"> A) Linear
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="B"> B) Bent
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="C"> C) Trigonal planar
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="D"> D) Tetrahedral
+                    </label>
+                </div>
+                
+                <button class="btn" onclick="checkQuiz('bondingQuiz', ['B', 'A'])">Submit Answers</button>
+                <div id="bondingQuizResult" class="quiz-result"></div>
+            </div>
+        </section>
+        
+        <section id="periodic-table-section" class="periodic-table-section">
+            <h2>Interactive Periodic Table</h2>
+            <p>Explore the complete periodic table of elements. Click on any element to learn more about it.</p>
+            
+            <div class="periodic-table-container">
+                <div class="periodic-table-wrapper">
+                    <div class="voice-controls">
+                        <button class="voice-btn" onclick="toggleVoice()">Toggle Voice (Currently ON)</button>
+                    </div>
+                    <div class="periodic-table-grid" id="periodicTable"></div>
+                </div>
+                <div id="elementModal" class="modal">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <div class="modal-content" id="modalContent"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer id="about">
+        <div class="container">
+            <h3>About This Website</h3>
+            <p>This educational resource was created to support Ethiopian Grade 11 Chemistry students. All content aligns with the Ethiopian national curriculum.</p>
+            <p>For questions or suggestions, please contact us at: <a href="mailto:futurefocus527@gmail.com">futurefocus527@gmail.com</a></p>
+            <p>023 Grade 11 Chemistry - Ethiopia.</p>
+        </div>
+    </footer>F
+
+    <script>
+        // Periodic Table Script
+        let voiceEnabled = true;
+        const synth = window.speechSynthesis;
+        
+        const elements = [
+            // Period 1
+            { number: 1, symbol: 'H', name: 'Hydrogen', category: 'nonmetal', mass: '1.008', group: 1, period: 1 },
+            { number: 2, symbol: 'He', name: 'Helium', category: 'noble', mass: '4.0026', group: 18, period: 1 },
+
+            // Period 2
+            { number: 3, symbol: 'Li', name: 'Lithium', category: 'alkali', mass: '6.94', group: 1, period: 2 },
+            { number: 4, symbol: 'Be', name: 'Beryllium', category: 'alkaline', mass: '9.0122', group: 2, period: 2 },
+            { number: 5, symbol: 'B', name: 'Boron', category: 'metalloid', mass: '10.81', group: 13, period: 2 },
+            { number: 6, symbol: 'C', name: 'Carbon', category: 'nonmetal', mass: '12.011', group: 14, period: 2 },
+            { number: 7, symbol: 'N', name: 'Nitrogen', category: 'nonmetal', mass: '14.007', group: 15, period: 2 },
+            { number: 8, symbol: 'O', name: 'Oxygen', category: 'nonmetal', mass: '15.999', group: 16, period: 2 },
+            { number: 9, symbol: 'F', name: 'Fluorine', category: 'halogen', mass: '18.998', group: 17, period: 2 },
+            { number: 10, symbol: 'Ne', name: 'Neon', category: 'noble', mass: '20.180', group: 18, period: 2 },
+
+            // Period 3
+            { number: 11, symbol: 'Na', name: 'Sodium', category: 'alkali', mass: '22.990', group: 1, period: 3 },
+            { number: 12, symbol: 'Mg', name: 'Magnesium', category: 'alkaline', mass: '24.305', group: 2, period: 3 },
+            { number: 13, symbol: 'Al', name: 'Aluminum', category: 'post-transition', mass: '26.982', group: 13, period: 3 },
+            { number: 14, symbol: 'Si', name: 'Silicon', category: 'metalloid', mass: '28.085', group: 14, period: 3 },
+            { number: 15, symbol: 'P', name: 'Phosphorus', category: 'nonmetal', mass: '30.974', group: 15, period: 3 },
+            { number: 16, symbol: 'S', name: 'Sulfur', category: 'nonmetal', mass: '32.06', group: 16, period: 3 },
+            { number: 17, symbol: 'Cl', name: 'Chlorine', category: 'halogen', mass: '35.45', group: 17, period: 3 },
+            { number: 18, symbol: 'Ar', name: 'Argon', category: 'noble', mass: '39.948', group: 18, period: 3 },
+
+            // Period 4
+            { number: 19, symbol: 'K', name: 'Potassium', category: 'alkali', mass: '39.098', group: 1, period: 4 },
+            { number: 20, symbol: 'Ca', name: 'Calcium', category: 'alkaline', mass: '40.078', group: 2, period: 4 },
+            { number: 21, symbol: 'Sc', name: 'Scandium', category: 'transition', mass: '44.956', group: 3, period: 4 },
+            { number: 22, symbol: 'Ti', name: 'Titanium', category: 'transition', mass: '47.867', group: 4, period: 4 },
+            { number: 23, symbol: 'V', name: 'Vanadium', category: 'transition', mass: '50.942', group: 5, period: 4 },
+            { number: 24, symbol: 'Cr', name: 'Chromium', category: 'transition', mass: '51.996', group: 6, period: 4 },
+            { number: 25, symbol: 'Mn', name: 'Manganese', category: 'transition', mass: '54.938', group: 7, period: 4 },
+            { number: 26, symbol: 'Fe', name: 'Iron', category: 'transition', mass: '55.845', group: 8, period: 4 },
+            { number: 27, symbol: 'Co', name: 'Cobalt', category: 'transition', mass: '58.933', group: 9, period: 4 },
+            { number: 28, symbol: 'Ni', name: 'Nickel', category: 'transition', mass: '58.693', group: 10, period: 4 },
+            { number: 29, symbol: 'Cu', name: 'Copper', category: 'transition', mass: '63.546', group: 11, period: 4 },
+            { number: 30, symbol: 'Zn', name: 'Zinc', category: 'transition', mass: '65.38', group: 12, period: 4 },
+            { number: 31, symbol: 'Ga', name: 'Gallium', category: 'post-transition', mass: '69.723', group: 13, period: 4 },
+            { number: 32, symbol: 'Ge', name: 'Germanium', category: 'metalloid', mass: '72.630', group: 14, period: 4 },
+            { number: 33, symbol: 'As', name: 'Arsenic', category: 'metalloid', mass: '74.922', group: 15, period: 4 },
+            { number: 34, symbol: 'Se', name: 'Selenium', category: 'nonmetal', mass: '78.971', group: 16, period: 4 },
+            { number: 35, symbol: 'Br', name: 'Bromine', category: 'halogen', mass: '79.904', group: 17, period: 4 },
+            { number: 36, symbol: 'Kr', name: 'Krypton', category: 'noble', mass: '83.798', group: 18, period: 4 },
+
+            // Period 5
+            { number: 37, symbol: 'Rb', name: 'Rubidium', category: 'alkali', mass: '85.468', group: 1, period: 5 },
+            { number: 38, symbol: 'Sr', name: 'Strontium', category: 'alkaline', mass: '87.62', group: 2, period: 5 },
+            { number: 39, symbol: 'Y', name: 'Yttrium', category: 'transition', mass: '88.906', group: 3, period: 5 },
+            { number: 40, symbol: 'Zr', name: 'Zirconium', category: 'transition', mass: '91.224', group: 4, period: 5 },
+            { number: 41, symbol: 'Nb', name: 'Niobium', category: 'transition', mass: '92.906', group: 5, period: 5 },
+            { number: 42, symbol: 'Mo', name: 'Molybdenum', category: 'transition', mass: '95.95', group: 6, period: 5 },
+            { number: 43, symbol: 'Tc', name: 'Technetium', category: 'transition', mass: '(98)', group: 7, period: 5 },
+            { number: 44, symbol: 'Ru', name: 'Ruthenium', category: 'transition', mass: '101.07', group: 8, period: 5 },
+            { number: 45, symbol: 'Rh', name: 'Rhodium', category: 'transition', mass: '102.91', group: 9, period: 5 },
+            { number: 46, symbol: 'Pd', name: 'Palladium', category: 'transition', mass: '106.42', group: 10, period: 5 },
+            { number: 47, symbol: 'Ag', name: 'Silver', category: 'transition', mass: '107.87', group: 11, period: 5 },
+            { number: 48, symbol: 'Cd', name: 'Cadmium', category: 'transition', mass: '112.41', group: 12, period: 5 },
+            { number: 49, symbol: 'In', name: 'Indium', category: 'post-transition', mass: '114.82', group: 13, period: 5 },
+            { number: 50, symbol: 'Sn', name: 'Tin', category: 'post-transition', mass: '118.71', group: 14, period: 5 },
+            { number: 51, symbol: 'Sb', name: 'Antimony', category: 'metalloid', mass: '121.76', group: 15, period: 5 },
+            { number: 52, symbol: 'Te', name: 'Tellurium', category: 'metalloid', mass: '127.60', group: 16, period: 5 },
+            { number: 53, symbol: 'I', name: 'Iodine', category: 'halogen', mass: '126.90', group: 17, period: 5 },
+            { number: 54, symbol: 'Xe', name: 'Xenon', category: 'noble', mass: '131.29', group: 18, period: 5 },
+
+            // Period 6
+            { number: 55, symbol: 'Cs', name: 'Cesium', category: 'alkali', mass: '132.91', group: 1, period: 6 },
+            { number: 56, symbol: 'Ba', name: 'Barium', category: 'alkaline', mass: '137.33', group: 2, period: 6 },
+            { number: 57, symbol: 'La', name: 'Lanthanum', category: 'lanthanide', mass: '138.91', group: 3, period: 6 },
+            { number: 72, symbol: 'Hf', name: 'Hafnium', category: 'transition', mass: '178.49', group: 4, period: 6 },
+            { number: 73, symbol: 'Ta', name: 'Tantalum', category: 'transition', mass: '180.95', group: 5, period: 6 },
+            { number: 74, symbol: 'W', name: 'Tungsten', category: 'transition', mass: '183.84', group: 6, period: 6 },
+            { number: 75, symbol: 'Re', name: 'Rhenium', category: 'transition', mass: '186.21', group: 7, period: 6 },
+            { number: 76, symbol: 'Os', name: 'Osmium', category: 'transition', mass: '190.23', group: 8, period: 6 },
+            { number: 77, symbol: 'Ir', name: 'Iridium', category: 'transition', mass: '192.22', group: 9, period: 6 },
+            { number: 78, symbol: 'Pt', name: 'Platinum', category: 'transition', mass: '195.08', group: 10, period: 6 },
+            { number: 79, symbol: 'Au', name: 'Gold', category: 'transition', mass: '196.97', group: 11, period: 6 },
+            { number: 80, symbol: 'Hg', name: 'Mercury', category: 'transition', mass: '200.59', group: 12, period: 6 },
+            { number: 81, symbol: 'Tl', name: 'Thallium', category: 'post-transition', mass: '204.38', group: 13, period: 6 },
+            { number: 82, symbol: 'Pb', name: 'Lead', category: 'post-transition', mass: '207.2', group: 14, period: 6 },
+            { number: 83, symbol: 'Bi', name: 'Bismuth', category: 'post-transition', mass: '208.98', group: 15, period: 6 },
+            { number: 84, symbol: 'Po', name: 'Polonium', category: 'metalloid', mass: '(209)', group: 16, period: 6 },
+            { number: 85, symbol: 'At', name: 'Astatine', category: 'halogen', mass: '(210)', group: 17, period: 6 },
+            { number: 86, symbol: 'Rn', name: 'Radon', category: 'noble', mass: '(222)', group: 18, period: 6 },
+
+            // Lanthanides
+            { number: 58, symbol: 'Ce', name: 'Cerium', category: 'lanthanide', mass: '140.12', group: 4, period: 8 },
+            { number: 59, symbol: 'Pr', name: 'Praseodymium', category: 'lanthanide', mass: '140.91', group: 5, period: 8 },
+            { number: 60, symbol: 'Nd', name: 'Neodymium', category: 'lanthanide', mass: '144.24', group: 6, period: 8 },
+            { number: 61, symbol: 'Pm', name: 'Promethium', category: 'lanthanide', mass: '(145)', group: 7, period: 8 },
+            { number: 62, symbol: 'Sm', name: 'Samarium', category: 'lanthanide', mass: '150.36', group: 8, period: 8 },
+            { number: 63, symbol: 'Eu', name: 'Europium', category: 'lanthanide', mass: '151.96', group: 9, period: 8 },
+            { number: 64, symbol: 'Gd', name: 'Gadolinium', category: 'lanthanide', mass: '157.25', group: 10, period: 8 },
+            { number: 65, symbol: 'Tb', name: 'Terbium', category: 'lanthanide', mass: '158.93', group: 11, period: 8 },
+            { number: 66, symbol: 'Dy', name: 'Dysprosium', category: 'lanthanide', mass: '162.50', group: 12, period: 8 },
+            { number: 67, symbol: 'Ho', name: 'Holmium', category: 'lanthanide', mass: '164.93', group: 13, period: 8 },
+            { number: 68, symbol: 'Er', name: 'Erbium', category: 'lanthanide', mass: '167.26', group: 14, period: 8 },
+            { number: 69, symbol: 'Tm', name: 'Thulium', category: 'lanthanide', mass: '168.93', group: 15, period: 8 },
+            { number: 70, symbol: 'Yb', name: 'Ytterbium', category: 'lanthanide', mass: '173.05', group: 16, period: 8 },
+            { number: 71, symbol: 'Lu', name: 'Lutetium', category: 'lanthanide', mass: '174.97', group: 17, period: 8 },
+
+            // Period 7
+            { number: 87, symbol: 'Fr', name: 'Francium', category: 'alkali', mass: '(223)', group: 1, period: 7 },
+            { number: 88, symbol: 'Ra', name: 'Radium', category: 'alkaline', mass: '(226)', group: 2, period: 7 },
+            { number: 89, symbol: 'Ac', name: 'Actinium', category: 'actinide', mass: '(227)', group: 3, period: 7 },
+            { number: 104, symbol: 'Rf', name: 'Rutherfordium', category: 'transition', mass: '(267)', group: 4, period: 7 },
+            { number: 105, symbol: 'Db', name: 'Dubnium', category: 'transition', mass: '(268)', group: 5, period: 7 },
+            { number: 106, symbol: 'Sg', name: 'Seaborgium', category: 'transition', mass: '(269)', group: 6, period: 7 },
+            { number: 107, symbol: 'Bh', name: 'Bohrium', category: 'transition', mass: '(270)', group: 7, period: 7 },
+            { number: 108, symbol: 'Hs', name: 'Hassium', category: 'transition', mass: '(277)', group: 8, period: 7 },
+            { number: 109, symbol: 'Mt', name: 'Meitnerium', category: 'transition', mass: '(278)', group: 9, period: 7 },
+            { number: 110, symbol: 'Ds', name: 'Darmstadtium', category: 'transition', mass: '(281)', group: 10, period: 7 },
+            { number: 111, symbol: 'Rg', name: 'Roentgenium', category: 'transition', mass: '(282)', group: 11, period: 7 },
+            { number: 112, symbol: 'Cn', name: 'Copernicium', category: 'transition', mass: '(285)', group: 12, period: 7 },
+            { number: 113, symbol: 'Nh', name: 'Nihonium', category: 'post-transition', mass: '(286)', group: 13, period: 7 },
+            { number: 114, symbol: 'Fl', name: 'Flerovium', category: 'post-transition', mass: '(289)', group: 14, period: 7 },
+            { number: 115, symbol: 'Mc', name: 'Moscovium', category: 'post-transition', mass: '(290)', group: 15, period: 7 },
+            { number: 116, symbol: 'Lv', name: 'Livermorium', category: 'post-transition', mass: '(293)', group: 16, period: 7 },
+            { number: 117, symbol: 'Ts', name: 'Tennessine', category: 'halogen', mass: '(294)', group: 17, period: 7 },
+            { number: 118, symbol: 'Og', name: 'Oganesson', category: 'noble', mass: '(294)', group: 18, period: 7 },
+
+            // Actinides
+            { number: 90, symbol: 'Th', name: 'Thorium', category: 'actinide', mass: '232.04', group: 4, period: 9 },
+            { number: 91, symbol: 'Pa', name: 'Protactinium', category: 'actinide', mass: '231.04', group: 5, period: 9 },
+            { number: 92, symbol: 'U', name: 'Uranium', category: 'actinide', mass: '238.03', group: 6, period: 9 },
+            { number: 93, symbol: 'Np', name: 'Neptunium', category: 'actinide', mass: '(237)', group: 7, period: 9 },
+            { number: 94, symbol: 'Pu', name: 'Plutonium', category: 'actinide', mass: '(244)', group: 8, period: 9 },
+            { number: 95, symbol: 'Am', name: 'Americium', category: 'actinide', mass: '(243)', group: 9, period: 9 },
+            { number: 96, symbol: 'Cm', name: 'Curium', category: 'actinide', mass: '(247)', group: 10, period: 9 },
+            { number: 97, symbol: 'Bk', name: 'Berkelium', category: 'actinide', mass: '(247)', group: 11, period: 9 },
+            { number: 98, symbol: 'Cf', name: 'Californium', category: 'actinide', mass: '(251)', group: 12, period: 9 },
+            { number: 99, symbol: 'Es', name: 'Einsteinium', category: 'actinide', mass: '(252)', group: 13, period: 9 },
+            { number: 100, symbol: 'Fm', name: 'Fermium', category: 'actinide', mass: '(257)', group: 14, period: 9 },
+            { number: 101, symbol: 'Md', name: 'Mendelevium', category: 'actinide', mass: '(258)', group: 15, period: 9 },
+            { number: 102, symbol: 'No', name: 'Nobelium', category: 'actinide', mass: '(259)', group: 16, period: 9 },
+            { number: 103, symbol: 'Lr', name: 'Lawrencium', category: 'actinide', mass: '(262)', group: 17, period: 9 }
+        ];
+
+        function createPeriodicTable() {
+            const table = document.getElementById('periodicTable');
+            table.innerHTML = '';
+            
+            // Create main table
+            elements.forEach(element => {
+                if (element.period <= 7) { // Skip lanthanides/actinides for main table
+                    const div = document.createElement('div');
+                    div.className = `element category-${element.category}`;
+                    div.style.gridColumn = element.group;
+                    div.style.gridRow = element.period;
+                    div.innerHTML = `
+                        <div class="number">${element.number}</div>
+                        <div class="symbol">${element.symbol}</div>
+                        <div class="name">${element.name}</div>
+                    `;
+                    div.onclick = () => showElementInfo(element);
+                    table.appendChild(div);
+                }
+            });
+            
+            // Add lanthanides and actinides at the bottom
+            const lanthanides = elements.filter(el => el.category === 'lanthanide');
+            const actinides = elements.filter(el => el.category === 'actinide');
+            
+            // Lanthanides row
+            lanthanides.forEach(element => {
+                const div = document.createElement('div');
+                div.className = `element category-${element.category}`;
+                div.style.gridColumn = element.group - 2; // Adjust position
+                div.style.gridRow = 9; // Special row for lanthanides
+                div.innerHTML = `
+                    <div class="number">${element.number}</div>
+                    <div class="symbol">${element.symbol}</div>
+                    <div class="name">${element.name}</div>
+                `;
+                div.onclick = () => showElementInfo(element);
+                table.appendChild(div);
+            });
+            
+            // Actinides row
+            actinides.forEach(element => {
+                const div = document.createElement('div');
+                div.className = `element category-${element.category}`;
+                div.style.gridColumn = element.group - 2; // Adjust position
+                div.style.gridRow = 10; // Special row for actinides
+                div.innerHTML = `
+                    <div class="number">${element.number}</div>
+                    <div class="symbol">${element.symbol}</div>
+                    <div class="name">${element.name}</div>
+                `;
+                div.onclick = () => showElementInfo(element);
+                table.appendChild(div);
+            });
+        }
+
+        function showElementInfo(element) {
+            const modal = document.getElementById('elementModal');
+            const content = document.getElementById('modalContent');
+            
+            content.innerHTML = `
+                <h2>${element.name} (${element.symbol})</h2>
+                <p>Atomic Number: ${element.number}</p>
+                <p>Atomic Mass: ${element.mass}</p>
+                <p>Group: ${element.group}</p>
+                <p>Period: ${element.period}</p>
+                <p>Category: ${element.category.replace('-', ' ').toUpperCase()}</p>
+                <button class="btn" onclick="speakElement('${element.name}', ${element.number})">
+                    🔊 Speak Element
+                </button>
+            `;
+            
+            modal.style.display = 'block';
+            if(voiceEnabled) speakElement(element.name, element.number);
+        }
+
+        function speakElement(name, number) {
+            synth.cancel(); // Cancel any ongoing speech
+            const utterance = new SpeechSynthesisUtterance(
+                `${name}. Atomic number ${number}`
+            );
+            synth.speak(utterance);
+        }
+
+        function closeModal() {
+            document.getElementById('elementModal').style.display = 'none';
+            synth.cancel();
+        }
+
+        function toggleVoice() {
+            voiceEnabled = !voiceEnabled;
+            const btn = document.querySelector('.voice-btn');
+            btn.textContent = `Toggle Voice (Currently ${voiceEnabled ? 'ON' : 'OFF'})`;
+            synth.cancel();
+        }
+
+        // Quiz function
+        function checkQuiz(quizId, correctAnswers) {
+            const quizContainer = document.getElementById(quizId);
+            const resultDiv = document.getElementById(quizId + 'Result');
+            const radioGroups = quizContainer.querySelectorAll('input[type="radio"]');
+            let score = 0;
+            let answeredAll = true;
+            
+            // Check each question
+            for (let i = 0; i < correctAnswers.length; i++) {
+                const questionName = 'q' + (i + 1);
+                const selectedOption = quizContainer.querySelector(`input[name="${questionName}"]:checked`);
+                
+                if (!selectedOption) {
+                    answeredAll = false;
+                    break;
+                }
+                
+                if (selectedOption.value === correctAnswers[i]) {
+                    score++;
+                }
+            }
+            
+            if (!answeredAll) {
+                resultDiv.textContent = "Please answer all questions before submitting.";
+                resultDiv.className = "quiz-result incorrect";
+                resultDiv.style.display = "block";
+                //return;
+            }
+            
+            const percentage = Math.round((score / correctAnswers.length) * 100);
+            resultDiv.innerHTML = `
+                <p>You scored ${score} out of ${correctAnswers.length} (${percentage}%)</p>
+                <p>${getFeedbackMessage(percentage)}</p>
+            `;
+            
+            resultDiv.className = percentage >= 50 ? "quiz-result correct" : "quiz-result incorrect";
+            resultDiv.style.display = "block";
+        }
+    
+        function getFeedbackMessage(percentage) {
+            if (percentage >= 90) return "Excellent work! You have a strong understanding of this topic.";
+            if (percentage >= 70) return "Good job! You understand most concepts but could review some areas.";
+            if (percentage >= 50) return "Not bad! Review the material and try again.";
+            return "Keep practicing! Review the notes and try the quiz again.";
+        }
+
+        // Initialize the periodic table when the page loads
+        window.onload = function() {
+            createPeriodicTable();
+        };
+        
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('elementModal');
+            if (event.target == modal) closeModal();
+        }
+    </script>
+</body>
+</html>

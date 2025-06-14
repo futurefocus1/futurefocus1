@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 11 Economics - Complete Interactive Resource</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #e67e22;
+            --danger: #e74c3c;
+            --text: #34495e;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        h1 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+            margin-bottom:20px;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .topic-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+            border-color: var(--primary);
+        }
+        
+        .topic-card h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .topic-card h3 i {
+            margin-right: 12px;
+            color: var(--primary);
+            font-size: 1.6rem;
+        }
+        
+        .topic-card p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .topic-card .btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .topic-card .btn:hover {
+            background-color: #2980b9;
+            transform: translateX(5px);
+        }
+        
+        .topic-card .btn i {
+            margin-left: 8px;
+            transition: all 0.3s;
+        }
+        
+        .topic-card .btn:hover i {
+            transform: translateX(3px);
+        }
+        
+        .content-section {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        
+        .active-section {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 15px;
+            color: var(--primary);
+        }
+        
+        .notes {
+            margin-bottom: 40px;
+        }
+        
+        .notes h4 {
+            color: var(--secondary);
+            margin: 25px 0 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .notes h4 i {
+            margin-right: 10px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .notes p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        
+        .notes ul, .notes ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .notes li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .diagram {
+            width: 100%;
+            max-width: 600px;
+            margin: 25px auto;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        
+        .diagram-caption {
+            margin-top: 10px;
+            font-style: italic;
+            color: var(--gray);
+            text-align: center;
+        }
+        
+        .quiz-container {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px dashed var(--gray);
+        }
+        
+        .quiz-title {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .quiz-title i {
+            margin-right: 12px;
+            color: var(--primary);
+        }
+        
+        .quiz-question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .quiz-question p {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: var(--secondary);
+        }
+        
+        label {
+            display: block;
+            margin: 8px 0;
+            padding: 12px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            padding-left: 45px;
+        }
+        
+        label:hover {
+            background: #e9f5ff;
+        }
+        
+        input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .radio-custom {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            height: 20px;
+            width: 20px;
+            background-color: white;
+            border: 2px solid var(--gray);
+            border-radius: 50%;
+        }
+        
+        label:hover .radio-custom {
+            border-color: var(--primary);
+        }
+        
+        input[type="radio"]:checked ~ .radio-custom {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            box-shadow: inset 0 0 0 3px white;
+        }
+        
+        button.check-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        button.check-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        button.check-btn i {
+            margin-left: 8px;
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .correct {
+            background: #e6f7e6;
+            color: #2e7d32;
+            border-left: 4px solid #2e7d32;
+        }
+        
+        .incorrect {
+            background: #ffebee;
+            color: #c62828;
+            border-left: 4px solid #c62828;
+        }
+        
+        .explanation {
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff3cd;
+            border-left: 4px solid #856404;
+            border-radius: 4px;
+            color: #856404;
+            font-size: 0.95rem;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 30px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            color: #2980b9;
+            transform: translateX(-5px);
+        }
+        
+        .back-btn i {
+            margin-right: 8px;
+        }
+        
+        /* Navigation Bar */
+        nav {
+            background: var(--secondary);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        nav a.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Accessibility Features */
+        .accessibility-bar {
+            background: var(--secondary);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+        
+        .accessibility-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .accessibility-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .high-contrast {
+            background: black !important;
+            color: white !important;
+        }
+        
+        .high-contrast .topic-card,
+        .high-contrast .content-section {
+            background: #222 !important;
+            color: white !important;
+            border-color: yellow !important;
+        }
+        
+        .high-contrast h1,
+        .high-contrast h2,
+        .high-contrast h3,
+        .high-contrast h4 {
+            color: yellow !important;
+        }
+        
+        .high-contrast .explanation {
+            background: #444 !important;
+            color: #ffeb3b !important;
+            border-left-color: #ffeb3b !important;
+        }
+        
+        .text-large {
+            font-size: 1.2rem !important;
+        }
+        
+        .text-large p,
+        .text-large li,
+        .text-large .explanation {
+            font-size: 1.2rem !important;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            nav a {
+                font-size: 1rem;
+                padding: 6px 12px;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            .accessibility-bar,
+            .back-btn,
+            button,
+            nav {
+                display: none !important;
+            }
+            
+            .content-section {
+                display: block !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .topic-card {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Accessibility Bar -->
+    <div class="accessibility-bar">
+        <button class="accessibility-btn" onclick="toggleHighContrast()">
+            <i class="fas fa-adjust"></i> High Contrast
+        </button>
+        <button class="accessibility-btn" onclick="toggleTextSize()">
+            <i class="fas fa-text-height"></i> Larger Text
+        </button>
+        <button class="accessibility-btn" onclick="speakPage()">
+            <i class="fas fa-volume-up"></i> Read Aloud
+        </button>
+        <button class="accessibility-btn" onclick="pauseSpeech()">
+            <i class="fas fa-pause"></i> Pause Speech
+        </button>
+        <button class="accessibility-btn" onclick="resumeSpeech()">
+            <i class="fas fa-play"></i> Resume Speech
+        </button>
+    </div>
+    <a href="homepage_html.html" class="home-button">← Back to FutureLearn</a>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" onclick="showHome()" class="nav-link" data-nav="home">Home</a>
+        <a href="#" onclick="showTopics()" class="nav-link" data-nav="topics">Topics</a>
+        <a href="#" onclick="showNotes()" class="nav-link" data-nav="notes">Detailed Notes</a>
+        <a href="#" onclick="showQuizzes()" class="nav-link" data-nav="quiz">Quiz</a>
+        <a href="#" onclick="showSection('resources')" class="nav-link" data-nav="resources">Resources</a>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-chart-line"></i> Grade 11 Economics</h1>
+            <p class="subtitle">Master key economic concepts with interactive learning</p>
+            <p class="tagline">Select a topic below to begin your learning journey</p>
+        </header>
+
+        <div class="topics-grid" id="topicsGrid">
+            <div class="topic-card" onclick="showSection('consumerBehavior')" tabindex="0" role="button" aria-label="Learn about Consumer Behavior">
+                <h3><i class="fas fa-shopping-cart"></i> Consumer Behavior</h3>
+                <p>Understand how consumers make choices through utility theory, indifference curves, and budget constraints.</p>
+                <div class="btn">Learn Now <i class="fas fa-arrow-right"></i></div>
+            </div>
+            <div class="topic-card" onclick="showSection('marketStructures')" tabindex="0" role="button" aria-label="Learn about Market Structures">
+                <h3><i class="fas fa-store"></i> Market Structures</h3>
+                <p>Explore perfect competition, monopoly, oligopoly, and monopolistic competition models.</p>
+                <div class="btn">Learn Now <i class="fas fa-arrow-right"></i></div>
+            </div>
+            <div class="topic-card" onclick="showSection('nationalIncome')" tabindex="0" role="button" aria-label="Learn about National Income">
+                <h3><i class="fas fa-money-bill-wave"></i> National Income</h3>
+                <p>Study GDP, GNP, and the different methods of calculating national income.</p>
+                <div class="btn">Learn Now <i class="fas fa-arrow-right"></i></div>
+            </div>
+            <div class="topic-card" onclick="showSection('consumption')" tabindex="0" role="button" aria-label="Learn about Consumption and Investment">
+                <h3><i class="fas fa-piggy-bank"></i> Consumption & Investment</h3>
+                <p>Analyze consumption functions, savings patterns, and investment determinants.</p>
+                <div class="btn">Learn Now <i class="fas fa-arrow-right"></i></div>
+            </div>
+            <div class="topic-card" onclick="showSection('internationalTrade')" tabindex="0" role="button" aria-label="Learn about International Trade">
+                <h3><i class="fas fa-globe-americas"></i> International Trade</h3>
+                <p>Master comparative advantage, balance of payments, and exchange rate systems.</p>
+                <div class="btn">Learn Now <i class="fas fa-arrow-right"></i></div>
+            </div>
+            <div class="topic-card" onclick="showSection('economicDevelopment')" tabindex="0" role="button" aria-label="Learn about Economic Development">
+                <h3><i class="fas fa-chart-pie"></i> Economic Development</h3>
+                <p>Understand HDI, sustainable development goals, and growth vs development.</p>
+                <div class="btn">Learn Now <i class="fas fa-arrow-right"></i></div>
+            </div>
+        </div>
+
+        <!-- Consumer Behavior Section -->
+        <div id="consumerBehavior" class="content-section">
+            <h2 class="section-title"><i class="fas fa-shopping-cart"></i> Consumer Behavior</h2>
+            <div class="notes">
+                <h4><i class="fas fa-lightbulb"></i> Cardinal Utility Approach</h4>
+                <p>The cardinal utility approach assumes that utility can be measured numerically in "utils." According to the <strong>Law of Diminishing Marginal Utility</strong>, as a consumer consumes more units of a good, the additional satisfaction (marginal utility) derived from each successive unit decreases.</p>
+                
+                <div class="diagram">
+                    <img src="https://media.istockphoto.com/id/2148772429/vector/marginal-utility-and-total-utility-theory-graph-in-economics.jpg?s=1024x1024&w=is&k=20&c=BWl9hLU3A72b3UbXsqDKHaR_o1PTfKBsegz_UeMglxc=" alt="Diagram showing diminishing marginal utility curve">
+                    <p class="diagram-caption">Figure 1: Diminishing Marginal Utility Curve</p>
+                </div>
+                
+                <h4><i class="fas fa-sort-amount-down"></i> Ordinal Utility Theory</h4>
+                <p>The ordinal approach suggests that consumers can rank their preferences but cannot measure utility precisely. <strong>Indifference curves</strong> represent all combinations of two goods that provide equal satisfaction to the consumer.</p>
+                
+                <div class="diagram">
+                    <img src=" https://media.istockphoto.com/id/2149038945/vector/properties-of-indifference-curve-in-economics-for-law-of-diminishing-marginal-rate-of.jpg?s=2048x2048&w=is&k=20&c=tGY4gA5iLVBOD-t8yWLQJaGy-askiOO0R81OlVPd-4M=" alt="Diagram of indifference curves">
+                    <p class="diagram-caption">Figure 2: Indifference Curves showing different utility levels</p>
+                </div>
+                
+                <h4><i class="fas fa-wallet"></i> Budget Constraints</h4>
+                <p>The budget line shows all possible combinations of two goods a consumer can purchase given their income and the prices of the goods. The equation is:</p>
+                <p style="text-align: center; font-weight: bold; margin: 15px 0;">P<sub>1</sub>X<sub>1</sub> + P<sub>2</sub>X<sub>2</sub> = M</p>
+                <p>Where P<sub>1</sub> and P<sub>2</sub> are prices, X<sub>1</sub> and X<sub>2</sub> are quantities, and M is income.</p>
+                
+                <h4><i class="fas fa-balance-scale"></i> Consumer Equilibrium</h4>
+                <p>Consumer equilibrium occurs where the budget line is tangent to the highest possible indifference curve. At this point:</p>
+                <p style="text-align: center; font-weight: bold; margin: 15px 0;">MRS = P<sub>1</sub>/P<sub>2</sub></p>
+                <p>Where MRS is the marginal rate of substitution (the slope of the indifference curve).</p>
+            </div>
+            
+            <div class="quiz-container">
+                <h3 class="quiz-title"><i class="fas fa-question-circle"></i> Test Your Understanding</h3>
+                <form id="quizConsumer">
+                    <div class="quiz-question">
+                        <p>1. What does the Law of Diminishing Marginal Utility state?</p>
+                        <label>
+                            <input type="radio" name="q1" value="a">
+                            <span class="radio-custom"></span>
+                            Utility increases with consumption
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="b">
+                            <span class="radio-custom"></span>
+                            Marginal utility decreases with additional consumption
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="c">
+                            <span class="radio-custom"></span>
+                            Total utility is always constant
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. An indifference curve shows:</p>
+                        <label>
+                            <input type="radio" name="q2" value="a">
+                            <span class="radio-custom"></span>
+                            Different price levels
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="b">
+                            <span class="radio-custom"></span>
+                            Combinations yielding equal satisfaction
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="c">
+                            <span class="radio-custom"></span>
+                            Market demand curves
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. Consumer equilibrium occurs when:</p>
+                        <label>
+                            <input type="radio" name="q3" value="a">
+                            <span class="radio-custom"></span>
+                            The budget line intersects the x-axis
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="b">
+                            <span class="radio-custom"></span>
+                            The budget line is tangent to an indifference curve
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="c">
+                            <span class="radio-custom"></span>
+                            Marginal utility is zero
+                        </label>
+                    </div>
+                    
+                    <button type="button" class="check-btn" onclick="checkQuiz('quizConsumer', ['b','b','b'], [
+                        {
+                            'a': 'Incorrect: The Law of Diminishing Marginal Utility states that utility decreases, not increases, with additional consumption of a good.',
+                            'c': 'Incorrect: Total utility increases but at a decreasing rate, and marginal utility diminishes with additional consumption.'
+                        },
+                        {
+                            'a': 'Incorrect: Indifference curves show combinations of goods that yield equal satisfaction, not different price levels.',
+                            'c': 'Incorrect: Indifference curves represent consumer preferences, not market demand curves.'
+                        },
+                        {
+                            'a': 'Incorrect: Consumer equilibrium occurs where the budget line is tangent to the highest indifference curve, not where it intersects the x-axis.',
+                            'c': 'Incorrect: Marginal utility is not necessarily zero at equilibrium; the condition is that the marginal rate of substitution equals the price ratio.'
+                        }
+                    ])">
+                        Check Answers <i class="fas fa-check"></i>
+                    </button>
+                    <div id="quizConsumerResult" class="result"></div>
+                </form>
+            </div>
+            
+            <a href="#" class="back-btn" onclick="showHome()">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
+        <!-- Market Structures Section -->
+        <div id="marketStructures" class="content-section">
+            <h2 class="section-title"><i class="fas fa-store"></i> Market Structures</h2>
+            <div class="notes">
+                <h4><i class="fas fa-users"></i> Perfect Competition</h4>
+                <p>Characteristics:</p>
+                <ul>
+                    <li>Many buyers and sellers</li>
+                    <li>Homogeneous products</li>
+                    <li>Free entry and exit</li>
+                    <li>Perfect information</li>
+                    <li>Price takers (MR = MC = P)</li>
+                </ul>
+                
+                <div class="diagram">
+                    <img src="https://media.istockphoto.com/id/2149741928/vector/element-of-market-structures-of-perfect-competition.jpg?s=1024x1024&w=is&k=20&c=acut-PJM4XgAAox2iicWudWw2mR3tr-j8mCm4XnrLl0= " alt="Perfect competition diagram showing price determination">
+                    <p class="diagram-caption">Figure 1: characterstics of Perfect Competition</p>
+                </div>
+                
+                <h4><i class="fas fa-crown"></i> Monopoly</h4>
+                <p>Characteristics:</p>
+                <ul>
+                    <li>Single seller</li>
+                    <li>No close substitutes</li>
+                    <li>Barriers to entry</li>
+                    <li>Price maker</li>
+                    <li>Produces where MR = MC but charges higher price</li>
+                </ul>
+                
+                <div class="diagram">
+                    <img src="https://media.istockphoto.com/id/2168477295/vector/break-even-point-or-bep-or-cost-volume-profit-graph-of-the-sales-units-and-the-revenue-sales.jpg?s=2048x2048&w=is&k=20&c=0LC-QHYwzX0z-ndYTWfLKZCm8U_676JcbP8VY64O9Xs= " alt="Monopoly diagram showing price and output determination">
+                    <p class="diagram-caption">Figure 2: Monopoly Price and Output Determination</p>
+                </div>
+                
+                <h4><i class="fas fa-chess"></i> Oligopoly</h4>
+                <p>Characteristics:</p>
+                <ul>
+                    <li>Few dominant firms</li>
+                    <li>Interdependent decisions</li>
+                    <li>May collude (cartels) or compete</li>
+                    <li>Game theory applies</li>
+                    <li>Kinked demand curve model</li>
+                </ul>
+                
+                <h4><i class="fas fa-tshirt"></i> Monopolistic Competition</h4>
+                <p>Characteristics:</p>
+                <ul>
+                    <li>Many firms with differentiated products</li>
+                    <li>Some pricing power in short run</li>
+                    <li>Zero economic profit in long run</li>
+                    <li>Examples: restaurants, clothing brands</li>
+                    <li>Excess capacity in long run</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-container">
+                <h3 class="quiz-title"><i class="fas fa-question-circle"></i> Test Your Understanding</h3>
+                <form id="quizMarket">
+                    <div class="quiz-question">
+                        <p>1. In perfect competition, firms:</p>
+                        <label>
+                            <input type="radio" name="q1" value="a">
+                            <span class="radio-custom"></span>
+                            Set their own prices
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="b">
+                            <span class="radio-custom"></span>
+                            Are price takers
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="c">
+                            <span class="radio-custom"></span>
+                            Always earn economic profits
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. A monopoly maximizes profit by producing where:</p>
+                        <label>
+                            <input type="radio" name="q2" value="a">
+                            <span class="radio-custom"></span>
+                            MR = MC
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="b">
+                            <span class="radio-custom"></span>
+                            P = MC
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="c">
+                            <span class="radio-custom"></span>
+                            P = ATC
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. Which market structure has many firms selling differentiated products?</p>
+                        <label>
+                            <input type="radio" name="q3" value="a">
+                            <span class="radio-custom"></span>
+                            Perfect competition
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="b">
+                            <span class="radio-custom"></span>
+                            Monopoly
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="c">
+                            <span class="radio-custom"></span>
+                            Monopolistic competition
+                        </label>
+                    </div>
+                    
+                    <button type="button" class="check-btn" onclick="checkQuiz('quizMarket', ['b','a','c'], [
+                        {
+                            'a': 'Incorrect: In perfect competition, firms are price takers, meaning they accept the market price and cannot set their own prices.',
+                            'c': 'Incorrect: Firms in perfect competition earn zero economic profit in the long run due to free entry and exit.'
+                        },
+                        {
+                            'b': 'Incorrect: A monopoly produces where MR = MC, not where P = MC, and charges a higher price based on the demand curve.',
+                            'c': 'Incorrect: Producing where P = ATC is not the profit-maximizing condition for a monopoly; MR = MC determines output.'
+                        },
+                        {
+                            'a': 'Incorrect: Perfect competition involves many firms selling identical products, not differentiated ones.',
+                            'b': 'Incorrect: A monopoly involves a single seller with no close substitutes, not differentiated products.'
+                        }
+                    ])">
+                        Check Answers <i class="fas fa-check"></i>
+                    </button>
+                    <div id="quizMarketResult" class="result"></div>
+                </form>
+            </div>
+            
+            <a href="#" class="back-btn" onclick="showHome()">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
+        <!-- National Income Section -->
+        <div id="nationalIncome" class="content-section">
+            <h2 class="section-title"><i class="fas fa-money-bill-wave"></i> National Income</h2>
+            <div class="notes">
+                <h4><i class="fas fa-calculator"></i> Gross Domestic Product (GDP)</h4>
+                <p>GDP measures the total monetary value of all final goods and services produced within a country's borders over a specific period. It can be calculated using three approaches:</p>
+                <ul>
+                    <li>Production Approach: Sum of value added by all industries.</li>
+                    <li>Income Approach: Sum of incomes earned (wages, profits, rents).</li>
+                    <li>Expenditure Approach: C + I + G + (X - M), where C is consumption, I is investment, G is government spending, X is exports, and M is imports.</li>
+                </ul>
+                
+                <h4><i class="fas fa-globe"></i> Gross National Product (GNP)</h4>
+                <p>GNP measures the total monetary value of all final goods and services produced by a country's residents, regardless of location. GNP = GDP + Net income from abroad.</p>
+                
+                <h4><i class="fas fa-chart-bar"></i> Measuring National Income</h4>
+                <p>Other measures include Net National Product (NNP), which adjusts GNP for depreciation, and National Income (NI), which adjusts NNP for indirect taxes and subsidies.</p>
+            </div>
+            
+            <div class="quiz-container">
+                <h3 class="quiz-title"><i class="fas fa-question-circle"></i> Test Your Understanding</h3>
+                <form id="quizNationalIncome">
+                    <div class="quiz-question">
+                        <p>1. What does GDP measure?</p>
+                        <label>
+                            <input type="radio" name="q1" value="a">
+                            <span class="radio-custom"></span>
+                            Income of residents abroad
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="b">
+                            <span class="radio-custom"></span>
+                            Value of goods and services produced within a country
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="c">
+                            <span class="radio-custom"></span>
+                            Total government spending
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. The expenditure approach to GDP includes:</p>
+                        <label>
+                            <input type="radio" name="q2" value="a">
+                            <span class="radio-custom"></span>
+                            C + I + G + (X - M)
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="b">
+                            <span class="radio-custom"></span>
+                            Wages + Profits + Taxes
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="c">
+                            <span class="radio-custom"></span>
+                            Value added - Depreciation
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. GNP differs from GDP by including:</p>
+                        <label>
+                            <input type="radio" name="q3" value="a">
+                            <span class="radio-custom"></span>
+                            Government subsidies
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="b">
+                            <span class="radio-custom"></span>
+                            Net income from abroad
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="c">
+                            <span class="radio-custom"></span>
+                            Indirect taxes
+                        </label>
+                    </div>
+                    
+                    <button type="button" class="check-btn" onclick="checkQuiz('quizNationalIncome', ['b','a','b'], [
+                        {
+                            'a': 'Incorrect: GDP measures production within a country’s borders, not income earned abroad, which is included in GNP.',
+                            'c': 'Incorrect: GDP includes government spending as part of the expenditure approach, but it is not limited to it.'
+                        },
+                        {
+                            'b': 'Incorrect: Wages, profits, and taxes are part of the income approach, not the expenditure approach.',
+                            'c': 'Incorrect: Value added minus depreciation relates to Net National Product, not the expenditure approach to GDP.'
+                        },
+                        {
+                            'a': 'Incorrect: Government subsidies are considered in National Income calculations, not the difference between GNP and GDP.',
+                            'c': 'Incorrect: Indirect taxes are adjusted in National Income, not in the calculation of GNP versus GDP.'
+                        }
+                    ])">
+                        Check Answers <i class="fas fa-check"></i>
+                    </button>
+                    <div id="quizNationalIncomeResult" class="result"></div>
+                </form>
+            </div>
+            
+            <a href="#" class="back-btn" onclick="showHome()">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
+        <!-- Consumption & Investment Section -->
+        <div id="consumption" class="content-section">
+            <h2 class="section-title"><i class="fas fa-piggy-bank"></i> Consumption & Investment</h2>
+            <div class="notes">
+                <h4><i class="fas fa-credit-card"></i> Consumption Function</h4>
+                <p>The consumption function shows the relationship between consumption spending and disposable income: C = a + bY, where C is consumption, a is autonomous consumption, b is the marginal propensity to consume (MPC), and Y is disposable income.</p>
+                
+                <h4><i class="fas fa-piggy-bank"></i> Savings Patterns</h4>
+                <p>Savings is the portion of disposable income not spent on consumption. The savings function is: S = -a + (1-b)Y, where 1-b is the marginal propensity to save (MPS).</p>
+                
+                <h4><i class="fas fa-industry"></i> Investment Determinants</h4>
+                <p>Investment is influenced by:</p>
+                <ul>
+                    <li>Interest rates</li>
+                    <li>Business expectations</li>
+                    <li>Technological changes</li>
+                    <li>Government policies</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-container">
+                <h3 class="quiz-title"><i class="fas fa-question-circle"></i> Test Your Understanding</h3>
+                <form id="quizConsumption">
+                    <div class="quiz-question">
+                        <p>1. The marginal propensity to consume (MPC) represents:</p>
+                        <label>
+                            <input type="radio" name="q1" value="a">
+                            <span class="radio-custom"></span>
+                            Total consumption spending
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="b">
+                            <span class="radio-custom"></span>
+                            The fraction of additional income spent on consumption
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="c">
+                            <span class="radio-custom"></span>
+                            The total income saved
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. The savings function is derived from:</p>
+                        <label>
+                            <input type="radio" name="q2" value="a">
+                            <span class="radio-custom"></span>
+                            C + I + G
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="b">
+                            <span class="radio-custom"></span>
+                            Disposable income minus consumption
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="c">
+                            <span class="radio-custom"></span>
+                            Total investment spending
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. Investment is least likely to be influenced by:</p>
+                        <label>
+                            <input type="radio" name="q3" value="a">
+                            <span class="radio-custom"></span>
+                            Interest rates
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="b">
+                            <span class="radio-custom"></span>
+                            Consumer preferences
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="c">
+                            <span class="radio-custom"></span>
+                            Technological changes
+                        </label>
+                    </div>
+                    
+                    <button type="button" class="check-btn" onclick="checkQuiz('quizConsumption', ['b','b','b'], [
+                        {
+                            'a': 'Incorrect: MPC is the fraction of additional income spent on consumption, not the total consumption spending.',
+                            'c': 'Incorrect: MPC relates to consumption, not the total income saved, which is related to the marginal propensity to save.'
+                        },
+                        {
+                            'a': 'Incorrect: C + I + G is part of the GDP expenditure approach, not the savings function.',
+                            'c': 'Incorrect: The savings function is not derived from total investment spending but from income not consumed.'
+                        },
+                        {
+                            'a': 'Incorrect: Interest rates significantly influence investment decisions by affecting the cost of borrowing.',
+                            'c': 'Incorrect: Technological changes are a key determinant of investment as they impact productivity and costs.'
+                        }
+                    ])">
+                        Check Answers <i class="fas fa-check"></i>
+                    </button>
+                    <div id="quizConsumptionResult" class="result"></div>
+                </form>
+            </div>
+            
+            <a href="#" class="back-btn" onclick="showHome()">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
+        <!-- International Trade Section -->
+        <div id="internationalTrade" class="content-section">
+            <h2 class="section-title"><i class="fas fa-globe-americas"></i> International Trade</h2>
+            <div class="notes">
+                <h4><i class="fas fa-exchange-alt"></i> Comparative Advantage</h4>
+                <p>A country has a comparative advantage in producing a good if it can produce it at a lower opportunity cost than another country.</p>
+                
+                <h4><i class="fas fa-balance-scale"></i> Balance of Payments</h4>
+                <p>The balance of payments records all economic transactions between residents of a country and the rest of the world, including the current account and capital account.</p>
+                
+                <h4><i class="fas fa-money-bill"></i> Exchange Rates</h4>
+                <p>Exchange rates determine the value of one currency in terms of another. Systems include fixed, floating, and managed float regimes.</p>
+            </div>
+            
+            <div class="quiz-container">
+                <h3 class="quiz-title"><i class="fas fa-question-circle"></i> Test Your Understanding</h3>
+                <form id="quizTrade">
+                    <div class="quiz-question">
+                        <p>1. Comparative advantage is based on:</p>
+                        <label>
+                            <input type="radio" name="q1" value="a">
+                            <span class="radio-custom"></span>
+                            Absolute production costs
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="b">
+                            <span class="radio-custom"></span>
+                            Lower opportunity cost
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="c">
+                            <span class="radio-custom"></span>
+                            Higher total output
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. The balance of payments includes:</p>
+                        <label>
+                            <input type="radio" name="q2" value="a">
+                            <span class="radio-custom"></span>
+                            Only trade in goods
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="b">
+                            <span class="radio-custom"></span>
+                            Current and capital accounts
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="c">
+                            <span class="radio-custom"></span>
+                            Domestic transactions only
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. A fixed exchange rate system involves:</p>
+                        <label>
+                            <input type="radio" name="q3" value="a">
+                            <span class="radio-custom"></span>
+                            Market-driven currency values
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="b">
+                            <span class="radio-custom"></span>
+                            Government-set currency values
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="c">
+                            <span class="radio-custom"></span>
+                            No international trade
+                        </label>
+                    </div>
+                    
+                    <button type="button" class="check-btn" onclick="checkQuiz('quizTrade', ['b','b','b'], [
+                        {
+                            'a': 'Incorrect: Comparative advantage is based on lower opportunity cost, not absolute production costs.',
+                            'c': 'Incorrect: Comparative advantage focuses on opportunity cost, not the total output produced.'
+                        },
+                        {
+                            'a': 'Incorrect: The balance of payments includes trade in goods, services, and financial flows, not just goods.',
+                            'c': 'Incorrect: The balance of payments records international transactions, not domestic ones.'
+                        },
+                        {
+                            'a': 'Incorrect: A fixed exchange rate is set by the government, not determined by market forces, which applies to floating rates.',
+                            'c': 'Incorrect: A fixed exchange rate system does not prevent international trade; it regulates currency value.'
+                        }
+                    ])">
+                        Check Answers <i class="fas fa-check"></i>
+                    </button>
+                    <div id="quizTradeResult" class="result"></div>
+                </form>
+            </div>
+            
+            <a href="#" class="back-btn" onclick="showHome()">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
+        <!-- Economic Development Section -->
+        <div id="economicDevelopment" class="content-section">
+            <h2 class="section-title"><i class="fas fa-chart-pie"></i> Economic Development</h2>
+            <div class="notes">
+                <h4><i class="fas fa-users"></i> Human Development Index (HDI)</h4>
+                <p>HDI measures a country’s development based on life expectancy, education, and per capita income.</p>
+                
+                <h4><i class="fas fa-leaf"></i> Sustainable Development Goals (SDGs)</h4>
+                <p>The SDGs are 17 global goals set by the UN to address poverty, inequality, climate change, and other issues by 2030.</p>
+                
+                <h4><i class="fas fa-chart-line"></i> Growth vs Development</h4>
+                <p>Economic growth refers to an increase in GDP, while development includes improvements in living standards, education, and health.</p>
+            </div>
+            
+            <div class="quiz-container">
+                <h3 class="quiz-title"><i class="fas fa-question-circle"></i> Test Your Understanding</h3>
+                <form id="quizDevelopment">
+                    <div class="quiz-question">
+                        <p>1. HDI includes which of the following?</p>
+                        <label>
+                            <input type="radio" name="q1" value="a">
+                            <span class="radio-custom"></span>
+                            Military expenditure
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="b">
+                            <span class="radio-custom"></span>
+                            Life expectancy, education, and income
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="c">
+                            <span class="radio-custom"></span>
+                            Export volumes
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. The Sustainable Development Goals aim to:</p>
+                        <label>
+                            <input type="radio" name="q2" value="a">
+                            <span class="radio-custom"></span>
+                            Increase GDP only
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="b">
+                            <span class="radio-custom"></span>
+                            Address global challenges like poverty and climate change
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="c">
+                            <span class="radio-custom"></span>
+                            Reduce international trade
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. Economic development differs from growth by focusing on:</p>
+                        <label>
+                            <input type="radio" name="q3" value="a">
+                            <span class="radio-custom"></span>
+                            GDP increase only
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="b">
+                            <span class="radio-custom"></span>
+                            Improvements in living standards
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="c">
+                            <span class="radio-custom"></span>
+                            Inflation control
+                        </label>
+                    </div>
+                    
+                    <button type="button" class="check-btn" onclick="checkQuiz('quizDevelopment', ['b','b','b'], [
+                        {
+                            'a': 'Incorrect: HDI focuses on life expectancy, education, and income, not military expenditure.',
+                            'c': 'Incorrect: Export volumes are not a component of HDI, which measures human development factors.'
+                        },
+                        {
+                            'a': 'Incorrect: SDGs aim to address broader issues like poverty and climate change, not just GDP growth.',
+                            'c': 'Incorrect: SDGs do not aim to reduce international trade but promote sustainable global development.'
+                        },
+                        {
+                            'a': 'Incorrect: Economic development includes broader improvements, not just GDP growth, which is economic growth.',
+                            'c': 'Incorrect: Inflation control is a macroeconomic policy, not the primary focus of economic development.'
+                        }
+                    ])">
+                        Check Answers <i class="fas fa-check"></i>
+                    </button>
+                    <div id="quizDevelopmentResult" class="result"></div>
+                </form>
+            </div>
+            
+            <a href="#" class="back-btn" onclick="showHome()">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
+        <!-- Resources Section -->
+        <div id="resources" class="content-section">
+            <h2 class="section-title"><i class="fas fa-book"></i> Resources</h2>
+            <div class="notes">
+                <h4><i class="fas fa-link"></i> Recommended Resources</h4>
+                <p>Explore these external resources to deepen your understanding of Grade 11 Economics concepts:</p>
+                <ul>
+                    <li><a href="https://www.khanacademy.org/economics-finance-domain" target="_blank">Khan Academy Economics</a> - Free video lessons on micro and macroeconomics.</li>
+                    <li><a href="https://www.econlib.org/" target="_blank">EconLib</a> - Articles and books on economic theory and history.</li>
+                    <li><a href="https://www.imf.org/en/Home" target="_blank">International Monetary Fund (IMF)</a> - Data and reports on global economics.</li>
+                    <li><a href="https://www.worldbank.org/" target="_blank">World Bank</a> - Resources on economic development and global indicators.</li>
+                     <a href="https://drive.google.com/file/d/1NwWFaflrYrsDGRVzEF4J99cla7jQOigc/view?usp=sharing " target="_blank" class="btn">Open Textbook</a>
+                </ul>
+                
+                <h4><i class="fas fa-file-pdf"></i> Additional Materials</h4>
+                <p>Check with your instructor for recommended textbooks or study guides specific to your curriculum.</p>
+            </div>
+            
+            <a href="#" class="back-btn" onclick="showHome()">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
+        <!-- Detailed Notes Section -->
+        <div id="detailedNotes" class="content-section">
+            <h2 class="section-title"><i class="fas fa-book-open"></i> Detailed Notes</h2>
+            <div id="notesContainer"></div>
+            <a href="#" class="back-btn" onclick="showHome()">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
+        <!-- All Quizzes Section -->
+        <div id="allQuizzes" class="content-section">
+            <h2 class="section-title"><i class="fas fa-question-circle"></i> All Quizzes</h2>
+            <div id="quizzesContainer"></div>
+            <a href="#" class="back-btn" onclick="showHome()">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Quiz configurations
+        const quizConfigs = {
+            'quizConsumer': {
+                correctAnswers: ['b', 'b', 'b'],
+                explanations: [
+                    {
+                        'a': 'Incorrect: The Law of Diminishing Marginal Utility states that utility decreases, not increases, with additional consumption of a good.',
+                        'c': 'Incorrect: Total utility increases but at a decreasing rate, and marginal utility diminishes with additional consumption.'
+                    },
+                    {
+                        'a': 'Incorrect: Indifference curves show combinations of goods that yield equal satisfaction, not different price levels.',
+                        'c': 'Incorrect: Indifference curves represent consumer preferences, not market demand curves.'
+                    },
+                    {
+                        'a': 'Incorrect: Consumer equilibrium occurs where the budget line is tangent to the highest indifference curve, not where it intersects the x-axis.',
+                        'c': 'Incorrect: Marginal utility is not necessarily zero at equilibrium; the condition is that the marginal rate of substitution equals the price ratio.'
+                    }
+                ]
+            },
+            'quizMarket': {
+                correctAnswers: ['b', 'a', 'c'],
+                explanations: [
+                    {
+                        'a': 'Incorrect: In perfect competition, firms are price takers, meaning they accept the market price and cannot set their own prices.',
+                        'c': 'Incorrect: Firms in perfect competition earn zero economic profit in the long run due to free entry and exit.'
+                    },
+                    {
+                        'b': 'Incorrect: A monopoly produces where MR = MC, not where P = MC, and charges a higher price based on the demand curve.',
+                        'c': 'Incorrect: Producing where P = ATC is not the profit-maximizing condition for a monopoly; MR = MC determines output.'
+                    },
+                    {
+                        'a': 'Incorrect: Perfect competition involves many firms selling identical products, not differentiated ones.',
+                        'b': 'Incorrect: A monopoly involves a single seller with no close substitutes, not differentiated products.'
+                    }
+                ]
+            },
+            'quizNationalIncome': {
+                correctAnswers: ['b', 'a', 'b'],
+                explanations: [
+                    {
+                        'a': 'Incorrect: GDP measures production within a country’s borders, not income earned abroad, which is included in GNP.',
+                        'c': 'Incorrect: GDP includes government spending as part of the expenditure approach, but it is not limited to it.'
+                    },
+                    {
+                        'b': 'Incorrect: Wages, profits, and taxes are part of the income approach, not the expenditure approach.',
+                        'c': 'Incorrect: Value added minus depreciation relates to Net National Product, not the expenditure approach to GDP.'
+                    },
+                    {
+                        'a': 'Incorrect: Government subsidies are considered in National Income calculations, not the difference between GNP and GDP.',
+                        'c': 'Incorrect: Indirect taxes are adjusted in National Income, not in the calculation of GNP versus GDP.'
+                    }
+                ]
+            },
+            'quizConsumption': {
+                correctAnswers: ['b', 'b', 'b'],
+                explanations: [
+                    {
+                        'a': 'Incorrect: MPC is the fraction of additional income spent on consumption, not the total consumption spending.',
+                        'c': 'Incorrect: MPC relates to consumption, not the total income saved, which is related to the marginal propensity to save.'
+                    },
+                    {
+                        'a': 'Incorrect: C + I + G is part of the GDP expenditure approach, not the savings function.',
+                        'c': 'Incorrect: The savings function is not derived from total investment spending but from income not consumed.'
+                    },
+                    {
+                        'a': 'Incorrect: Interest rates significantly influence investment decisions by affecting the cost of borrowing.',
+                        'c': 'Incorrect: Technological changes are a key determinant of investment as they impact productivity and costs.'
+                    }
+                ]
+            },
+            'quizTrade': {
+                correctAnswers: ['b', 'b', 'b'],
+                explanations: [
+                    {
+                        'a': 'Incorrect: Comparative advantage is based on lower opportunity cost, not absolute production costs.',
+                        'c': 'Incorrect: Comparative advantage focuses on opportunity cost, not the total output produced.'
+                    },
+                    {
+                        'a': 'Incorrect: The balance of payments includes trade in goods, services, and financial flows, not just goods.',
+                        'c': 'Incorrect: The balance of payments records international transactions, not domestic ones.'
+                    },
+                    {
+                        'a': 'Incorrect: A fixed exchange rate is set by the government, not determined by market forces, which applies to floating rates.',
+                        'c': 'Incorrect: A fixed exchange rate system does not prevent international trade; it regulates currency value.'
+                    }
+                ]
+            },
+            'quizDevelopment': {
+                correctAnswers: ['b', 'b', 'b'],
+                explanations: [
+                    {
+                        'a': 'Incorrect: HDI focuses on life expectancy, education, and income, not military expenditure.',
+                        'c': 'Incorrect: Export volumes are not a component of HDI, which measures human development factors.'
+                    },
+                    {
+                        'a': 'Incorrect: SDGs aim to address broader issues like poverty and climate change, not just GDP growth.',
+                        'c': 'Incorrect: SDGs do not aim to reduce international trade but promote sustainable global development.'
+                    },
+                    {
+                        'a': 'Incorrect: Economic development includes broader improvements, not just GDP growth, which is economic growth.',
+                        'c': 'Incorrect: Inflation control is a macroeconomic policy, not the primary focus of economic development.'
+                    }
+                ]
+            }
+        };
+
+        // Show selected section
+        function showSection(sectionId) {
+            hideAll();
+            document.getElementById(sectionId).classList.add('active-section');
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            updateNav(sectionId);
+            const sectionTitle = document.querySelector(`#${sectionId} .section-title`)?.textContent || sectionId;
+            speak(`Now showing ${sectionTitle} content.`);
+        }
+        
+        // Show home/topics (same as topics grid)
+        function showHome() {
+            showTopics();
+        }
+        
+        function showTopics() {
+            hideAll();
+            document.getElementById('topicsGrid').style.display = 'grid';
+            document.querySelector('header').style.display = 'block';
+            updateNav('home');
+            speak("Returned to topics selection.");
+        }
+        
+        // Show detailed notes
+        function showNotes() {
+            hideAll();
+            const notesContainer = document.getElementById('notesContainer');
+            notesContainer.innerHTML = '';
+            document.querySelectorAll('.content-section:not(#resources, #detailedNotes, #allQuizzes) .notes').forEach(note => {
+                const clone = note.cloneNode(true);
+                const sectionTitle = note.closest('.content-section').querySelector('.section-title').cloneNode(true);
+                notesContainer.appendChild(sectionTitle);
+                notesContainer.appendChild(clone);
+            });
+            document.getElementById('detailedNotes').classList.add('active-section');
+            document.getElementById('detailedNotes').scrollIntoView({ behavior: 'smooth' });
+            updateNav('notes');
+            speak("Showing all detailed notes.");
+        }
+        
+        // Show all quizzes
+        function showQuizzes() {
+            hideAll();
+            const quizzesContainer = document.getElementById('quizzesContainer');
+            quizzesContainer.innerHTML = '';
+            const quizSections = [
+                { id: 'quizConsumer', sectionId: 'consumerBehavior' },
+                { id: 'quizMarket', sectionId: 'marketStructures' },
+                { id: 'quizNationalIncome', sectionId: 'nationalIncome' },
+                { id: 'quizConsumption', sectionId: 'consumption' },
+                { id: 'quizTrade', sectionId: 'internationalTrade' },
+                { id: 'quizDevelopment', sectionId: 'economicDevelopment' }
+            ];
+
+            quizSections.forEach((quiz, index) => {
+                const originalQuiz = document.getElementById(quiz.id);
+                if (originalQuiz) {
+                    const uniqueFormId = `${quiz.id}_all_${index}`;
+                    const uniqueResultId = `${quiz.id}Result_all_${index}`;
+                    const clone = originalQuiz.cloneNode(true);
+                    clone.id = uniqueFormId;
+                    const resultDiv = clone.querySelector(`#${quiz.id}Result`);
+                    if (resultDiv) {
+                        resultDiv.id = uniqueResultId;
+                    }
+                    const checkButton = clone.querySelector('.check-btn');
+                    if (checkButton) {
+                        const config = quizConfigs[quiz.id];
+                        checkButton.onclick = () => checkQuiz(uniqueFormId, config.correctAnswers, config.explanations);
+                    }
+                    const sectionTitle = document.getElementById(quiz.sectionId).querySelector('.section-title').cloneNode(true);
+                    quizzesContainer.appendChild(sectionTitle);
+                    const quizContainer = document.createElement('div');
+                    quizContainer.className = 'quiz-container';
+                    quizContainer.appendChild(clone);
+                    quizzesContainer.appendChild(quizContainer);
+                }
+            });
+
+            document.getElementById('allQuizzes').classList.add('active-section');
+            document.getElementById('allQuizzes').scrollIntoView({ behavior: 'smooth' });
+            updateNav('quiz');
+            speak("Showing all quizzes.");
+        }
+        
+        // Hide all sections and topics grid
+        function hideAll() {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active-section');
+            });
+            document.getElementById('topicsGrid').style.display = 'none';
+            document.querySelector('header').style.display = 'none';
+        }
+        
+        // Update navigation active state
+        function updateNav(activeNav) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-nav') === activeNav || 
+                    (activeNav === 'home' && link.getAttribute('data-nav') === 'topics') ||
+                    (['consumerBehavior', 'marketStructures', 'nationalIncome', 'consumption', 'internationalTrade', 'economicDevelopment'].includes(activeNav) && link.getAttribute('data-nav') === 'home')) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Check quiz answers
+        function checkQuiz(formId, correctAnswers, explanations) {
+            const form = document.getElementById(formId);
+            const inputs = form.querySelectorAll('input[type="radio"]:checked');
+            const questions = form.querySelectorAll('.quiz-question');
+            let score = 0;
+            
+            // Clear previous explanations and highlights
+            questions.forEach((question) => {
+                const explanationElement = question.querySelector('.explanation');
+                if (explanationElement) {
+                    explanationElement.remove();
+                }
+                question.querySelectorAll('label').forEach(label => {
+                    label.style.background = '';
+                });
+            });
+            
+            if (inputs.length !== correctAnswers.length) {
+                document.getElementById(`${formId}Result`).textContent = "Please answer all questions";
+                document.getElementById(`${formId}Result`).className = "result incorrect";
+                speak("Please answer all questions before submitting.");
+                return;
+            }
+            
+            inputs.forEach((input, index) => {
+                const question = input.closest('.quiz-question');
+                if (input.value === correctAnswers[index]) {
+                    score++;
+                    input.parentElement.style.background = "#e6f7e6";
+                } else {
+                    input.parentElement.style.background = "#ffebee";
+                    const explanationDiv = document.createElement('div');
+                    explanationDiv.className = 'explanation';
+                    explanationDiv.textContent = explanations[index][input.value];
+                    question.appendChild(explanationDiv);
+                }
+            });
+            
+            const percentage = (score / correctAnswers.length) * 100;
+            const resultElement = document.getElementById(`${formId}Result`);
+            resultElement.textContent = `You scored ${score} out of ${correctAnswers.length} (${percentage.toFixed(0)}%)`;
+            
+            if (percentage >= 70) {
+                resultElement.className = "result correct";
+                speak(`Good job! You scored ${score} out of ${correctAnswers.length}.`);
+            } else {
+                resultElement.className = "result incorrect";
+                speak(`You scored ${score} out of ${correctAnswers.length}. Try reviewing the material.`);
+            }
+        }
+        
+        // Accessibility Functions
+        function toggleHighContrast() {
+            document.body.classList.toggle('high-contrast');
+            const isOn = document.body.classList.contains('high-contrast');
+            speak(`High contrast mode ${isOn ? 'activated' : 'deactivated'}`);
+        }
+        
+        function toggleTextSize() {
+            document.body.classList.toggle('text-large');
+            const isOn = document.body.classList.contains('text-large');
+            speak(`Large text mode ${isOn ? 'activated' : 'deactivated'}`);
+        }
+        
+        function speakPage() {
+            const activeSection = document.querySelector('.active-section');
+            if (activeSection) {
+                const text = activeSection.textContent.replace(/\s+/g, ' ').substring(0, 1000);
+                speak(text);
+            } else {
+                const topics = Array.from(document.querySelectorAll('.topic-card h3')).map(h3 => h3.textContent).join(', ');
+                speak("Available topics: " + topics);
+            }
+        }
+        
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel(); // Cancel any ongoing speech
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.9;
+                speechSynthesis.speak(utterance);
+            } else {
+                console.warn('Text-to-speech not supported in this browser.');
+            }
+        }
+        
+        function pauseSpeech() {
+            if ('speechSynthesis' in window && speechSynthesis.speaking) {
+                speechSynthesis.pause();
+                speak("Speech paused.");
+            }
+        }
+        
+        function resumeSpeech() {
+            if ('speechSynthesis' in window && speechSynthesis.paused) {
+                speechSynthesis.resume();
+                speak("Speech resumed.");
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                showHome();
+            }
+        });
+        
+        // Initialize ARIA attributes
+        document.querySelectorAll('.topic-card').forEach(card => {
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+            card.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    card.click();
+                }
+            });
+        });
+        
+        // Initialize page
+        showHome();
+    </script>
+</body>
+</html>
